@@ -56,12 +56,12 @@
           that.myAddress = tronWeb.defaultAddress.base58
           that.myInvitationLink = 'http://47.242.76.240/#/invite/?inviter='+tronWeb.defaultAddress.base58
           if(that.myAddress=='TLtTdid8ap5AQq7jFtWmzRrJ3XX44w8LRi'){
-            that.myInviterAddress = 'TLtTdid8ap5AQq7jFtWmzRrJ3XX44w8LRi'
+            that.myInviterAddress = '0x0'
           }else{
             that.myInviterAddress = that.getUrlKey('inviter',window.location.href)
             if(!that.myInviterAddress){
               that.$message({
-                message: 'You have to have an invitee',
+                message: '请联系您的上级',
                 type: 'error'
               })
             }
