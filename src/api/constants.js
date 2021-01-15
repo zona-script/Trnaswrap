@@ -1,8 +1,8 @@
 import axios from 'axios'
 const qs = require('qs')
 const server = {
-  development: 'http://47.242.76.240:8010/',
-  production: 'http://47.242.76.240:8010/'
+  development: 'https://tunaswap.pro/',
+  production: 'https://tunaswap.pro/'
 }
 
 const jsonUrl = (json) => {
@@ -15,22 +15,23 @@ const jsonUrl = (json) => {
   return arr.join('&')
 }
 
-export const fet = (url, data, method, postHeaders) => {
+export const fet = (url, data, method) => {
   const realUrl = server[process.env.NODE_ENV] + url
   const type = method.toLowerCase()
   let res = {}
+  
   if (type === 'get') {
     res = axios.get(realUrl + '?' + jsonUrl(data))
       .catch(function(error) {
         alert(error)
       })
   } else if (type === 'post') {
-    res = axios.post(realUrl, qs.stringify(data), postHeaders)
+    res = axios.post(realUrl, qs.stringify(data))
       .catch(function(error) {
         alert(error)
       })
   } else if (type === 'put') {
-    res = axios.put(realUrl, qs.stringify(data), postHeaders)
+    res = axios.put(realUrl, qs.stringify(data))
       .catch(function(error) {
         alert(error)
       })

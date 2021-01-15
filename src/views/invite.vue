@@ -37,7 +37,8 @@
 </template>
 
 <script>
-  import {getOneToken,joinConnection,getTnsPrice} from '@/api/api'
+  import axios from 'axios'
+  import {getOneToken,joinConnection,getTnsPrice,getInvitedAddress} from '@/api/api'
   import { handleClipboard } from '../assets/js/clipboard.js'
   export default {
     name: 'invite',
@@ -54,19 +55,7 @@
         const that = this
         this.$initTronWeb().then(function(tronWeb) {
           that.myAddress = tronWeb.defaultAddress.base58
-          that.myInvitationLink = 'http://47.242.76.240/#/invite/?inviter='+tronWeb.defaultAddress.base58
-          if(that.myAddress=='TLtTdid8ap5AQq7jFtWmzRrJ3XX44w8LRi'){
-            that.myInviterAddress = '0x0'
-          }else{
-            that.myInviterAddress = that.getUrlKey('inviter',window.location.href)
-            if(!that.myInviterAddress){
-              that.$message({
-                message: '请联系您的上级',
-                type: 'error'
-              })
-            }
-          }
-          that.oneToken()
+          that.joinClub()
         })
       },
       getUrlKey(name,url){
@@ -84,39 +73,43 @@
           
         })
       },
-      oneToken(){
+      getInviter(){
         let that = this
-        getOneToken().then(res=>{
-          console.log(res)
-          if(res.data.code==0){
-            let params = {
-              address:that.myAddress,
-              invitedAddress:that.myInviterAddress,
-              onToken:res.data.data
+        //获取推荐人
+        if(that.myAddress=='TLtTdid8ap5AQq7jFtWmzRrJ3XX44w8LRi'){
+          that.myInviterAddress = '0x0'
+          that.myInvitationLink = 'https://tunaswap.pro/#/invite/?inviter='+tronWeb.defaultAddress.base58
+        }else{
+          getInvitedAddress().then(result=>{
+            if(result.data.code==0){
+              if(result.data.data){
+                that.myInvitationLink = 'https://tunaswap.pro/#/invite/?inviter='+tronWeb.defaultAddress.base58
+                that.myInviterAddress = result.data.data.invitedAddress
+              }else{
+                that.myInviterAddress = 'Please contact your superior'
+              }
             }
-            if(that.myInviterAddress && that.myAddress){
-              //加入网体
-              joinConnection(params).then(result=>{
-                if(result.data.code==0){
-                  console.log(result.data.data)
-                  that.$message({
-                    message: 'Success',
-                    type: 'success'
-                  })
-                }else{
-                  that.$message({
-                    message: result.data.msg,
-                    type: 'error'
-                  })
-                }
-              })
-            }
-            //获取tns价格
-            getTnsPrice({onToken:res.data.data}).then(result=>{
-              if(result.data.code==0){
-                that.tnsPrice = result.data.data.tnsprice
+          })
+        }
+        
+      },
+      joinClub(){
+        let that = this
+        let params = {
+          address:that.myAddress,
+          invitedAddress:that.myInviterAddress
+        }
+        joinConnection(params).then(result=>{
+          if(result.data.code==0){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+result.data.data.token
+            getTnsPrice().then(res=>{
+              if(res.data.code==0){
+                that.tnsPrice = res.data.data.tnsprice
               }
             })
+            that.getInviter()
+          }else{
+            that.myInviterAddress = 'Please contact your superior'
           }
         })
       }
@@ -124,6 +117,7 @@
     mounted() {
       this.init()
       this.myInviterAddress = this.getUrlKey('inviter',window.location.href)
+      
     }
   }
 </script>

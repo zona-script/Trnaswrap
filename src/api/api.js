@@ -14,4 +14,9 @@ export function getTnsPrice(params) {
   return fet('api/getTnsPrice', params, 'get')
 }
 
+//获取我的邀请人
+export function getInvitedAddress(params) {
+  return fet('api/getInvitedAddress', params, 'get')
+}
+
 export { api }
