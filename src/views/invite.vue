@@ -19,14 +19,16 @@
     </div>
     <div class="content">
       <div class="background"></div>
-      <div class="title">INVITE</div>
       <div class="invite-info">
-        <div class="title">My Address</div>
-        <div class="value">{{ myAddress }}</div>
-        <div class="title">My Inviter Address</div>
-        <div class="value">{{ myInviterAddress }}</div>
-        <div class="title">My Invitation Link</div>
-        <div class="value">{{ myInvitationLink }}</div>
+        <div class="container-title">INVITE</div>
+        <div class="info-container">
+          <div class="title">My Address</div>
+          <div class="value">{{ myAddress }}</div>
+          <div class="title">My Inviter Address</div>
+          <div class="value">{{ myInviterAddress }}</div>
+          <div class="title">My Invitation Link</div>
+          <div class="value">{{ myInvitationLink }}</div>
+        </div>
       </div>
       <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
       <div class="border-container organization">
