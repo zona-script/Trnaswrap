@@ -1,184 +1,269 @@
 .invite {
-    height: 1508px;
-    background: #F9F9F9;
-    .header {
-        position: relative;
-        width: 100%;
-        height: 100px;
-        background: #fff;
-        padding: 0 50px;
-        border-bottom: 1px solid #E5E5E5;
-        .logo {
-            transform: translateY(-50%);
-            position: absolute;
-            top: 50%;
-            width: 289px;
-            height: 50px;
-            background: transparent url(../images/invite/logo.png) no-repeat center / contain;
-        }
-        .menu {
-            transform: translateY(-50%);
-            position: absolute;
-            top: 50%;
-            right: 50px;
-            width: 80px;
-            height: 64px;
-            background: transparent url(../images/invite/menu.png) no-repeat center / contain;
-        }
+  height: 2588px;
+  background: #f9f9f9;
+  .banner {
+    height: 700px;
+    padding: 30px 30px 0;
+    background: #fff;
+    .banner-image {
+      width: 368px;
+      height: 343px;
+      margin: 0 auto;
+      background: transparent url(../images/invite/illustration.png) no-repeat center / contain;
     }
-    .banner {
-        height: 700px;
-        padding: 30px 30px 0;
-        background: #fff;
-        .banner-image {
-            width: 368px;
-            height: 343px;
-            margin: 0 auto;
-            background: transparent url(../images/invite/illustration.png) no-repeat center / contain;
-        }
-        .banner-logo {
-            width: 339px;
-            height: 49px;
-            margin: 24px auto 0;
-            background: transparent url(../images/invite/Tunaswap.io.png) no-repeat center / contain;
-        }
-        .banner-desc {
-            width: 100%;
-            margin: 18px 0 0 0;
-            font-size: 21px;
-            font-family: PingFangSC-Medium, PingFang SC;
-            font-weight: 500;
-            color: #191919;
-            line-height: 29px;
-        }
-        .banner-info {
-            position: relative;
-            width: 100%;
-            height: 146px;
-            margin: 20px 0 0;
-            background: #FFEFE6;
-            border-radius: 15px;
-            .start {
-                transform: translateY(-50%);
-                position: absolute;
-                left: 100px;
-                top: 50%;
-                height: 116px;
-                .value {
-                    height: 84px;
-                    font-size: 54px;
-                    font-family: AlibabaSans-Medium, AlibabaSans;
-                    font-weight: 500;
-                    color: #191919;
-                    line-height: 84px;
-                }
-                .unit {
-                    height: 38px;
-                    font-size: 24px;
-                    font-family: AlibabaSans-Regular, AlibabaSans;
-                    font-weight: 400;
-                    color: #888D97;
-                    line-height: 38px;
-                }
-            }
-            .exchange {
-                transform: translate(-50%, -50%);
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 43px;
-                height: 47px;
-                background: transparent url(../images/invite/exchange.png) no-repeat center / contain;
-            }
-            .end {
-                transform: translateY(-50%);
-                position: absolute;
-                right: 100px;
-                top: 50%;
-                height: 116px;
-                .value {
-                    height: 84px;
-                    font-size: 54px;
-                    font-family: AlibabaSans-Medium, AlibabaSans;
-                    font-weight: 500;
-                    color: #191919;
-                    line-height: 84px;
-                }
-                .unit {
-                    height: 38px;
-                    font-size: 24px;
-                    font-family: AlibabaSans-Regular, AlibabaSans;
-                    font-weight: 400;
-                    color: #888D97;
-                    line-height: 38px;
-                }
-            }
-        }
+    .banner-logo {
+      width: 339px;
+      height: 49px;
+      margin: 24px auto 0;
+      background: transparent url(../images/invite/Tunaswap.io.png) no-repeat center / contain;
     }
-    .content {
-        position: relative;
-        height: 708px;
-        margin: 40px 0 0;
-        padding: 0 30px;
-        .background {
-            opacity: .6;
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(../images/invite/tunas.png) no-repeat 110% top / 206px 238px,
-                    url(../images/invite/tunasch.png) no-repeat left bottom / 287px 186px;
+    .banner-desc {
+      width: 100%;
+      margin: 18px 0 0 0;
+      font-size: 21px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #191919;
+      line-height: 29px;
+      text-align: center;
+    }
+    .banner-info {
+      position: relative;
+      width: 100%;
+      height: 146px;
+      margin: 20px 0 0;
+      background: #ffefe6;
+      border-radius: 15px;
+      .start {
+        transform: translateY(-50%);
+        position: absolute;
+        left: 100px;
+        top: 50%;
+        height: 116px;
+        .value {
+          height: 84px;
+          font-size: 54px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: 500;
+          color: #191919;
+          line-height: 84px;
         }
+        .unit {
+          height: 38px;
+          font-size: 24px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #888d97;
+          line-height: 38px;
+        }
+      }
+      .exchange {
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 43px;
+        height: 47px;
+        background: transparent url(../images/invite/exchange.png) no-repeat center / contain;
+      }
+      .end {
+        transform: translateY(-50%);
+        position: absolute;
+        right: 100px;
+        top: 50%;
+        height: 116px;
+        .value {
+          height: 84px;
+          font-size: 54px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: 500;
+          color: #191919;
+          line-height: 84px;
+        }
+        .unit {
+          height: 38px;
+          font-size: 24px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #888d97;
+          line-height: 38px;
+        }
+      }
+    }
+  }
+  .content {
+    position: relative;
+    margin: 40px 0 0;
+    padding: 0 30px;
+    .background {
+      opacity: 0.6;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(../images/invite/tunas.png) no-repeat 110% top / 206px 238px,
+        url(../images/invite/tunasch.png) no-repeat left bottom / 287px 186px;
+    }
+    .invite-info {
+      transform: scale(1);
+      width: 100%;
+      // height: 395px;
+      margin: 40px auto;
+      // padding: 0px 30px 40px;
+      text-align: left;
+      background: #ffffff;
+      border-radius: 15px;
+      border: 1px solid #cccccc;
+      .container-title {
+        transform: scale(1);
+        padding: 0 0 0 30px;
+        font-size: 34px;
+        text-align: left;
+        font-family: AlibabaSans-Bold, AlibabaSans;
+        font-weight: bold;
+        color: #191919;
+        line-height: 100px;
+        border-bottom: 1px solid #d8d8d8;
+      }
+      .info-container {
+        padding: 0px 30px 40px;
         .title {
-            opacity: .9999;
-            height: 47px;
-            font-size: 30px;
-            text-align: left;
-            font-family: AlibabaSans-Bold, AlibabaSans;
-            font-weight: bold;
-            color: #191919;
-            line-height: 47px;
+          height: 38x;
+          margin: 20px 0 0;
+          font-size: 24px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: 400;
+          color: #888d97;
+          line-height: 38px;
         }
-        .invite-info {
-            opacity: .9999;
-            width: 100%;
-            // height: 395px;
-            margin: 40px auto;
-            padding: 20px 30px 40px;
-            text-align: left;
-            background: #FFFFFF;
-            border-radius: 15px;
-            border: 1px solid #CCCCCC;
-            .title {
-                height: 38x;
-                margin: 20px 0 0;
-                font-size: 24px;
-                font-family: AlibabaSans-Medium, AlibabaSans;
-                font-weight: 400;
-                color: #888D97;
-                line-height: 38px;
-            }
-            .value {
-                margin: 10px 0 0;
-                font-size: 22px;
-                font-family: AlibabaSans-Medium, AlibabaSans;
-                font-weight: 500;
-                color: #191919;
-                line-height: 34px;
-            }
+        .value {
+          margin: 10px 0 0;
+          font-size: 24px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 38px;
         }
-        .copy-all {
-            opacity: .9999;
-            width: 100%;
-            height: 74px;
-            margin: 0 auto;
-            background: linear-gradient(180deg, #FF8B18 0%, #FF5206 100%);
-            border-radius: 37px;
-            font-size: 28px;
-            font-family: AlibabaSans-Medium, AlibabaSans;
-            font-weight: 500;
-            color: #FFFFFF;
-            line-height: 74px;
-        }
+      }
     }
+    .copy-all {
+      transform: scale(1);
+      // width: 100%;
+      height: 74px;
+      margin: 50px 40px;
+      background: linear-gradient(180deg, #ff8b18 0%, #ff5206 100%);
+      border-radius: 37px;
+      font-size: 28px;
+      font-family: AlibabaSans-Medium, AlibabaSans;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 74px;
+      text-align: center;
+    }
+  }
+  .border-container {
+    overflow: hidden;
+    transform: scale(1);
+    margin: 50px 0 0;
+    background: #fff;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 1px solid #ccc;
+
+    &.organization {
+      .title {
+        height: 99.5px;
+        padding: 0 0 0 30px;
+        font-size: 34px;
+        font-family: AlibabaSans-Bold, AlibabaSans;
+        font-weight: bold;
+        color: #323232;
+        line-height: 99.5px;
+        border-bottom: 1px solid #d8d8d8;
+      }
+      .tab-container {
+        margin: 0 30px 0;
+        .cell {
+          padding: 0;
+        }
+        .tab-title-line {
+          font-size: 34px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 100px;
+        }
+        .organization-value {
+          font-size: 30px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 47px;
+        }
+        .el-table_1_column_1 {
+          font-size: 24px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #323232;
+          line-height: 78px;
+        }
+        .el-table_1_column_2 {
+          text-align: right;
+          font-size: 30px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 78px;
+        }
+      }
+    }
+    &.referral {
+      .title {
+        height: 99.5px;
+        padding: 0 0 0 30px;
+        font-size: 30px;
+        font-family: AlibabaSans-Bold, AlibabaSans;
+        font-weight: bold;
+        color: #323232;
+        line-height: 99.5px;
+        border-bottom: 1px solid #d8d8d8;
+      }
+      .tab-container {
+        .tab-title-line {
+          background: #f7f7f7;
+          font-size: 24px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 70px;
+          th {
+            padding: 0;
+            background: #f7f7f7;
+          }
+        }
+        .cell {
+          padding: 0 30px;
+        }
+        td.el-table_2_column_3 {
+          font-size: 18px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          color: #323232;
+          line-height: 80px;
+        }
+        td.el-table_2_column_4 {
+          text-align: right;
+          font-size: 18px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          color: #323232;
+          line-height: 80px;
+        }
+        td.el-table_2_column_5 {
+          font-size: 18px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          color: #ff652b;
+          line-height: 80px;
+        }
+      }
+    }
+  }
 }

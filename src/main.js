@@ -12,6 +12,9 @@ import initTronWeb from './utils/tronwebFn'
 // import 'element-ui/lib/theme-chalk/index.css'
 import 'amfe-flexible';
 import 'element-ui/lib/theme-chalk/index.css'
+import './components'
+
+
 Vue.prototype.$http=axios
 Vue.prototype.$initTronWeb = initTronWeb
 // 全局引入按需引入UI库 vant
