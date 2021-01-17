@@ -1,41 +1,60 @@
 <template>
-  <div id="invite" class="invite">
+  <div id="home" class="home">
     <headTitle></headTitle>
     <div class="banner">
       <div class="banner-image"></div>
       <div class="banner-logo"></div>
       <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
       <div class="banner-info">
+        <div class="icon-container balance"></div>
+        <div class="context">
+          <div class="main-title">0.00000000</div>
+          <div class="subtitle">My Tns Balance</div>
+        </div>
+      </div>
+      <div class="banner-info">
+        <div class="icon-container supply"></div>
+        <div class="context">
+          <div class="main-title">0.00</div>
+          <div class="subtitle">Current Total Supply</div>
+        </div>
+      </div>
+      <div class="banner-info">
+        <div class="icon-container staked"></div>
+        <div class="context">
+          <div class="main-title">0.00</div>
+          <div class="subtitle">Total Staked</div>
+        </div>
       </div>
     </div>
     <div class="content">
       <div class="background"></div>
-      <div class="title">INVITE</div>
-      <div class="invite-info">
-        <div class="title">My Address</div>
-        <div class="value">{{ myAddress }}</div>
-        <div class="title">My Inviter Address</div>
-        <div class="value">{{ myInviterAddress }}</div>
-        <div class="title">My Invitation Link</div>
-        <div class="value">{{ myInvitationLink }}</div>
-      </div>
-      <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
-      <div class="border-container organization">
-        <div class="title">Organization</div>
-        <div class="tab-container organization">
-          <el-table :data="origanizationData" style="width: 100%" :show-header="false">
-            <el-table-column prop="name"></el-table-column>
-            <el-table-column prop="value"></el-table-column>
-          </el-table>
+      <div class="border-container">
+        <div class="title">
+          <div class="text">Top Pairs</div>
+          <div class="detail">&gt;</div>
         </div>
-      </div>
-      <div class="border-container referral">
-        <div class="title">Referral</div>
         <div class="tab-container">
-          <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-            <el-table-column prop="referral" label="Referral"></el-table-column>
-            <el-table-column prop="partner" label="Partner" align="right"></el-table-column>
-            <el-table-column prop="performance" label="Performance" align="right"></el-table-column>
+          <el-table :data="pairsData" style="width: 100%" :header-row-class-name="'tab-title-line'">
+            <el-table-column prop="name" label="Name">
+              <template slot-scope="scope">
+                <div class="icon-container">
+                  <img class="first-img" :src="scope.row.firstImg" />
+                  <img class="second-img" :src="scope.row.secondImg" />
+                </div>
+                <div class="text-container">{{ scope.row.firstType + ' /' + scope.row.secondType }}</div>
+              </template>
+            </el-table-column>
+            <el-table-column prop="assets" label="Assets" align="right">
+              <template slot-scope="scope">
+                <div class="assets">{{ scope.row.assets + ' ' + scope.row.unit }}</div>
+              </template>
+            </el-table-column>
+            <el-table-column prop="liquidity" label="Liquidity" align="right">
+              <template slot-scope="scope">
+                <div class="liquidity">{{ scope.row.liquidity }}</div>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </div>
@@ -44,12 +63,66 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-import { handleClipboard } from '../assets/js/clipboard.js'
+// import axios from 'axios'
+// import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
+// import { handleClipboard } from '../assets/js/clipboard.js'
 export default {
-  name: 'Invite',
+  name: 'Home',
   props: {
+    pairsData: {
+      default: () => [
+        {
+          firstImg: require('../themes/images/home/a.png'),
+          secondImg: require('../themes/images/home/b.png'),
+          firstType: 'WTRX',
+          secondType: 'USDT',
+          name: '',
+          assets: '82719.4073',
+          unit: 'WTRX',
+          liquidity: '5048.4546'
+        },
+        {
+          firstImg: require('../themes/images/home/a.png'),
+          secondImg: require('../themes/images/home/b.png'),
+          firstType: 'WTRX',
+          secondType: 'USDT',
+          name: '',
+          assets: '82719.4073',
+          unit: 'WTRX',
+          liquidity: '5048.4546'
+        },
+        {
+          firstImg: require('../themes/images/home/a.png'),
+          secondImg: require('../themes/images/home/b.png'),
+          firstType: 'WTRX',
+          secondType: 'USDT',
+          name: '',
+          assets: '82719.4073',
+          unit: 'WTRX',
+          liquidity: '5048.4546'
+        },
+        {
+          firstImg: require('../themes/images/home/a.png'),
+          secondImg: require('../themes/images/home/b.png'),
+          firstType: 'WTRX',
+          secondType: 'USDT',
+          name: '',
+          assets: '82719.4073',
+          unit: 'WTRX',
+          liquidity: '5048.4546'
+        },
+        {
+          firstImg: require('../themes/images/home/a.png'),
+          secondImg: require('../themes/images/home/b.png'),
+          firstType: 'WTRX',
+          secondType: 'USDT',
+          name: '',
+          assets: '82719.4073',
+          unit: 'WTRX',
+          liquidity: '5048.4546'
+        }
+      ]
+    }
   },
   data() {
     return {
@@ -59,14 +132,11 @@ export default {
       tnsPrice: 0
     }
   },
-  methods: {
-    
-  },
-  mounted() {
-  }
+  methods: {},
+  mounted() {}
 }
 </script>
 
 <style lang="less">
-@import '../themes/style/invite.less';
+@import '../themes/style/home.less';
 </style>
