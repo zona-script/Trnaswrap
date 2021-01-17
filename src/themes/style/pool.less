@@ -1,0 +1,63 @@
+.pool {
+  height: 1508px;
+  background: #f9f9f9;
+  .tb-head {
+    padding: 30px 40px;
+    height: 100px;
+    text-align: left;
+    border-bottom: 1px solid #d8d8d8;
+    .arrow {
+      width: 0;
+      height: 0;
+      float: right;
+      vertical-align: middle;
+      &.down {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 9px solid#323232;
+        margin-top: 12px;
+      }
+    }
+    .info-wrap {
+      overflow: hidden;
+      height: 40px;
+      .img {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: top;
+        &.second-img {
+          transform: translateX(-30%);
+        }
+      }
+      .title {
+        font-family: Alibaba Sans Bold;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 40px;
+        margin-left: 12px;
+        vertical-align: top;
+      }
+    }
+  }
+  .tab-container {
+    margin: 0 30px 0;
+    .cell {
+      padding: 0;
+    }
+    .organization-name {
+      font-size: 24px;
+      font-family: AlibabaSans-Regular, AlibabaSans;
+      font-weight: 400;
+      color: #323232;
+      line-height: 38px;
+    }
+    .organization-value {
+      font-size: 30px;
+      font-family: AlibabaSans-Medium, AlibabaSans;
+      font-weight: bold;
+      color: #323232;
+      line-height: 47px;
+    }
+  }
+}

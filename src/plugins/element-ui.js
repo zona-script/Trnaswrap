@@ -5,6 +5,8 @@ import {
   Input,
   Pagination,
   Table,
+  Tabs,
+  TabPane,
   TableColumn,
   Loading,
   Button,
@@ -23,6 +25,8 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Button)
 Vue.use(Table)
+Vue.use(Tabs)
+Vue.use(TabPane)
 Vue.use(TableColumn)
 Vue.use(Tooltip)
 Vue.use(Slider)
