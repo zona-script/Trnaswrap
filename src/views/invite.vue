@@ -29,8 +29,8 @@
           <div class="title">My Invitation Link</div>
           <div class="value">{{ myInvitationLink }}</div>
         </div>
+        <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
       </div>
-      <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
       <div class="border-container organization">
         <div class="title">Organization</div>
         <div class="tab-container">
