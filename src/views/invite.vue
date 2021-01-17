@@ -33,10 +33,14 @@
       <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
       <div class="border-container organization">
         <div class="title">Organization</div>
-        <div class="tab-container organization">
+        <div class="tab-container">
           <el-table :data="origanizationData" style="width: 100%" :show-header="false">
             <el-table-column prop="name"></el-table-column>
-            <el-table-column prop="value"></el-table-column>
+            <el-table-column prop="value" align="right">
+              <template slot-scope="scope">
+                <div class="organization-value">{{ scope.row.value }}</div>
+              </template>
+            </el-table-column>
           </el-table>
         </div>
       </div>
