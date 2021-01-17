@@ -158,30 +158,32 @@ export default {
         })
       }
     },
-    joinClub() {
+    joinClub(){
       let that = this
       let params = {
-        address: that.myAddress,
-        invitedAddress: that.myInviterAddress
+        address:that.myAddress,
+        invitedAddress:that.myInviterAddress
       }
-      joinConnection(params).then(result => {
-        if (result.data.code == 0) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.data.token
-          getTnsPrice().then(res => {
-            if (res.data.code == 0) {
-              that.tnsPrice = res.data.data.tnsprice
-            }
-          })
+      joinConnection(params).then(result=>{
+        if(result.data.code==0){
+          axios.defaults.headers.common['Authorization'] = 'Bearer '+result.data.data.token
+          
           that.getInviter()
-        } else {
+        }else{
           that.myInviterAddress = 'Please contact your superior'
         }
       })
     }
-  },
+  },  
   mounted() {
+    let that = this
     this.init()
-    this.myInviterAddress = this.getUrlKey('inviter', window.location.href)
+    this.myInviterAddress = this.getUrlKey('inviter',window.location.href)
+    getTnsPrice().then(res=>{
+      if(res.data.code==0){
+        that.tnsPrice = res.data.data.tnsprice
+      }
+    })
   }
 }
 </script>
