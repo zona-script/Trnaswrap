@@ -93,6 +93,7 @@
         }
         
       },
+      
       joinClub(){
         let that = this
         let params = {
@@ -102,11 +103,7 @@
         joinConnection(params).then(result=>{
           if(result.data.code==0){
             axios.defaults.headers.common['Authorization'] = 'Bearer '+result.data.data.token
-            getTnsPrice().then(res=>{
-              if(res.data.code==0){
-                that.tnsPrice = res.data.data.tnsprice
-              }
-            })
+            
             that.getInviter()
           }else{
             that.myInviterAddress = 'Please contact your superior'
@@ -115,9 +112,14 @@
       }
     },
     mounted() {
+      let that = this
       this.init()
       this.myInviterAddress = this.getUrlKey('inviter',window.location.href)
-      
+      getTnsPrice().then(res=>{
+              if(res.data.code==0){
+                that.tnsPrice = res.data.data.tnsprice
+              }
+            })
     }
   }
 </script>
