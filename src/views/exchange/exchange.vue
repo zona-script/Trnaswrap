@@ -41,17 +41,17 @@
     </div>
 </template>
 <style lang="less">
-  @import "../themes/style/common.less";
-  @import "../themes/style/header.less";
-  @import "../themes/style/button.less";
-  @import "../themes/style/pannel.less";
-  @import "../themes/style/formview.less";
-  @import "../themes/style/exchange.less";
+  @import "@/themes/style/common.less";
+  @import "@/themes/style/header.less";
+  @import "@/themes/style/button.less";
+  @import "@/themes/style/pannel.less";
+  @import "@/themes/style/formview.less";
+  @import "@/themes/style/exchange.less";
 </style>
 <script>
   import axios from 'axios'
   import {getOneToken,joinConnection,getTnsPrice,getInvitedAddress} from '@/api/api'
-  import { handleClipboard } from '../assets/js/clipboard.js'
+  import { handleClipboard } from '@/assets/js/clipboard.js'
   export default {
     name: 'exchange',
     data() {

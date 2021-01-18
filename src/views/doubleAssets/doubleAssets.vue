@@ -161,7 +161,7 @@
 <script>
 // import axios from 'axios'
 // import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-// import { handleClipboard } from '../assets/js/clipboard.js'
+// import { handleClipboard } from '@/assets/js/clipboard.js'
 export default {
   name: 'DoubleAssets',
   data() {
@@ -169,8 +169,8 @@ export default {
       origanizationData: [
         {
           type: 'icon',
-          firstImg: require('../themes/images/home/a.png'),
-          secondImg: require('../themes/images/home/b.png'),
+          firstImg: require('@/themes/images/home/a.png'),
+          secondImg: require('@/themes/images/home/b.png'),
           name: 'WTRX-USDT',
           value: '0.00089'
         },
@@ -299,13 +299,13 @@ export default {
 }
 </script>
 <style lang="less">
-@import '../themes/style/common.less';
-@import '../themes/style/header.less';
-@import '../themes/style/button.less';
-@import '../themes/style/pannel.less';
-@import '../themes/style/formview.less';
-/* @import "../themes/style/tab.less"; */
-@import '../themes/style/addLiquidity.less';
+@import '@/themes/style/common.less';
+@import '@/themes/style/header.less';
+@import '@/themes/style/button.less';
+@import '@/themes/style/pannel.less';
+@import '@/themes/style/formview.less';
+/* @import "@/themes/style/tab.less"; */
+@import '@/themes/style/addLiquidity.less';
 .your-position {
   height: 100px;
   font-size: 30px;

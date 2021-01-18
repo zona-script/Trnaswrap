@@ -171,10 +171,10 @@ export const requierImg =(name,number)=> {
        }
         return require('@/assets/img/currency/'+name+'.png')
     } catch (error) {
-        return require('@/assets/img/currency/avitve.png')
+        // return require('@/assets/img/currency/avitve.png')
     }
   } else {
-       return require('@/assets/img/currency/avitve.png')
+      //  return require('@/assets/img/currency/avitve.png')
   }
 }
 /* eslint-disable */
