@@ -22,7 +22,7 @@ Vue.prototype.$initTronWeb = initTronWeb
 // 引入全局样式
 // import '@/assets/css/index.scss'
 // 移动端适配
-// import 'lib-flexible/flexible.js'
+import 'lib-flexible/flexible.js'
 // import './styles/index.less'
 // filters
 import './filters'
