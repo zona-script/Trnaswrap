@@ -3,15 +3,15 @@
  * @type { *[] }
  */
 export const constantRouterMap = [
-  // {
-  //   path: '/',
-  //   redirect: 'invite',
-  //   meta: {
-  //     title: 'Invite',
-  //     keepAlive: false
-  //   }
-  // },
-  { path: '/', name: 'home', component: () => import('@/views/home') },
+  {
+    path: '/',
+    redirect: 'invite',
+    meta: {
+      title: 'Invite',
+      keepAlive: false
+    }
+  },
+  { path: '/home', name: 'home', component: () => import('@/views/home') },
   { path: '/invite', name: 'invite', component: () => import('@/views/invite') },
   { path: '/pool', name: 'pool', component: () => import('@/views/pool') },
   { path: '/createApair', name: 'createApair', component: () => import('@/views/createApair')},

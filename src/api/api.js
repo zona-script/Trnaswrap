@@ -19,4 +19,9 @@ export function getInvitedAddress(params) {
   return fet('api/getInvitedAddress', params, 'get')
 }
 
+//获取用户团队
+export function getUserTeam(params) {
+  return fet('api/team', params, 'get')
+}
+
 export { api }

@@ -1,8 +1,10 @@
 import axios from 'axios'
 const qs = require('qs')
 const server = {
-  development: 'https://tunaswap.pro/',
-  production: 'https://tunaswap.pro/'
+  // development: 'https://tunaswap.pro/',
+  // production: 'https://tunaswap.pro/'
+  development: 'http://47.242.236.26:8010/',
+  production: 'http://47.242.236.26:8010/'
 }
 
 const jsonUrl = (json) => {
@@ -16,6 +18,7 @@ const jsonUrl = (json) => {
 }
 
 export const fet = (url, data, method) => {
+  debugger
   const realUrl = server[process.env.NODE_ENV] + url
   const type = method.toLowerCase()
   let res = {}

@@ -48,9 +48,9 @@
         <div class="title">Referral</div>
         <div class="tab-container">
           <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-            <el-table-column prop="referral" label="Referral"></el-table-column>
-            <el-table-column prop="partner" label="Partner" align="right"></el-table-column>
-            <el-table-column prop="performance" label="Performance" align="right"></el-table-column>
+            <el-table-column prop="address" label="Referral"></el-table-column>
+            <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
+            <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
           </el-table>
         </div>
       </div>
@@ -60,52 +60,35 @@
 
 <script>
 import axios from 'axios'
-import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
+import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress, getUserTeam } from '@/api/api'
 import { handleClipboard } from '../assets/js/clipboard.js'
 export default {
   name: 'Invite',
-  props: {
-    origanizationData: {
-      default: () => [
-        {
-          name: 'Global quantity',
-          value: '73560'
-        },
-        {
-          name: 'Team partner',
-          value: '3576'
-        },
-        {
-          name: 'Team performance',
-          value: '57985'
-        },
-        {
-          name: 'Grade',
-          value: 'T3'
-        }
-      ]
-    },
-    referralData: {
-      default: () => [
-        {
-          referral: 'TBu3750F25W',
-          partner: '317',
-          performance: '7965'
-        },
-        {
-          referral: 'BTXubABT23a',
-          partner: '523',
-          performance: '3174'
-        }
-      ]
-    }
-  },
   data() {
     return {
       myAddress: '',
       myInviterAddress: '',
       myInvitationLink: '',
-      tnsPrice: 0
+      tnsPrice: 0,
+      referralData:[],
+      origanizationData:[
+        {
+          name: 'Global quantity',
+          value: '0'
+        },
+        {
+          name: 'Team partner',
+          value: '0'
+        },
+        {
+          name: 'Team performance',
+          value: '0'
+        },
+        {
+          name: 'Grade',
+          value: ''
+        }
+      ]  
     }
   },
   methods: {
@@ -167,10 +150,30 @@ export default {
       joinConnection(params).then(result=>{
         if(result.data.code==0){
           axios.defaults.headers.common['Authorization'] = 'Bearer '+result.data.data.token
-          
+          that.getTeam()
           that.getInviter()
         }else{
           that.myInviterAddress = 'Please contact your superior'
+        }
+      })
+    },
+    getPrice(){
+      let that = this
+      getTnsPrice().then(res=>{
+        if(res.data.code==0){
+          that.tnsPrice = res.data.data.tnsprice
+        }
+      })
+    },
+    getTeam(){
+      let that = this
+      getUserTeam().then(res=>{
+        if(res.data.code==0){
+          that.origanizationData[0].value = res.data.data.wholeNetworkNum
+          that.origanizationData[1].value = res.data.data.teamTotalNum
+          that.origanizationData[2].value = res.data.data.teamTotalPerformance
+          that.origanizationData[3].value = res.data.data.grade
+          that.referralData = res.data.data.teamDto
         }
       })
     }
@@ -179,11 +182,8 @@ export default {
     let that = this
     this.init()
     this.myInviterAddress = this.getUrlKey('inviter',window.location.href)
-    getTnsPrice().then(res=>{
-      if(res.data.code==0){
-        that.tnsPrice = res.data.data.tnsprice
-      }
-    })
+    this.getPrice()
+    
   }
 }
 </script>
