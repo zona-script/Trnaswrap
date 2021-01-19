@@ -72,7 +72,7 @@
                 </div>
           </div>
       </div> -->
-      <select-token :tokens="tokens" :show="selectTokenShow"></select-token>
+ 
        <div id="addLiquidity" class="addLiquidity"> 
           <div class="header">
             <div class="logo"></div>
@@ -111,7 +111,7 @@
                           <div class="form-view-item-top">
                           <div class="max-num">
                               <span class="max-wrap">MAX</span>
-                              <span class="num">94.850.00</span>
+                              <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                           </div>
                           <div class="droplist">
                               <div class="drop-head" v-on:click="dropHeadClick(item)">
@@ -173,7 +173,7 @@
                           <div class="form-view-item-top">
                           <div class="max-num">
                               <span class="max-wrap">MAX</span>
-                              <span class="num">94.850.00</span>
+                              <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                           </div>
                           <div class="droplist">
                               <div class="drop-head" v-on:click="dropHeadClick(item)">

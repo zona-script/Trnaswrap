@@ -1,4 +1,20 @@
 <template>
+<div>
+    <div class="dialog-wrap">
+        <div class="mantle"></div>
+        <div class="dialog-pannel min-h626">
+            <h3 class="title"><span class="close"></span>Transaction Settings</h3>
+            <p class="desc-text2 ml30 mr30 mt20">Your transaction will revert if the price changes unfavorably by more than this percenntage</p>
+              <div class="pannel-info-share ml30 mr30">
+                <div class="item-wrap">
+                    <div class="item-box nobg  mt20" :class="{ 'select': item.isSelect }" v-for="(item, index) in shareInfo" :key="index">
+                        <div class="num">{{ item.num }}</div>
+                        <div class="text-info">{{ item.text }}</div>
+                    </div>
+                </div>
+             </div>
+        </div>
+      </div>
     <div id="exchange" class="exchange">
          <div class="header">
             <div class="logo"></div>
@@ -13,7 +29,7 @@
                         <div class="form-view-item-top">
                             <div class="max-num">
                                 <span class="max-wrap">MAX</span>
-                                <span class="num">94.850.00</span>
+                                <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                             </div>
                             <div class="droplist">
                                 <div class="drop-head" v-on:click="dropHeadClick(item)"> 
@@ -39,6 +55,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <style lang="less">
   @import "@/themes/style/common.less";
@@ -46,6 +63,7 @@
   @import "@/themes/style/button.less";
   @import "@/themes/style/pannel.less";
   @import "@/themes/style/formview.less";
+  @import "@/themes/style/dialog.less";
   @import "@/themes/style/exchange.less";
 </style>
 <script>
@@ -102,6 +120,25 @@
                 num:"1’000"
             }
         }],
+        shareInfo: [
+            {
+                num: "1%",
+                text: 'Slippage tolerance'
+            },
+            {
+                num:"5%",
+                text: 'Slippage tolerance'
+            },
+            {
+                num: "10%",
+                text: 'Slippage tolerance'
+            },
+            {
+                num: "30%",
+                isSelect:true,
+                text: 'Slippage tolerance'
+            }
+        ]
       }
     },
     methods: {

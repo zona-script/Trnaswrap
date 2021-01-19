@@ -87,14 +87,22 @@
        border: 1px solid #E8E8E8;
        height: 68px;
        vertical-align: middle;
-       .num{
-           font-size: 34px;
-           font-family: Alibaba Sans Medium;
-           font-weight: 500;
-           line-height: 68px;
+       .input-wrap{   
+           height: 68px;
            margin-left: 20px;
            display: block;
            overflow: hidden;
+           input{
+               border: none;
+               height: 100%;
+               font-size: 34px;
+               font-family: Alibaba Sans Medium;
+               font-weight: 500;
+               width: 98%;
+           }
+           input:focus {
+                outline: none;
+           }
        }
        .max-wrap{
            float: right;
