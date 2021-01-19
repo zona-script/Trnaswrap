@@ -51,6 +51,9 @@
             <el-table-column prop="address" label="Referral"></el-table-column>
             <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
             <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
+            <template slot="empty">
+              <div class="noData">No Data</div>
+            </template>
           </el-table>
         </div>
       </div>
