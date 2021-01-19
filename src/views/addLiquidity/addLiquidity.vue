@@ -42,37 +42,7 @@
               <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
         </div>
       </div>
-       <!-- <div class="dialog-wrap">
-          <div class="mantle"></div>
-          <div class="dialog-pannel">
-               <h3 class="title"><span class="close"></span>Select a token</h3>
-                  <div class="input-warp mt50 mr30 ml30">
-                     <input type="text" placeholder="Search name or paste" />
-                  </div>
-                  <div class="info-list-wrap mlr mt50">
-                    <div class="info-item nobg select">
-                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
-                          <span class="text">WTRX</span>
-                    </div>
-                    <div class="info-item nobg">
-                          <img class="img" :src="require('@/themes/images/dialog/token_04_2x.png')"/>
-                          <span class="text">USDT</span>
-                    </div>
-                    <div class="info-item nobg">
-                          <img class="img" :src="require('@/themes/images/dialog/token_03_2x.png')"/>
-                          <span class="text">JST</span>
-                    </div>
-                    <div class="info-item nobg">
-                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
-                          <span class="text">SUN</span>
-                    </div>
-                    <div class="info-item nobg">
-                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
-                          <span class="text">BTC</span>
-                    </div>
-                </div>
-          </div>
-      </div> -->
+      <!-- 第三种弹框样式 -->
       <select-token :tokens="selectTokens" :show="selectTokenShow" :selected-token="selectedToken" @selected-token-close="selectedTokenClose"></select-token>
        <div id="addLiquidity" class="addLiquidity"> 
           <headTitle></headTitle>
@@ -83,26 +53,11 @@
               <el-tabs type="border-card">
                   <el-tab-pane>
                   <span slot="label" class="single">Single assets</span>
-                  <div class="pannel-info pd">
-                      <div class="form-view bd">
-                      <img src="" />
-                      <img src="" />
-                      <div class="droplist">
-                          <div class="drop-head noborde" v-on:click="dropHeadClick(imgDropList)">
-                          <span class="arrow down"></span>
-                          <span class="drop-head-text">{{ imgDropList.select.text }}</span>
-                          </div>
-                          <ul class="dorp-content" v-show="imgDropList.dropListIsShow">
-                          <li
-                              class="dorp-content-item"
-                              v-on:click="formViewDropClick(imgDropList, liItem)"
-                              v-for="(liItem, liIndex) in imgDropList.dropList"
-                              :key="liIndex"
-                          >
-                              {{ liItem.text }}
-                          </li>
-                          </ul>
-                      </div>
+                  <!-- <div class="pannel-info pd"> -->
+                      <div class="form-view img-text-wrap bd">
+                        <img class="img" :src="require('@/themes/images/common/token_02_2x.png')"/>
+                        <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')"/>
+                        <span class="img-text">TRX - WTRX</span>
                       </div>
                       <div class="form-view">
                       <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
@@ -141,31 +96,16 @@
                       <div class="btn create mt50">Approve</div>
                       <div class="btn add mt50">Supply</div>
                       </div>
-                  </div>
+                  <!-- </div> -->
                   </el-tab-pane>
                   <el-tab-pane>
                   <span slot="label" class="single">Double assets</span>
-                  <div class="pannel-info pd">
-                      <div class="form-view bd">
-                      <img src="" />
-                      <img src="" />
-                      <div class="droplist">
-                          <div class="drop-head noborde" v-on:click="dropHeadClick(imgDropList)">
-                          <span class="arrow down"></span>
-                          <span class="drop-head-text">{{ imgDropList.select.text }}</span>
-                          </div>
-                          <ul class="dorp-content" v-show="imgDropList.dropListIsShow">
-                          <li
-                              class="dorp-content-item"
-                              v-on:click="formViewDropClick(imgDropList, liItem)"
-                              v-for="(liItem, liIndex) in imgDropList.dropList"
-                              :key="liIndex"
-                          >
-                              {{ liItem.text }}
-                          </li>
-                          </ul>
-                      </div>
-                      </div>
+                  <!-- <div class="pannel-info pd"> -->
+                    <div class="form-view img-text-wrap bd">
+                      <img class="img" :src="require('@/themes/images/common/token_02_2x.png')"/>
+                      <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')"/>
+                      <span class="img-text">TRX - WTRX</span>
+                    </div>
                       <div class="form-view">
                       <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
                           <div class="form-view-item-top">
@@ -225,7 +165,7 @@
                           </el-table-column>
                       </el-table>
                       </div>
-                  </div>
+                  <!-- </div> -->
                   </el-tab-pane>
               </el-tabs>
             </div>
@@ -420,4 +360,15 @@ export default {
 @import '@/themes/style/pannel.less';
 @import '@/themes/style/formview.less';
 @import '@/themes/style/addLiquidity.less';
+.form-view.img-text-wrap {
+  padding: 15px 0;
+  .img{
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    &.sec {
+      transform: translateX(-20%);
+    }
+  }
+}
 </style>
