@@ -41,7 +41,7 @@
                <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
           </div>
       </div> -->
-      <div class="dialog-wrap">
+      <!-- <div class="dialog-wrap">
           <div class="mantle"></div>
           <div class="dialog-pannel">
                <h3 class="title"><span class="close"></span>Select a token</h3>
@@ -71,7 +71,8 @@
                     </div>
                 </div>
           </div>
-      </div>
+      </div> -->
+      <select-token :tokens="tokens" :show="selectTokenShow"></select-token>
        <div id="addLiquidity" class="addLiquidity"> 
           <div class="header">
             <div class="logo"></div>
@@ -243,6 +244,34 @@ export default {
   name: 'addLiquidity',
   data() {
     return {
+      selectTokenShow: false,
+      tokens: [
+        {
+          id: 1,
+          img: require('@/themes/images/dialog/b_2x.png'),
+          txt: 'WTRX'
+        },
+        {
+          id: 2,
+          img: require('@/themes/images/dialog/token_04_2x.png'),
+          txt: 'USDT'
+        },
+        {
+          id: 3,
+          img: require('@/themes/images/dialog/token_03_2x.png'),
+          txt: 'JST'
+        },
+        {
+          id: 4,
+          img: require('@/themes/images/dialog/b_2x.png'),
+          txt: 'SUN'
+        },
+        {
+          id: 5,
+          img: require('@/themes/images/dialog/b_2x.png'),
+          txt: 'BTC'
+        }
+      ],
       origanizationData: [
         {
           type: 'icon',
