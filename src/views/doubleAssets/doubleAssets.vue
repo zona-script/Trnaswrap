@@ -23,7 +23,8 @@
                   <li
                     class="dorp-content-item"
                     v-on:click="formViewDropClick(imgDropList, liItem)"
-                    v-for="liItem in imgDropList.dropList"
+                    v-for="(liItem, liIndex) in imgDropList.dropList"
+                    :key="liIndex"
                   >
                     {{ liItem.text }}
                   </li>
@@ -31,7 +32,7 @@
               </div>
             </div>
             <div class="form-view">
-              <div class="form-view-item clearfix mt" v-for="item in formItem">
+              <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
                 <div class="form-view-item-top">
                   <div class="max-num">
                     <span class="max-wrap">MAX</span>
@@ -46,7 +47,8 @@
                       <li
                         class="dorp-content-item"
                         v-on:click="formViewDropClick(item, liItem)"
-                        v-for="liItem in item.dropList"
+                        v-for="(liItem, idx) in item.dropList"
+                        :key="idx"
                       >
                         {{ liItem.text }}
                       </li>
@@ -83,7 +85,8 @@
                   <li
                     class="dorp-content-item"
                     v-on:click="formViewDropClick(imgDropList, liItem)"
-                    v-for="liItem in imgDropList.dropList"
+                    v-for="(liItem, liIndex) in imgDropList.dropList"
+                    :key="liIndex"
                   >
                     {{ liItem.text }}
                   </li>
@@ -91,7 +94,7 @@
               </div>
             </div>
             <div class="form-view">
-              <div class="form-view-item clearfix mt" v-for="item in formItem">
+              <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
                 <div class="form-view-item-top">
                   <div class="max-num">
                     <span class="max-wrap">MAX</span>
@@ -106,7 +109,8 @@
                       <li
                         class="dorp-content-item"
                         v-on:click="formViewDropClick(item, liItem)"
-                        v-for="liItem in item.dropList"
+                        v-for="(liItem, liIndex) in item.dropList"
+                        :key="liIndex"
                       >
                         {{ liItem.text }}
                       </li>
@@ -125,7 +129,7 @@
             <div class="pannel-info-share">
               <div class="title">Prices and pool share</div>
               <div class="item-wrap mt50">
-                <div class="item-box" v-for="item in shareInfo">
+                <div class="item-box" v-for="(item, index) in shareInfo" :key="index">
                   <div class="num">{{ item.num }}</div>
                   <div class="text-info">{{ item.text }}</div>
                 </div>
@@ -155,18 +159,18 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-import { handleClipboard } from '../assets/js/clipboard.js'
+// import axios from 'axios'
+// import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
+// import { handleClipboard } from '@/assets/js/clipboard.js'
 export default {
-  name: 'doubleAssets',
+  name: 'DoubleAssets',
   data() {
     return {
       origanizationData: [
         {
           type: 'icon',
-          firstImg: require('../themes/images/home/a.png'),
-          secondImg: require('../themes/images/home/b.png'),
+          firstImg: require('@/themes/images/home/a.png'),
+          secondImg: require('@/themes/images/home/b.png'),
           name: 'WTRX-USDT',
           value: '0.00089'
         },
@@ -279,7 +283,7 @@ export default {
   methods: {
     init() {
       // 初始化tronweb
-      const that = this
+      // const that = this
     },
     dropHeadClick(item) {
       item.dropListIsShow = true
@@ -295,13 +299,13 @@ export default {
 }
 </script>
 <style lang="less">
-@import '../themes/style/common.less';
-@import '../themes/style/header.less';
-@import '../themes/style/button.less';
-@import '../themes/style/pannel.less';
-@import '../themes/style/formview.less';
-/* @import "../themes/style/tab.less"; */
-@import '../themes/style/addLiquidity.less';
+@import '@/themes/style/common.less';
+@import '@/themes/style/header.less';
+@import '@/themes/style/button.less';
+@import '@/themes/style/pannel.less';
+@import '@/themes/style/formview.less';
+/* @import "@/themes/style/tab.less"; */
+@import '@/themes/style/addLiquidity.less';
 .your-position {
   height: 100px;
   font-size: 30px;

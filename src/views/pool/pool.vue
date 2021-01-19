@@ -22,8 +22,8 @@
         <div class="tb-head">
           <span class="arrow down"></span>
           <div class="info-wrap">
-            <img src="../themes/images/home/a.png" class="img first-img" />
-            <img src="../themes/images/home/b.png" class="img second-img" />
+            <img src="@/themes/images/home/a.png" class="img first-img" />
+            <img src="@/themes/images/home/b.png" class="img second-img" />
             <span class="title">AI/OPC</span>
           </div>
         </div>
@@ -73,9 +73,9 @@ export default {
 }
 </script>
 <style lang="less">
-@import '../themes/style/common.less';
-@import '../themes/style/header.less';
-@import '../themes/style/button.less';
-@import '../themes/style/pannel.less';
-@import '../themes/style/pool.less';
+@import '@/themes/style/common.less';
+@import '@/themes/style/header.less';
+@import '@/themes/style/button.less';
+@import '@/themes/style/pannel.less';
+@import '@/themes/style/pool.less';
 </style>
