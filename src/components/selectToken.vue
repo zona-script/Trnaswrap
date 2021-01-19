@@ -1,10 +1,10 @@
 <template>
-  <div class="dialog-wrap" v-show="isShow">
+  <div class="dialog-wrap" v-show="isShow" @touchstart="wrapTouch">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title"><span class="close" @touchstart="close"></span>Select a token</h3>
+      <h3 class="title"><span class="close" @touchend="close"></span>Select a token</h3>
       <div class="input-warp mt50 mr30 ml30">
-        <input type="text" placeholder="Search name or paste" />
+        <input type="text" placeholder="Search name or paste" @change="change($event)" />
       </div>
       <div class="info-list-wrap mlr mt50">
         <div class="info-item nobg" v-for="(item, index) in tokens" :key="index" @touchstart="touchstart(index)" :class="selectedIndex === index ? 'select' : ''">
@@ -62,20 +62,26 @@ export default {
     }
   },
   methods: {
-    init() {
-      // 初始化tronweb
-      // const that = this
+    wrapTouch(e) {
+      e.stopPropagation();
     },
     touchstart(index) {
       this.selectedIndex = index;
       this.$emit('selected-token', this.tokens[index].id);
     },
     close() {
-      this.isShow = false;
+      this.$emit('selected-token-close', false);
+    },
+    change(e) {
+      this.$emit('change', e);
     }
   },
   mounted() {
-    this.init()
+  },
+  watch: {
+    show(newVal) {
+      this.isShow = newVal;
+    }
   }
 }
 </script>

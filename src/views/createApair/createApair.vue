@@ -1,9 +1,7 @@
 <template>
     <div id="createApair" class="createApair">
-         <div class="header">
-            <div class="logo"></div>
-            <div class="menu"></div>
-        </div>
+        <headTitle></headTitle>
+        <select-token :tokens="selectTokens" :show="selectTokenShow" @selected-token-close="selectedTokenClose"></select-token>
         <div class="content">
             <div class="background"></div>
             <div class="title">Create a pair</div> 
@@ -58,6 +56,34 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
     name: 'createApair',
     data() {
       return {
+        selectTokenShow: false,
+        selectTokens: [
+          {
+            id: 1,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'WTRX'
+          },
+          {
+            id: 2,
+            img: require('@/themes/images/dialog/token_04_2x.png'),
+            txt: 'USDT'
+          },
+          {
+            id: 3,
+            img: require('@/themes/images/dialog/token_03_2x.png'),
+            txt: 'JST'
+          },
+          {
+            id: 4,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'SUN'
+          },
+          {
+            id: 5,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'BTC'
+          }
+        ],
         formItem:[
         {
             select:{
@@ -111,11 +137,17 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
         const that = this
       },
       dropHeadClick(item){
-        item.dropListIsShow=true;
+        this.selectTokenShow = true;
       },
       formViewDropClick(item,subItem){
           item.dropListIsShow=false;
           item.select.text=subItem.text;
+      },
+      selectedToken(id) {
+        console.log(id);
+      },
+      selectedTokenClose() {
+        this.selectTokenShow = false;
       }
     },
     mounted() {

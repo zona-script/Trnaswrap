@@ -1,6 +1,8 @@
 <template>
 <div>
-    <div class="dialog-wrap">
+    
+    <select-token :tokens="selectTokens" :show="selectTokenShow" :selected-token="selectedToken" @selected-token-close="selectedTokenClose"></select-token>
+    <div class="dialog-wrap" v-if="transactionSettings">
         <div class="mantle"></div>
         <div class="dialog-pannel min-h626">
             <h3 class="title"><span class="close"></span>Transaction Settings</h3>
@@ -16,10 +18,7 @@
         </div>
       </div>
     <div id="exchange" class="exchange">
-         <div class="header">
-            <div class="logo"></div>
-            <div class="menu"></div>
-        </div>
+      <headTitle></headTitle>
         <div class="content">
             <div class="background"></div>
             <div class="title">Exchange</div> 
@@ -74,6 +73,35 @@
     name: 'exchange',
     data() {
       return {
+        transactionSettings: false,
+        selectTokenShow: false,
+        selectTokens: [
+          {
+            id: 1,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'WTRX'
+          },
+          {
+            id: 2,
+            img: require('@/themes/images/dialog/token_04_2x.png'),
+            txt: 'USDT'
+          },
+          {
+            id: 3,
+            img: require('@/themes/images/dialog/token_03_2x.png'),
+            txt: 'JST'
+          },
+          {
+            id: 4,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'SUN'
+          },
+          {
+            id: 5,
+            img: require('@/themes/images/dialog/b_2x.png'),
+            txt: 'BTC'
+          }
+        ],
         formItem:[
         {
             select:{
@@ -146,11 +174,17 @@
         const that = this
       },
       dropHeadClick(item){
-        item.dropListIsShow=true;
+        this.selectTokenShow = true;
       },
       formViewDropClick(item,subItem){
           item.dropListIsShow=false;
           item.select.text=subItem.text;
+      },
+      selectedToken(id) {
+        console.log(id);
+      },
+      selectedTokenClose() {
+        this.selectTokenShow = false;
       }
     },
     mounted() {

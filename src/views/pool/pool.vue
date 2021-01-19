@@ -1,9 +1,6 @@
 <template>
   <div id="pool" class="pool">
-    <div class="header">
-      <div class="logo"></div>
-      <div class="menu"></div>
-    </div>
+    <headTitle></headTitle>
     <div class="content">
       <div class="background"></div>
       <div class="title">Pool</div>

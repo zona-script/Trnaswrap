@@ -1,47 +1,48 @@
 <template>
    <div>
-      <!-- 第一种弹框样式 可以去除注释看效果 -->
-      <!-- <div class="dialog-wrap">
+      <!-- 第一种弹框样式 -->
+      <div class="dialog-wrap" v-show="transactionSubmittedShow">
           <div class="mantle"></div>
           <div class="dialog-pannel">
                <img class="submitte-img mt100" :src="require('@/themes/images/dialog/submit_illustration.png')"/>
                <div class="prompt-text mt50">Transaction Submitted</div>
                <div class="prompt-text2 mt20"><a href="#">View on Tronscan</a></div>
-               <div class="btn cancel mt100 mt50 ml30 mr30" v-on:click="dialogCancel()">Cancel</div>
+               <div class="btn cancel mt100 mt50 ml30 mr30 confirm" v-on:click="dialogCancel()">Cancel</div>
           </div>
-      </div> -->
+      </div>
+      <!-- 第二种弹框样式 -->
+      <div class="dialog-wrap" v-show="reviveShow">
+        <div class="mantle"></div>
+        <div class="dialog-pannel">
+              <h3 class="title"><span class="close"></span>You will revive</h3>
+              <div class="num">14.496876</div>
+              <div class="prompt-text3">JST SUN Pool Tokens</div>
+              <div class="desc-text ml30 mr30 mt30">OutPut is estimated.if the price change by more than 0.5% your transaction will revert</div>
+              <div class="info-list-wrap mlr mt50">
+                  <div class="info-item">
+                      <span class="num-text fr">1</span>
+                      <img class="img" :src="require('@/themes/images/dialog/token_03_2x.png')"/>
+                      <span class="text">JST</span>
+                  </div>
+                  <div class="info-item mt10">
+                      <span class="num-text fr">16.013137</span>
+                      <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
+                      <span class="text">SUN</span>
+                  </div>
+                  <div class="info-item mt10">
+                      <span class="num-text fr">0%</span>
+                      <span class="num-text">share of Pool</span>
+                  </div>
+                  <div class="info-item mt10 mb50">
+                      <div class="desc-title">Rates</div>
+                      <div class="desc-info mt10">1 JST = NaN Sun</div>
+                      <div class="desc-info">1 Sun = 19.630547 JST</div>
+                  </div>
+              </div>
+              <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
+        </div>
+      </div>
        <!-- <div class="dialog-wrap">
-          <div class="mantle"></div>
-          <div class="dialog-pannel">
-               <h3 class="title"><span class="close"></span>You will revive</h3>
-               <div class="num">14.496876</div>
-               <div class="prompt-text3">JST SUN Pool Tokens</div>
-               <div class="desc-text ml30 mr30 mt30">OutPut is estimated.if the price change by more than 0.5% your transaction will revert</div>
-               <div class="info-list-wrap mlr mt50">
-                   <div class="info-item">
-                        <span class="num-text fr">1</span>
-                        <img class="img" :src="require('@/themes/images/dialog/token_03_2x.png')"/>
-                        <span class="text">JST</span>
-                   </div>
-                   <div class="info-item mt10">
-                        <span class="num-text fr">16.013137</span>
-                        <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
-                        <span class="text">SUN</span>
-                   </div>
-                   <div class="info-item mt10">
-                        <span class="num-text fr">0%</span>
-                        <span class="num-text">share of Pool</span>
-                   </div>
-                   <div class="info-item mt10 mb50">
-                       <div class="desc-title">Rates</div>
-                       <div class="desc-info mt10">1 JST = NaN Sun</div>
-                       <div class="desc-info">1 Sun = 19.630547 JST</div>
-                   </div>
-               </div>
-               <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
-          </div>
-      </div> -->
-      <!-- <div class="dialog-wrap">
           <div class="mantle"></div>
           <div class="dialog-pannel">
                <h3 class="title"><span class="close"></span>Select a token</h3>
@@ -72,12 +73,9 @@
                 </div>
           </div>
       </div> -->
- 
+      <select-token :tokens="selectTokens" :show="selectTokenShow" :selected-token="selectedToken" @selected-token-close="selectedTokenClose"></select-token>
        <div id="addLiquidity" class="addLiquidity"> 
-          <div class="header">
-            <div class="logo"></div>
-            <div class="menu"></div>
-          </div>
+          <headTitle></headTitle>
           <div class="content">
             <div class="background"></div>
             <div class="title">Add Liquidity</div>
@@ -244,8 +242,10 @@ export default {
   name: 'addLiquidity',
   data() {
     return {
+      transactionSubmittedShow: false,
+      reviveShow: false,
       selectTokenShow: false,
-      tokens: [
+      selectTokens: [
         {
           id: 1,
           img: require('@/themes/images/dialog/b_2x.png'),
@@ -392,7 +392,7 @@ export default {
       // const that = this
     },
     dropHeadClick(item) {
-      item.dropListIsShow = true
+      this.selectTokenShow = true;
     },
     formViewDropClick(item, subItem) {
       item.dropListIsShow = false
@@ -400,6 +400,12 @@ export default {
     },
     dialogCancel(){
      
+    },
+    selectedToken(id) {
+      console.log(id);
+    },
+    selectedTokenClose() {
+      this.selectTokenShow = false;
     }
   },
   mounted() {
@@ -410,39 +416,8 @@ export default {
 <style lang="less">
 @import '@/themes/style/common.less';
 @import '@/themes/style/dialog.less';
-@import '@/themes/style/header.less';
 @import '@/themes/style/button.less';
 @import '@/themes/style/pannel.less';
 @import '@/themes/style/formview.less';
-/* @import "@/themes/style/tab.less"; */
 @import '@/themes/style/addLiquidity.less';
-.your-position {
-  height: 100px;
-  font-size: 30px;
-  font-family: AlibabaSans-Bold, AlibabaSans;
-  font-weight: bold;
-  color: #313131;
-  line-height: 100px;
-  border-bottom: 1px solid #d8d8d8;
-}
-.tab-container {
-  margin: 0 30px 0;
-  .cell {
-    padding: 0;
-  }
-  .organization-name {
-    font-size: 24px;
-    font-family: AlibabaSans-Regular, AlibabaSans;
-    font-weight: 400;
-    color: #323232;
-    line-height: 38px;
-  }
-  .organization-value {
-    font-size: 30px;
-    font-family: AlibabaSans-Medium, AlibabaSans;
-    font-weight: bold;
-    color: #323232;
-    line-height: 47px;
-  }
-}
 </style>
