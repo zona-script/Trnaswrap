@@ -3,26 +3,12 @@
     <headTitle></headTitle>
     <div class="content">
       <div class="background"></div>
-      <div class="title">Add Liquidity</div>
+      <div class="title">Convert</div>
       <div class="pannel-info pd">
-        <div class="form-view bd">
-          <img src="" />
-          <img src="" />
-          <div class="droplist">
-            <div class="drop-head noborde" v-on:click="dropHeadClick(imgDropList)">
-              <span class="arrow down"></span>
-              <span class="drop-head-text">{{ imgDropList.select.text }}</span>
-            </div>
-            <ul class="dorp-content" v-show="imgDropList.dropListIsShow">
-              <li
-                class="dorp-content-item"
-                v-on:click="formViewDropClick(imgDropList, liItem)"
-                v-for="(liItem, liIndex) in imgDropList.dropList"
-                :key="liIndex"
-              >
-                {{ liItem.text }}
-              </li>
-            </ul>
+        <div class="form-view bd mt50">
+          <div class="img-text-wrap">
+            <img class="img" :src="require('@/themes/images/common/token_04_2x.png')"/>
+            <span class="img-text">TRX - WTRX</span>
           </div>
         </div>
         <div class="form-view">
@@ -30,24 +16,9 @@
             <div class="form-view-item-top">
               <div class="max-num">
                 <span class="max-wrap">MAX</span>
-                <span class="num">94.850.00</span>
+                <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
               </div>
-              <div class="droplist">
-                <div class="drop-head" v-on:click="dropHeadClick(item)">
-                  <span class="arrow down"></span>
-                  <span class="drop-head-text">{{ item.select.text }}</span>
-                </div>
-                <ul class="dorp-content" v-show="item.dropListIsShow">
-                  <li
-                    class="dorp-content-item"
-                    v-on:click="formViewDropClick(item, liItem)"
-                    v-for="(liItem, idx) in item.dropList"
-                    :key="idx"
-                  >
-                    {{ liItem.text }}
-                  </li>
-                </ul>
-              </div>
+              <div class="price-text">=¥0.30</div>
             </div>
             <div class="balance-wrap">
               <span class="num">{{ item.balance.num }}</span>
@@ -58,10 +29,33 @@
             </div>
           </div>
         </div>
-        <div class="pannel-info-share">
-          <div class="btn create mt50">Approve</div>
-          <div class="btn add mt50">Supply</div>
+        <div class="btn create mt50">Supply</div>
+        <div class="split mt50"></div>
+        <div class="form-view bd mt50">
+          <div class="img-text-wrap">
+            <img class="img" :src="require('@/themes/images/common/token_02_2x.png')"/>
+            <span class="img-text">WTRX - TRX</span>
+          </div>
         </div>
+        <div class="form-view">
+          <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
+            <div class="form-view-item-top">
+              <div class="max-num">
+                <span class="max-wrap">MAX</span>
+                <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
+              </div>
+              <div class="price-text">{{ item.price }}</div>
+            </div>
+            <div class="balance-wrap">
+              <span class="num">{{ item.balance.num }}</span>
+              <div class="balance">
+                <span class="img"></span>
+                <span class="balance-text">{{ item.balance.text }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn add mt50">Supply</div>
       </div>
     </div>
   </div>
@@ -102,52 +96,12 @@ export default {
             text: 'wtrx'
           },
           dropListIsShow: false,
-          dropList: [
-            {
-              value: 1,
-              text: 'wtrx'
-            },
-            {
-              value: 2,
-              text: 'wtrx2'
-            },
-            {
-              value: 3,
-              text: 'wtrx3'
-            }
-          ],
+          price:"=¥0.30",
           num: '94.850.00',
           max: 'max',
           balance: {
             text: 'Balance',
             num: '560’000'
-          }
-        },
-        {
-          select: {
-            value: 1,
-            text: 'usdt'
-          },
-          dropListIsShow: false,
-          dropList: [
-            {
-              value: 1,
-              text: 'usdt'
-            },
-            {
-              value: 2,
-              text: 'usdt2'
-            },
-            {
-              value: 3,
-              text: 'usdt3'
-            }
-          ],
-          num: '0.00',
-          max: 'max',
-          balance: {
-            text: 'Balance',
-            num: '1’000'
           }
         }
       ],
