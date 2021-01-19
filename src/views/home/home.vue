@@ -2,28 +2,34 @@
   <div id="home" class="home">
     <headTitle></headTitle>
     <div class="banner">
-      <div class="banner-image"></div>
-      <div class="banner-logo"></div>
-      <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
-      <div class="banner-info">
-        <div class="icon-container balance"></div>
-        <div class="context">
-          <div class="main-title">0.00000000</div>
-          <div class="subtitle">My Tns Balance</div>
+      <div class="banner-inner">
+        <div class="banner-image"></div>
+        <div class="banner-desc-container">
+          <div class="banner-logo"></div>
+          <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
+          <div class="exchange">Go to exchange</div>
+          <div class="menu">See The Menu</div>
         </div>
-      </div>
-      <div class="banner-info">
-        <div class="icon-container supply"></div>
-        <div class="context">
-          <div class="main-title">0.00</div>
-          <div class="subtitle">Current Total Supply</div>
+        <div class="banner-info">
+          <div class="icon-container balance"></div>
+          <div class="context">
+            <div class="main-title">0.00000000</div>
+            <div class="subtitle">My Tns Balance</div>
+          </div>
         </div>
-      </div>
-      <div class="banner-info">
-        <div class="icon-container staked"></div>
-        <div class="context">
-          <div class="main-title">0.00</div>
-          <div class="subtitle">Total Staked</div>
+        <div class="banner-info">
+          <div class="icon-container supply"></div>
+          <div class="context">
+            <div class="main-title">0.00</div>
+            <div class="subtitle">Current Total Supply</div>
+          </div>
+        </div>
+        <div class="banner-info">
+          <div class="icon-container staked"></div>
+          <div class="context">
+            <div class="main-title">0.00</div>
+            <div class="subtitle">Total Staked</div>
+          </div>
         </div>
       </div>
     </div>
@@ -128,7 +134,7 @@ export default {
   },
   data() {
     return {
-      IsPc: IsPc(), 
+      IsPc: IsPc(),
       myAddress: '',
       myInviterAddress: '',
       myInvitationLink: '',
