@@ -64,12 +64,23 @@
     height: 140px;
     border-radius: 15px;
     border: 1px solid #e8e8e8;
+    &.nobg{
+      width: 47%;
+      background: #FFFFFFFF;
+      &.select{
+        background: linear-gradient(90deg, #FF8E18 0%, #FF4804 100%);
+        .num,.text-info{
+          color: #F9F9F9FF;
+        }
+      }
+    }
     .num {
       margin-top: 30px;
       font-weight: 500;
       color: #323232;
       line-height: 56px;
       font-size: 36px;
+      height: 56px;
     }
     .text-info {
       height: 25px;

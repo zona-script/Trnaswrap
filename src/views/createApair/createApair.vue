@@ -8,14 +8,14 @@
             <div class="background"></div>
             <div class="title">Create a pair</div> 
             <div class="pannel-info pd">
-                <p class="desc">You ll be the first liquidity provider of this pool,and your added token proportion will determine the initial price,You can also customize the distribution ratio of the pool fee income.</br>
+                <p class="desc mt50">You ll be the first liquidity provider of this pool,and your added token proportion will determine the initial price,You can also customize the distribution ratio of the pool fee income.</br>
 please click "Confirm" when you have confirmedthe above proportion.</p>
                 <div class="form-view">
                     <div class="form-view-item clearfix mt" v-for="item in formItem">
                         <div class="form-view-item-top">
                             <div class="max-num">
                                 <span class="max-wrap">MAX</span>
-                                <span class="num">94.850.00</span>
+                                <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                             </div>
                             <div class="droplist">
                                 <div class="drop-head" v-on:click="dropHeadClick(item)"> 

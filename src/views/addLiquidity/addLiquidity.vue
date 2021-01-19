@@ -41,7 +41,7 @@
                <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
           </div>
       </div> -->
-      <div class="dialog-wrap">
+      <!-- <div class="dialog-wrap">
           <div class="mantle"></div>
           <div class="dialog-pannel">
                <h3 class="title"><span class="close"></span>Select a token</h3>
@@ -71,7 +71,8 @@
                     </div>
                 </div>
           </div>
-      </div>
+      </div> -->
+ 
        <div id="addLiquidity" class="addLiquidity"> 
           <div class="header">
             <div class="logo"></div>
@@ -110,7 +111,7 @@
                           <div class="form-view-item-top">
                           <div class="max-num">
                               <span class="max-wrap">MAX</span>
-                              <span class="num">94.850.00</span>
+                              <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                           </div>
                           <div class="droplist">
                               <div class="drop-head" v-on:click="dropHeadClick(item)">
@@ -172,7 +173,7 @@
                           <div class="form-view-item-top">
                           <div class="max-num">
                               <span class="max-wrap">MAX</span>
-                              <span class="num">94.850.00</span>
+                              <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
                           </div>
                           <div class="droplist">
                               <div class="drop-head" v-on:click="dropHeadClick(item)">
