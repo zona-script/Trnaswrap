@@ -27,6 +27,22 @@
     .mb50{
         margin-bottom: 50px;
     }
+    .input-warp{   
+        height: 70px;
+        background: #FFFFFF;
+        border-radius: 15px;
+        border: 2px solid #E5E5E5;
+        input{
+            border: none;
+            height: 66px;
+            text-indent: 30px;
+            border-radius: 15px;
+            width: 95%;
+        }
+        input:focus {
+            outline: none;
+        }
+    }
     .prompt-text{
         text-align: center;
         font-family: Alibaba Sans Medium;
@@ -58,7 +74,7 @@
         line-height: 30px;
     }
     .mantle{
-        position: absolute;
+        position: fixed;
         left: 0;
         right: 0;
         top: 0;
@@ -96,7 +112,7 @@
         border-bottom: 1px solid #FFD8D8D8;
     }
     .close{
-        background:  transparent url(../images/dialog/close.png) no-repeat center;
+        background:  transparent url(../images/dialog/close.png) no-repeat center / contain;
         width: 24px;
         height: 24px;
         float: right;
@@ -123,6 +139,21 @@
             overflow: hidden;
             color: #323232;
             font-size: 30px;
+            &.nobg{
+                background: none;
+                position: relative;
+            }
+            &.nobg.select{
+                background: #F9F9F9;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    background: url(../images/dialog/select-icon.png) no-repeat center / contain;
+                    width: 60px;
+                    height: 60px;
+                    right: 30px;
+                }
+            }
             .fr {
                 float: right;
             }

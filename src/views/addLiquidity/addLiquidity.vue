@@ -10,7 +10,7 @@
                <div class="btn cancel mt100 mt50 ml30 mr30" v-on:click="dialogCancel()">Cancel</div>
           </div>
       </div> -->
-       <div class="dialog-wrap">
+       <!-- <div class="dialog-wrap">
           <div class="mantle"></div>
           <div class="dialog-pannel">
                <h3 class="title"><span class="close"></span>You will revive</h3>
@@ -40,8 +40,38 @@
                </div>
                <div class="btn confirm mb50 ml30 mr30" >Confirm</div>
           </div>
+      </div> -->
+      <div class="dialog-wrap">
+          <div class="mantle"></div>
+          <div class="dialog-pannel">
+               <h3 class="title"><span class="close"></span>Select a token</h3>
+                  <div class="input-warp mt50 mr30 ml30">
+                     <input type="text" placeholder="Search name or paste" />
+                  </div>
+                  <div class="info-list-wrap mlr mt50">
+                    <div class="info-item nobg select">
+                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
+                          <span class="text">WTRX</span>
+                    </div>
+                    <div class="info-item nobg">
+                          <img class="img" :src="require('@/themes/images/dialog/token_04_2x.png')"/>
+                          <span class="text">USDT</span>
+                    </div>
+                    <div class="info-item nobg">
+                          <img class="img" :src="require('@/themes/images/dialog/token_03_2x.png')"/>
+                          <span class="text">JST</span>
+                    </div>
+                    <div class="info-item nobg">
+                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
+                          <span class="text">SUN</span>
+                    </div>
+                    <div class="info-item nobg">
+                          <img class="img" :src="require('@/themes/images/dialog/b_2x.png')"/>
+                          <span class="text">BTC</span>
+                    </div>
+                </div>
+          </div>
       </div>
-
        <div id="addLiquidity" class="addLiquidity"> 
           <div class="header">
             <div class="logo"></div>
