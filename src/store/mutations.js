@@ -18,7 +18,7 @@ const mutations = {
     state.dark = payload
   },
   [SET_TOKEN_DATA](state, payload) {
-    debugger
+    // debugger
     const arr = payload.map(el => {
       el.name = el.name.toLocaleUpperCase()
       return el

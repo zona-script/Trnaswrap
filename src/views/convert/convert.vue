@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="form-view">
-          <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
+          <div class="form-view-item clearfix mt">
             <div class="form-view-item-top">
               <div class="max-num">
                 <span class="max-wrap">MAX</span>
@@ -21,10 +21,10 @@
               <div class="price-text">=¥0.30</div>
             </div>
             <div class="balance-wrap">
-              <span class="num">{{ item.balance.num }}</span>
+              <span class="num">560'000</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">{{ item.balance.text }}</span>
+                <span class="balance-text">Balance</span>
               </div>
             </div>
           </div>
@@ -38,19 +38,19 @@
           </div>
         </div>
         <div class="form-view">
-          <div class="form-view-item clearfix mt" v-for="(item, index) in formItem" :key="index">
+          <div class="form-view-item clearfix mt">
             <div class="form-view-item-top">
               <div class="max-num">
                 <span class="max-wrap">MAX</span>
                 <div class="input-wrap"><input class="num" value="94.850.00"></input></div>
               </div>
-              <div class="price-text">{{ item.price }}</div>
+              <div class="price-text">=¥0.30</div>
             </div>
             <div class="balance-wrap">
-              <span class="num">{{ item.balance.num }}</span>
+              <span class="num">560'000</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">{{ item.balance.text }}</span>
+                <span class="balance-text">Balance</span>
               </div>
             </div>
           </div>

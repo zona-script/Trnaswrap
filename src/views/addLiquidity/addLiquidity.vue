@@ -19,8 +19,8 @@
       <div class="title">Add Liquidity</div>
       <div class="pannel-info">
         <div class="tabs-container">
-          <div class="tabs fir" :class="assetMode ? '' : 'active'">Single assets</div>
-          <div class="tabs sec" :class="assetMode ? 'active' : ''">Double assets</div>
+          <div @touchend="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">Single assets</div>
+          <div @touchend="doubleSet" class="tabs sec" :class="assetMode ? 'active' : ''">Double assets</div>
         </div>
         <div class="configuration">
           <div class="form-view img-text-wrap bd">
@@ -89,8 +89,10 @@
               </div>
             </div>
             <div class="btn-con">
-              <div class="btn create mt50">Approve</div>
-              <div class="btn add mt50">Supply</div>
+              <el-button :loading="false" class="btn add mt50">Approve</el-button>
+              <el-button :loading="false" class="btn add mt50">Supply</el-button>
+              <!-- <div class="btn create mt50">Approve</div>
+              <div class="btn add mt50">Supply</div> -->
             </div>
           </div>
         </div>
@@ -202,7 +204,13 @@ export default {
     transactionClose() {
       this.transactionShow = false
     },
-    confirm() {}
+    confirm() {},
+    singleSet() {
+      this.assetMode = false;
+    },
+    doubleSet() {
+      this.assetMode = true;
+    },
   },
   mounted() {
     this.init()
@@ -217,7 +225,7 @@ export default {
 @import '@/themes/style/addLiquidity.less';
 .form-view.img-text-wrap {
   padding: 15px 0;
-  .img {
+  .img{
     width: 40px;
     height: 40px;
     vertical-align: middle;
