@@ -7,67 +7,66 @@
         <input type="text" placeholder="Search name or paste" @change="change($event)" />
       </div>
       <div class="info-list-wrap mlr mt50">
-        <div class="info-item nobg" v-for="(item, index) in tokens" :key="index" @touchstart="touchstart(index)" :class="selectedIndex === index ? 'select' : ''">
-          <img class="img" :src="item.img" />
-          <span class="text">{{ item.txt }}</span>
+        <div class="info-item nobg" v-for="(item, index) in tokenData" :key="index" @click="touchstart(item,index)" :class="selectedIndex === index ? 'select' : ''">
+          <img class="img" :src="$requierImg(item.name)" />
+          <span class="text">{{ item.name }}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-// import axios from 'axios'
-// import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-// import { handleClipboard } from '@/assets/js/clipboard.js'
+import { mapState } from 'vuex'
 export default {
   name: 'SelectToken',
   props: {
     show: {
       default: true
     },
-    tokens: {
-      default: () => [
-        {
-          id: 1,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'WTRX'
-        },
-        {
-          id: 2,
-          img: require('@/themes/images/dialog/token_04_2x.png'),
-          txt: 'USDT'
-        },
-        {
-          id: 3,
-          img: require('@/themes/images/dialog/token_03_2x.png'),
-          txt: 'JST'
-        },
-        {
-          id: 4,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'SUN'
-        },
-        {
-          id: 5,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'BTC'
-        }
-      ]
+    item:{
+      type:Number,
+      default:0
+    }
+  },
+  computed: {
+    ...mapState(['tokenData', 'pairData'])
+
+  },  
+  watch: {
+    tokenData(list) {
+      this.tokenList = JSON.parse(JSON.stringify(list))
+    },
+    pairData(list) {
+      this.pairList = JSON.parse(JSON.stringify(list))
+    },
+    show(newVal) {
+      this.isShow = newVal;
     }
   },
   data() {
     return {
       isShow: this.show,
-      selectedIndex: 0
+      selectedIndex: 0,
+      filterName: '',
+      iSort: 0,
+      tokenList: [],
+      pairList: [],
+      newTokenAddress: ''
     }
+  },
+  created() {
+    this.tokenList = JSON.parse(JSON.stringify(this.tokenData))
+    this.pairList = JSON.parse(JSON.stringify(this.pairData))
   },
   methods: {
     wrapTouch(e) {
       e.stopPropagation();
     },
-    touchstart(index) {
+    touchstart(item,index) {
       this.selectedIndex = index;
-      this.$emit('selected-token', this.tokens[index].id);
+      this.close()
+      item.item = this.item
+      this.$emit('selected-token', item);
     },
     close() {
       this.$emit('selected-token-close', false);
@@ -77,11 +76,6 @@ export default {
     }
   },
   mounted() {
-  },
-  watch: {
-    show(newVal) {
-      this.isShow = newVal;
-    }
   }
 }
 </script>

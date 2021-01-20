@@ -25,12 +25,12 @@ export function getUserTeam(params) {
 }
 
 //获取token信息
-export function getTokenInfo(params) {
+export function getTokenList(params) {
   return fet('api/coin/tokenInfo', params, 'get')
 }
 
 //获取交易对信息
-export function getPairInfo(params) {
+export function getPairList(params) {
   return fet('api/coin/pairInfo', params, 'get')
 }
 

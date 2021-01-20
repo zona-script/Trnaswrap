@@ -17,6 +17,7 @@ export const TokenData = function(){
 export const PairData = function(){
   return new Promise(function (resolve, reject) {
     getPairList().then((res)=>{
+      console.log(res.data.data)
       if(res.data.code==0){
         resolve(res.data.data)
       }else{
@@ -171,10 +172,10 @@ export const requierImg =(name,number)=> {
        }
         return require('@/assets/img/currency/'+name+'.png')
     } catch (error) {
-        // return require('@/assets/img/currency/avitve.png')
+        return require('@/assets/img/currency/avitve.png')
     }
   } else {
-      //  return require('@/assets/img/currency/avitve.png')
+       return require('@/assets/img/currency/avitve.png')
   }
 }
 /* eslint-disable */

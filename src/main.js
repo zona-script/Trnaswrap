@@ -13,10 +13,12 @@ import initTronWeb from './utils/tronwebFn'
 import 'amfe-flexible';
 import 'element-ui/lib/theme-chalk/index.css'
 import './components'
+import { requierImg } from './utils/index'
 
 
 Vue.prototype.$http=axios
 Vue.prototype.$initTronWeb = initTronWeb
+Vue.prototype.$requierImg = requierImg
 // 全局引入按需引入UI库 vant
 // import '@/plugins/vant'
 // 引入全局样式

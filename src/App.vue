@@ -8,8 +8,28 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+import { TokenData, PairData } from './utils/index'
 export default {
-  name: 'App'
+  name: 'App',
+  created(){
+    let that = this
+    this.init()
+    TokenData().then((res) => {
+      that.$store.dispatch('setTokenData', res)
+    })
+    // PairData().then((res) => {
+    //   that.$store.dispatch('setPairData', res)
+    // })
+  },
+  methods: {
+    ...mapActions(['connectWallett']),
+    async init() {
+      this.$initTronWeb().then((tronWeb) => {
+        this.connectWallett()
+      })
+    }
+  }
 }
 </script>
 <style>
