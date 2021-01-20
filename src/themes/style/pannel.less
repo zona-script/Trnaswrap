@@ -6,16 +6,7 @@
   margin-top: 50px;
   font-family: Alibaba Sans;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-  .el-tabs__nav {
-    width: 100%;
-    .el-tabs__item {
-      width: 50%;
-      margin: 0;
-    }
-  }
-  .el-tabs--border-card>.el-tabs__content {
-    padding: 50px 30px;
-  }
+
   .mt50 {
     margin-top: 50px;
   }
@@ -29,10 +20,10 @@
     line-height: 52px;
     font-family: AlibabaSans-Bold, AlibabaSans;
   }
-  .split{   
-      height: 1px;
-      background: #D8D8D8;
-      border: 1px solid #D8D8D8;
+  .split {
+    height: 1px;
+    background: #d8d8d8;
+    border: 1px solid #d8d8d8;
   }
   .rect {
     border-radius: 15px 13px 13px 13px;
@@ -71,47 +62,56 @@
     color: #313131;
     line-height: 47px;
   }
-  .item-box {
-    text-align: center;
-    width: 30%;
-    margin-right: 3%;
-    display: inline-block;
-    box-sizing: border-box;
-    font-family: AlibabaSans-Medium, AlibabaSans;
-    background-color: #fff0e6;
-    height: 140px;
-    border-radius: 15px;
-    border: 1px solid #e8e8e8;
-    &.nobg{
-      width: 47%;
-      background: #FFFFFFFF;
-      &.select{
-        background: linear-gradient(90deg, #FF8E18 0%, #FF4804 100%);
-        .num,.text-info{
-          color: #F9F9F9FF;
+  .item-wrap {
+    display: flex;
+    justify-content: space-between;
+    .item-box {
+      text-align: center;
+      width: 30%;
+      display: inline-block;
+      box-sizing: border-box;
+      font-family: AlibabaSans-Medium, AlibabaSans;
+      background-color: #fff0e6;
+      height: 140px;
+      border-radius: 15px;
+      border: 1px solid #e8e8e8;
+      &.nobg {
+        width: 47%;
+        background: #ffffffff;
+        &.select {
+          background: linear-gradient(90deg, #ff8e18 0%, #ff4804 100%);
+          .num,
+          .text-info {
+            color: #f9f9f9ff;
+          }
         }
       }
+      .num {
+        margin-top: 30px;
+        font-weight: 500;
+        color: #323232;
+        line-height: 56px;
+        font-size: 36px;
+        height: 56px;
+      }
+      .text-info {
+        height: 25px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #999999;
+        line-height: 25px;
+      }
     }
-    .num {
-      margin-top: 30px;
-      font-weight: 500;
-      color: #323232;
-      line-height: 56px;
-      font-size: 36px;
-      height: 56px;
+    .btn-con {
     }
-    .text-info {
-      height: 25px;
-      font-size: 16px;
-      font-weight: 400;
-      color: #999999;
-      line-height: 25px;
-    }
+  }
+  .btn-con {
+    display: flex;
+    justify-content: space-between;
   }
   .btn {
     width: 45%;
     display: inline-block;
     text-align: center;
-    margin-right: 5%;
   }
 }

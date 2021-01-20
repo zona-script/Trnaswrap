@@ -1,8 +1,44 @@
 .addLiquidity {
   height: 1508px;
   background: #f9f9f9;
+  .content {
+    .pannel-info {
+      margin-bottom: 100px;
+      .tabs-container {
+        width: 100%;
+        height: 88px;
+        .tabs {
+          float: left;
+          width: 50%;
+          background: #F4F4F4;
+          line-height: 88px;
+          text-align: center;
+          font-size: 28px;
+          font-weight: 500;
+          color: #E5E5E5;
+          border-bottom: 1px solid #E8E8E8;
+          &.fir {
+            border-right: 1px solid #E8E8E8;
+          }
+          &.active {
+            background: #FFF;
+            color: #FF7140;
+            border-bottom: 0px solid #E8E8E8;
+          }
+        }
+      }
+      .configuration {
+        padding: 50px 30px 0;
+        background: #FFF;
+      }
+    }
+  }
+  .pos-con {
+    background: #F7F7F7;
+  }
   .your-position {
     height: 100px;
+    padding-left: 30px;
     font-size: 30px;
     font-family: AlibabaSans-Bold, AlibabaSans;
     font-weight: bold;
@@ -12,6 +48,12 @@
   }
   .tab-container {
     margin: 0 30px 0;
+    div {
+      background: transparent;
+    }
+    .el-table th, .el-table tr {
+      background-color: transparent;
+    }
     .cell {
       padding: 0;
     }

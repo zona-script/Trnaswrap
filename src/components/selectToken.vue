@@ -21,7 +21,7 @@ export default {
   name: 'SelectToken',
   props: {
     show: {
-      default: true
+      default: false
     },
     item:{
       type:Number,
