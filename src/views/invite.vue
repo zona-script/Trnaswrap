@@ -49,8 +49,8 @@
         <div class="tab-container">
           <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
             <el-table-column prop="address" label="Referral"></el-table-column>
-            <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
-            <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
+            <el-table-column prop="teamNum" label="Partner" align="right"></el-table-column>
+            <el-table-column label="Performance" align="right"></el-table-column>
             <template slot="empty">
               <div class="noData">No Data</div>
             </template>
@@ -174,8 +174,8 @@ export default {
         if(res.data.code==0){
           that.origanizationData[0].value = res.data.data.wholeNetworkNum
           that.origanizationData[1].value = res.data.data.teamTotalNum
-          that.origanizationData[2].value = res.data.data.teamTotalPerformance
-          that.origanizationData[3].value = res.data.data.grade
+          that.origanizationData[2].value = ''
+          that.origanizationData[3].value = ''
           that.referralData = res.data.data.teamDto
         }
       })
