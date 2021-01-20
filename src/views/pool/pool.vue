@@ -12,8 +12,8 @@
           the corresponding pool in real time, and the liquidity provider can withdraw as required
         </p>
         <div class="rect">Connect to a wallet to view your liquidity.</div>
-        <div class="btn create">Greate a Pair</div>
-        <div class="btn add mt10">Add Liquidity</div>
+        <el-button :loading="false"  class="btn create">Greate a Pair</el-button>
+        <el-button :loading="false"  class="btn add mt10">Add Liquidity</el-button>
       </div>
       <div class="pannel-info">
         <div class="tb-head">

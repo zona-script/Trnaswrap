@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="btn create mt50">Supply</div>
+        <el-button :loading="false"  class="btn create mt50">Greate a Pair</el-button>
         <div class="split mt50"></div>
         <div class="form-view bd mt50">
           <div class="img-text-wrap">
@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div class="btn add mt50">Supply</div>
+        <el-button :loading="false"  class="btn add mt50">Greate a Pair</el-button>
       </div>
     </div>
   </div>

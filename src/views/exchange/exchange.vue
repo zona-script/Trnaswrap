@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn confirm mt50">Supply</div>
+                <el-button :loading="false"  class="btn confirm mt50">Greate a Pair</el-button>
             </div>
         </div>
     </div>
