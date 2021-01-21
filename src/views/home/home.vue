@@ -46,6 +46,9 @@
           <div class="tab-container-inner">
             <el-table :data="pairsData" style="width: 100%" :header-row-class-name="'tab-title-line'">
               <el-table-column prop="name" label="Name">
+                <template slot="header" slot-scope="scope">
+                  <div class="name-head">Name</div>
+                </template>
                 <template slot-scope="scope">
                   <div class="icon-container">
                     <img class="first-img" :src="scope.row.firstImg" />
@@ -93,6 +96,9 @@
                 </template>
               </el-table-column>
               <el-table-column prop="operation" label="Operation" align="right">
+                <template slot="header" slot-scope="scope">
+                  <div class="operation-head">Price Change</div>
+                </template>
                 <template slot-scope="scope">
                   <div class="operation">{{ scope.row.operationExchange }}</div>
                   <div class="operation">{{ scope.row.operationAddLiquidity }}</div>
