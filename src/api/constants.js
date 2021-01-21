@@ -18,7 +18,6 @@ const jsonUrl = (json) => {
 }
 
 export const fet = (url, data, method) => {
-  debugger
   const realUrl = server[process.env.NODE_ENV] + url
   const type = method.toLowerCase()
   let res = {}
