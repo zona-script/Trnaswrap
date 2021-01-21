@@ -16,7 +16,7 @@
         <el-button :loading="false"  class="btn add mt10">Add Liquidity</el-button>
       </div>
       <div class="pannel-info">
-        <div class="tb-head">
+        <div class="tb-head" @click="collapseFunc">
           <span class="arrow down"></span>
           <div class="info-wrap">
             <img src="@/themes/images/home/a.png" class="img first-img" />
@@ -24,19 +24,23 @@
             <span class="title">AI/OPC</span>
           </div>
         </div>
-        <div class="tab-container">
-          <el-table :data="origanizationData" style="width: 100%" :show-header="false">
-            <el-table-column prop="name">
-              <template slot-scope="scope">
-                <div class="organization-name">{{ scope.row.name }}</div>
-              </template>
-            </el-table-column>
-            <el-table-column prop="value" align="right">
-              <template slot-scope="scope">
-                <div class="organization-value">{{ scope.row.value }}</div>
-              </template>
-            </el-table-column>
-          </el-table>
+        <div class="tab-container" :class="collapse ? 'collapse' : ''">
+          <div class="item">
+            <div class="key">Your tatal pool tokens</div>
+            <div class="value">0.00089</div>
+          </div>
+          <div class="item">
+            <div class="key">Pooled DAI</div>
+            <div class="value">801.411</div>
+          </div>
+          <div class="item">
+            <div class="key">Pooled OPC</div>
+            <div class="value">988.899</div>
+          </div>
+          <div class="item">
+            <div class="key">Your Pool share</div>
+            <div class="value">42.79%</div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,24 +51,12 @@ export default {
   name: 'Pool',
   data() {
     return {
-      origanizationData: [
-        {
-          name: 'Your tatal pool tokens',
-          value: '0.00089'
-        },
-        {
-          name: 'Pooled DAI',
-          value: '801.411'
-        },
-        {
-          name: 'Pooled OPC',
-          value: '988.899'
-        },
-        {
-          name: 'Your Pool share',
-          value: '42.79%'
-        }
-      ]
+      collapse: true
+    }
+  },
+  methods: {
+    collapseFunc() {
+      this.collapse = !this.collapse;
     }
   }
 }

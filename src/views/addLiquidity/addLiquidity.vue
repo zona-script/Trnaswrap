@@ -99,18 +99,26 @@
         <div class="pos-con">
           <div class="your-position">Your position</div>
           <div class="tab-container">
-            <el-table :data="origanizationData" style="width: 100%" :show-header="false">
-              <el-table-column prop="name">
-                <template slot-scope="scope">
-                  <div class="organization-name">{{ scope.row.name }}</div>
-                </template>
-              </el-table-column>
-              <el-table-column prop="value" align="right">
-                <template slot-scope="scope">
-                  <div class="organization-value">{{ scope.row.value }}</div>
-                </template>
-              </el-table-column>
-            </el-table>
+            <div class="item">
+              <div class="key con">
+                <img class="img" :src="require('@/themes/images/common/token_02_2x.png')" />
+                <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')" />
+                <div class="txt">WTRX-USDT</div>
+              </div>
+              <div class="value">0.00089</div>
+            </div>
+            <div class="item">
+              <div class="key">Your pool share</div>
+              <div class="value">0.00%</div>
+            </div>
+            <div class="item">
+              <div class="key">WTRX-USDT</div>
+              <div class="value">0.000000</div>
+            </div>
+            <div class="item">
+              <div class="key">USDT</div>
+              <div class="value">0.000000</div>
+            </div>
           </div>
         </div>
       </div>
@@ -222,15 +230,5 @@ export default {
 @import '@/themes/style/pannel.less';
 @import '@/themes/style/formview.less';
 @import '@/themes/style/addLiquidity.less';
-.form-view.img-text-wrap {
-  padding: 15px 0;
-  .img{
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-    &.sec {
-      transform: translateX(-20%);
-    }
-  }
-}
+
 </style>

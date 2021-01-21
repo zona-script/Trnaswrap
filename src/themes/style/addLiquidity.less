@@ -10,66 +10,94 @@
         .tabs {
           float: left;
           width: 50%;
-          background: #F4F4F4;
+          background: #f4f4f4;
           line-height: 88px;
           text-align: center;
           font-size: 28px;
           font-weight: 500;
-          color: #E5E5E5;
-          border-bottom: 1px solid #E8E8E8;
+          color: #e5e5e5;
+          border-bottom: 1px solid #e8e8e8;
           &.fir {
-            border-right: 1px solid #E8E8E8;
+            border-right: 1px solid #e8e8e8;
           }
           &.active {
-            background: #FFF;
-            color: #FF7140;
-            border-bottom: 0px solid #E8E8E8;
+            background: #fff;
+            color: #ff7140;
+            border-bottom: 0px solid #e8e8e8;
           }
         }
       }
       .configuration {
         padding: 50px 30px 0;
-        background: #FFF;
+        background: #fff;
+        .form-view.img-text-wrap {
+          padding: 15px 0;
+          .img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            &.sec {
+              transform: translateX(-20%);
+            }
+          }
+        }
       }
     }
   }
   .pos-con {
-    background: #F7F7F7;
-  }
-  .your-position {
-    height: 100px;
-    padding-left: 30px;
-    font-size: 30px;
-    font-family: AlibabaSans-Bold, AlibabaSans;
-    font-weight: bold;
-    color: #313131;
-    line-height: 100px;
-    border-bottom: 1px solid #d8d8d8;
-  }
-  .tab-container {
-    margin: 0 30px 0;
-    div {
-      background: transparent;
-    }
-    .el-table th, .el-table tr {
-      background-color: transparent;
-    }
-    .cell {
-      padding: 0;
-    }
-    .organization-name {
-      font-size: 24px;
-      font-family: AlibabaSans-Regular, AlibabaSans;
-      font-weight: 400;
-      color: #323232;
-      line-height: 38px;
-    }
-    .organization-value {
+    background: #f7f7f7;
+    .your-position {
+      height: 100px;
+      padding-left: 30px;
       font-size: 30px;
-      font-family: AlibabaSans-Medium, AlibabaSans;
+      font-family: AlibabaSans-Bold, AlibabaSans;
       font-weight: bold;
-      color: #323232;
-      line-height: 47px;
+      color: #313131;
+      line-height: 100px;
+      border-bottom: 1px solid #d8d8d8;
+    }
+    .tab-container {
+      margin: 0 30px 0;
+      .item {
+        display: flex;
+        flex-wrap: nowrap;
+        &:not(:last-child) {
+          border-bottom: 1px solid #d8d8d8;
+        }
+        .key {
+          width: 50%;
+          font-size: 24px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #323232;
+          line-height: 78px;
+          &.con {
+            font-size: 0;
+          }
+          .img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            &.sec {
+              transform: translateX(-20%);
+            }
+          }
+          .txt {
+            display: inline-block;
+            font-size: 24px;
+            vertical-align: middle;
+          }
+        }
+        .value {
+          width: 50%;
+          font-size: 30px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 78px;
+          text-align: right;
+        }
+      }
     }
   }
 }

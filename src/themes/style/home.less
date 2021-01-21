@@ -125,6 +125,11 @@
         }
       }
       .tab-container {
+        // width: 1200px;/*no*/
+        overflow-x: scroll;
+        .tab-container-inner {
+          width: 1200px;/*no*/
+        }
         div {
           display: inline-block;
         }
@@ -135,7 +140,6 @@
         .tab-title-line {
           background: #f7f7f7;
           font-size: 24px;
-          font-family: AlibabaSans-Medium, AlibabaSans;
           font-weight: bold;
           color: #323232;
           line-height: 70px;
@@ -144,7 +148,7 @@
             background: #f7f7f7;
           }
           div {
-            padding: 0 30px;
+            padding: 0;
           }
         }
         .icon-container {
@@ -184,6 +188,20 @@
           color: #ff652b;
           line-height: 28px;
         }
+        .price {
+          color: #ff652b;
+        }
+        .voluem-head {
+          display: block;
+        }
+        .priceChange-head {
+          display: block;
+        }
+        .operation {
+          display: block;
+          color: #ff652b;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -205,6 +223,7 @@
           display: inline-block;
           width: auto;
           vertical-align: top;
+          margin-top: 142px;
           .exchange {
             display: inline-block;
             height: 60px;
@@ -229,6 +248,21 @@
             border-radius: 30px;
           }
         }
+        .banner-info-con { 
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          width: 100%;
+          .banner-info {
+            width: 32.5%;
+          }
+        }
+      }
+    }
+    .content {
+      .border-container {
+        max-width: 1200px;/*no*/
+        margin: 0 auto;
       }
     }
   }
