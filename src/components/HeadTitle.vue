@@ -7,7 +7,7 @@
         <div class="language">Transaction Settings</div>
         <div class="connect">Connect to a Wallet</div>
       </div>
-      <div class="menu"></div>
+      <div class="menu"  @touchend="clickHand"></div>
     </div>
   </div>
 </template>
@@ -18,8 +18,13 @@ export default {
   data() {
     return {}
   },
-  methods: {},
-  mounted() {}
+  methods: {
+     clickHand(){
+       this.$emit('menu-click', false)
+    }
+  },
+  mounted() {
+  }
 }
 </script>
 
