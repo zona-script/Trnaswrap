@@ -1,4 +1,6 @@
 <template>
+  <div>
+   <Menu :show="menuShow" @menu-close="menuClose"></Menu>
   <div class="header">
     <div class="header-inner">
       <div class="logo"></div>
@@ -10,17 +12,23 @@
       <div class="menu"  @touchend="clickHand"></div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'HeadTitle',
   data() {
-    return {}
+    return {
+       menuShow:false,
+    }
   },
   methods: {
      clickHand(){
-       this.$emit('menu-click', false)
+        this.menuShow = true
+    },
+    menuClose() {
+      this.menuShow = false
     }
   },
   mounted() {

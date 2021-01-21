@@ -1,8 +1,6 @@
 <template>
- <div>
-   <Menu :show="menuShow" @menu-close="menuClose"></Menu>
   <div id="pool" class="pool">
-    <headTitle @menu-click="menuClick"></headTitle>
+    <headTitle></headTitle>
     <div class="content">
       <div class="background"></div>
       <div class="title">Pool</div>
@@ -47,26 +45,18 @@
       </div>
     </div>
   </div>
- </div>
 </template>
 <script>
 export default {
   name: 'Pool',
   data() {
     return {
-      collapse: true,
-      menuShow:false,
+      collapse: true
     }
   },
   methods: {
     collapseFunc() {
       this.collapse = !this.collapse;
-    },
-    menuClose() {
-      this.menuShow = false
-    },
-    menuClick(){
-      this.menuShow = true
     }
   }
 }
