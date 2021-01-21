@@ -64,9 +64,6 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
     </div>
 </template>
 <script>
-  import axios from 'axios'
-  import {getOneToken,joinConnection,getTnsPrice,getInvitedAddress} from '@/api/api'
-  import { handleClipboard } from '@/assets/js/clipboard.js'
   import { approved, getConfirmedTransaction } from '../../utils/tronwebFn'
   import ipConfig from '../../config/contracts'
   export default {
@@ -150,9 +147,8 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
             }
           }
         } catch (error) {
-          that.loading1()
           this.$message({
-            message: this.$t('pewe7'),
+            message: 'System error',
             type: 'error'
           })
           console.log(error)

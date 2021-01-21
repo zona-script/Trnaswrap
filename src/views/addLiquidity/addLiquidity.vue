@@ -8,9 +8,9 @@
 
     <!-- 第三种弹框样式 -->
     <select-token
-      :tokens="selectTokens"
+      :item='item'
       :show="selectTokenShow"
-      :selected-token="selectedToken"
+      @selected-token="selectedToken"
       @selected-token-close="selectedTokenClose"
     ></select-token>
     <headTitle></headTitle>
@@ -32,18 +32,18 @@
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
                 <div class="max-num">
-                  <span class="max-wrap">MAX</span>
-                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
+                  <span class="max-wrap" @click="token1Num=token1.balance">MAX</span>
+                  <div class="input-wrap"><input class="num" v-model="token1Num" /></div>
                 </div>
                 <div class="droplist">
-                  <div class="drop-head" v-on:click="dropHeadClick(item)">
+                  <div class="drop-head" v-on:click="dropHeadClick(0)">
                     <span class="arrow down"></span>
-                    <span class="drop-head-text">WTRX</span>
+                    <span class="drop-head-text">{{token1.name}}</span>
                   </div>
                 </div>
               </div>
               <div class="balance-wrap">
-                <span class="num">560’000</span>
+                <span class="num">{{token1.balance}}</span>
                 <div class="balance">
                   <span class="img"></span>
                   <span class="balance-text">Balance</span>
@@ -53,18 +53,18 @@
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
                 <div class="max-num">
-                  <span class="max-wrap">MAX</span>
-                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
+                  <span class="max-wrap" @click="token2Num=token1.balance">MAX</span>
+                  <div class="input-wrap"><input class="num" v-model="token2Num" /></div>
                 </div>
                 <div class="droplist">
-                  <div class="drop-head" v-on:click="dropHeadClick(item)">
+                  <div class="drop-head" v-on:click="dropHeadClick(1)">
                     <span class="arrow down"></span>
-                    <span class="drop-head-text">USDT</span>
+                    <span class="drop-head-text">{{token2.name}}</span>
                   </div>
                 </div>
               </div>
               <div class="balance-wrap">
-                <span class="num">1’000</span>
+                <span class="num">{{token2.balance}}</span>
                 <div class="balance">
                   <span class="img"></span>
                   <span class="balance-text">Balance</span>
@@ -118,9 +118,8 @@
   </div>
 </template>
 <script>
-// import axios from 'axios'
-// import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-// import { handleClipboard } from '@/assets/js/clipboard.js'
+import { approved, getConfirmedTransaction } from '../../utils/tronwebFn'
+import ipConfig from '../../config/contracts'
 export default {
   name: 'addLiquidity',
   data() {
@@ -129,33 +128,6 @@ export default {
       transactionShow: false,
       selectTokenShow: false,
       assetMode: true,
-      selectTokens: [
-        {
-          id: 1,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'WTRX'
-        },
-        {
-          id: 2,
-          img: require('@/themes/images/dialog/token_04_2x.png'),
-          txt: 'USDT'
-        },
-        {
-          id: 3,
-          img: require('@/themes/images/dialog/token_03_2x.png'),
-          txt: 'JST'
-        },
-        {
-          id: 4,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'SUN'
-        },
-        {
-          id: 5,
-          img: require('@/themes/images/dialog/b_2x.png'),
-          txt: 'BTC'
-        }
-      ],
       origanizationData: [
         {
           type: 'icon',
@@ -176,15 +148,41 @@ export default {
           name: 'USDT',
           value: '0.000000'
         }
-      ]
+      ],
+      token1Num:0,
+      token2Num:0,
+      token1:{},
+      token2:{},
+      item:0,
+      pairInfo:{
+        address:'TBm7aKuPzBDButgfJmTwmq4tJ7Wippw3Lo',
+        decimals:'18',
+        pair:'USDT/FOX',
+        token1: {
+          address:'TQKzfGM1F1bvjo2tnQ5Kirqdu2hR8mFWs2',
+          decimals:8,
+          name:'USDT'
+        },
+        token2: {
+          address:'TE9oQF7Y8tbq5Lqdfr9S47QNXHt7GRcHh4',
+          decimals:12,
+          name:'FOX'
+        }
+      }
     }
   },
   methods: {
-    init() {
-      // 初始化tronweb
-      // const that = this
+    async getBalance(token) { // 获取余额
+      const that = this
+      const tokenContract = await window.tronWeb.contract().at(token.address)
+      const tokenBalance = await tokenContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
+      if (tokenBalance) {
+        const balance = parseFloat(tokenBalance, 16) / Math.pow(10, token.decimals)
+        token.item == 0 ? that.token1.balance = balance : that.token2.balance = balance
+      }
     },
     dropHeadClick(item) {
+      this.item = item
       this.selectTokenShow = true
     },
     formViewDropClick(item, subItem) {
@@ -192,8 +190,9 @@ export default {
       item.select.text = subItem.text
     },
     dialogCancel() {},
-    selectedToken(id) {
-      console.log(id)
+    selectedToken(token) {
+      token.item == 0 ? this.token1 = token : this.token2 = token
+      this.getBalance(token)
     },
     selectedTokenClose() {
       this.selectTokenShow = false
@@ -213,7 +212,7 @@ export default {
     },
   },
   mounted() {
-    this.init()
+    
   }
 }
 </script>
