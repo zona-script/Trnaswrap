@@ -1,7 +1,7 @@
 <template>
   <div id="convert" class="convert">
     <headTitle></headTitle>
-    <div class="content">
+    <div class="content-wrap">
       <div class="background"></div>
       <div class="title">Convert</div>
       <div class="pannel-info pd">

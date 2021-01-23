@@ -1,7 +1,7 @@
 <template>
   <div id="pool" class="pool">
     <headTitle></headTitle>
-    <div class="content">
+    <div class="content-wrap">
       <div class="background"></div>
       <div class="title">Pool</div>
       <div class="pannel-info pd">

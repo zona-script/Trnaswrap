@@ -2,7 +2,7 @@
     <div id="createApair" class="createApair">
         <headTitle></headTitle>
         <select-token :show="selectTokenShow" :item='selectItem' @selected-token='selectToken' @selected-token-close="selectedTokenClose"></select-token>
-        <div class="content">
+        <div class="content-wrap">
             <div class="background"></div>
             <div class="title">Create a pair</div> 
             <div class="pannel-info pd">
