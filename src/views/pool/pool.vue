@@ -5,6 +5,7 @@
       <div class="background"></div>
       <div class="title">Pool</div>
       <div class="pannel-info pd">
+        <div class="headline mt50">Pool</div>
         <div class="title mt50">Liquidity provider rewards</div>
         <p class="desc min-height-304 desct-mt">
           Liquidity providers can obtain fee income from the liquidity pools they participate in;The fee income is ’
@@ -12,8 +13,11 @@
           the corresponding pool in real time, and the liquidity provider can withdraw as required
         </p>
         <div class="rect">Connect to a wallet to view your liquidity.</div>
-        <el-button :loading="false"  class="btn create">Greate a Pair</el-button>
-        <el-button :loading="false"  class="btn add mt10">Add Liquidity</el-button>
+        <div class="btn-box">
+          <el-button :loading="false"  class="btn create">Greate a Pair</el-button>
+          <el-button :loading="false"  class="btn add mt10">Add Liquidity</el-button>
+        </div>
+        <a class="btn-link" href="#">Connect to a wallet</a>
       </div>
       <div class="pannel-info">
         <div class="tb-head" @click="collapseFunc">

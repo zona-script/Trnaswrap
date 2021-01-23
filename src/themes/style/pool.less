@@ -1,7 +1,10 @@
 .pool {
   height: 1508px;
   background: #f9f9f9;
-
+  .headline,.btn-link{
+    display: none;
+    font-size:0px;
+  }
   .pannel-info {
     overflow: hidden;
     .tb-head {
@@ -78,4 +81,45 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 1200px) {
+  .pool {
+    .content {
+        >.title {
+          display: none;
+        }
+        .pannel-info{
+          .desc{
+            min-height: 154px;
+          }
+          .btn-link{
+            display: block;
+            height: 31px;
+            font-size: 20px;
+            font-family: AlibabaSans-Regular, AlibabaSans;
+            font-weight: 400;
+            color: #FF652B;
+            line-height: 31px;
+            -webkit-background-clip: text;
+            text-align: center;
+            margin: 30px auto 50px;
+          }
+          .rect{
+            display: none;
+          }
+          .btn-box{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            .btn{
+              width: 49%;
+              margin-top: 0 !important;
+            }
+          }
+        }
+    }
+  }
+  
 }
