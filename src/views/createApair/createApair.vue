@@ -6,6 +6,7 @@
             <div class="background"></div>
             <div class="title">Create a pair</div> 
             <div class="pannel-info pd">
+                <div class="headline mt50">Create a pair</div> 
                 <p class="desc mt50">You ll be the first liquidity provider of this pool,and your added token proportion will determine the initial price,You can also customize the distribution ratio of the pool fee income.</br>
 please click "Confirm" when you have confirmedthe above proportion.</p>
                 <div class="form-view">
@@ -13,16 +14,18 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
                   <!--TRADCOIN-->
                     <div class="form-view-item clearfix mt">
                         <div class="form-view-item-top">
+                            <div class="droplist">
+                                <div class="drop-head" v-on:click="dropHeadClick(0)"> 
+                                    <span class="arrow down"></span>
+                                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                                    <span class="drop-head-text">{{token1.name}}</span>   
+                                </div>
+                            </div>
                             <div class="max-num">
                                 <span class="max-wrap" @click="getMaxBalance(0)">MAX</span>
                                 <div class="input-wrap"><input type="number" class="num" v-model="firstTokenNum" /></div>
                             </div>
-                            <div class="droplist">
-                                <div class="drop-head" v-on:click="dropHeadClick(0)"> 
-                                    <span class="arrow down"></span>
-                                    <span class="drop-head-text">{{token1.name}}</span>   
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="balance-wrap">
                             <span class="num">{{token1.balance}}</span>
@@ -32,20 +35,22 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
                             </div>
                         </div>
                     </div>
-
+                    <div class="btn-icon-wrap"><div class="btn-icon"><span>+</span></div></div>
                   <!--BASECOIN-->  
                     <div class="form-view-item clearfix mt">
                         <div class="form-view-item-top">
+                           <div class="droplist">
+                                <div class="drop-head" v-on:click="dropHeadClick(1)"> 
+                                    <span class="arrow down"></span>
+                                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                                    <span class="drop-head-text">{{token2.name}}</span>   
+                                </div>
+                            </div>
                             <div class="max-num">
                                 <span class="max-wrap" @click="getMaxBalance(1)">MAX</span>
                                 <div class="input-wrap"><input class="num" v-model="secondTokenNum" /></div>
                             </div>
-                            <div class="droplist">
-                                <div class="drop-head" v-on:click="dropHeadClick(1)"> 
-                                    <span class="arrow down"></span>
-                                    <span class="drop-head-text">{{token2.name}}</span>   
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="balance-wrap">
                             <span class="num">{{token2.balance}}</span>
