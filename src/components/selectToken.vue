@@ -2,7 +2,7 @@
   <div class="dialog-wrap" v-show="isShow" @touchstart="wrapTouch">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title"><span class="close" @touchend="close"></span>Select a token</h3>
+      <h3 class="title"><span class="close" @click="close"></span>Select a token</h3>
       <div class="input-warp mt50 mr30 ml30">
         <input type="text" placeholder="Search name or paste" @change="change($event)" />
       </div>

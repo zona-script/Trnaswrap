@@ -3,7 +3,6 @@
   background: #f9f9f9;
   .headline,.btn-link{
     display: none;
-    font-size:0px;
   }
   .pannel-info {
     overflow: hidden;
@@ -49,7 +48,6 @@
     .tab-container {
       margin: 0 30px 0;
       &.collapse {
-        // transform: scaleY(0);
         height: 0;
       }
       .cell {
@@ -92,6 +90,9 @@
         .pannel-info{
           .desc{
             min-height: 154px;
+          }
+          .headline {
+            display: block;
           }
           .btn-link{
             display: block;
