@@ -18,18 +18,20 @@
         <div class="background"></div>
         <div class="title">Exchange</div>
         <div class="pannel-info pd">
+          <div class="headline mt50">Exchange</div> 
           <div class="form-view">
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
+                 <div class="droplist">
+                  <div class="drop-head" v-on:click="dropHeadClick(item)">
+                    <span class="arrow down"></span>
+                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                    <span class="drop-head-text">WTRX</span>
+                  </div>
+                </div>
                 <div class="max-num">
                   <span class="max-wrap">MAX</span>
                   <div class="input-wrap"><input class="num" value="94.850.00" /></div>
-                </div>
-                <div class="droplist">
-                  <div class="drop-head" v-on:click="dropHeadClick(item)">
-                    <span class="arrow down"></span>
-                    <span class="drop-head-text">WTRX</span>
-                  </div>
                 </div>
               </div>
               <div class="balance-wrap">
@@ -40,17 +42,19 @@
                 </div>
               </div>
             </div>
+            <div class="btn-icon-wrap"><div class="btn-icon"><span>+</span></div></div>
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
+                 <div class="droplist">
+                  <div class="drop-head" v-on:click="dropHeadClick(item)">
+                    <span class="arrow down"></span>
+                     <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                    <span class="drop-head-text">USDT</span>
+                  </div>
+                </div>
                 <div class="max-num">
                   <span class="max-wrap">MAX</span>
                   <div class="input-wrap"><input class="num" value="94.850.00" /></div>
-                </div>
-                <div class="droplist">
-                  <div class="drop-head" v-on:click="dropHeadClick(item)">
-                    <span class="arrow down"></span>
-                    <span class="drop-head-text">USDT</span>
-                  </div>
                 </div>
               </div>
               <div class="balance-wrap">
@@ -62,7 +66,7 @@
               </div>
             </div>
           </div>
-          <el-button :loading="false" class="btn confirm mt50">Greate a Pair</el-button>
+          <el-button :loading="false" class="btn confirm mt50">Supply</el-button>
         </div>
       </div>
     </div>
