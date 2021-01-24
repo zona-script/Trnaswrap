@@ -1,8 +1,13 @@
-.exchange {
-  background: #f9f9f9;
+.exchange-wrap{
+  height: 100%;
+  .exchange {
+    background: #f9f9f9;
+    min-height: 100%;
+  }
 }
 @media screen and (min-width: 1200px) {
   .exchange {
+    min-height: 100%;
     .content-wrap {
       .btn.confirm {
         width: 540px;
@@ -11,9 +16,15 @@
     }
     .pannel-info {
       text-align: center;
+      &.pd{
+        padding:0 50px 50px;
+      }
       .headline {
         text-align: left;
       }
+    }
+    .icon-btn-tool{
+      display: block;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="exchange-wrap">
     <select-token
       :tokens="selectTokens"
       :show="selectTokenShow"
@@ -68,6 +68,12 @@
           </div>
           <el-button :loading="false" class="btn confirm mt50">Supply</el-button>
         </div>
+        <div class="icon-btn-tool">
+            <img class="img" :src="require('@/themes/images/common/telegram@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/twitter@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/discord@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/medium@2x.png')" alt=""/>
+       </div>
       </div>
     </div>
   </div>

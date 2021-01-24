@@ -30,7 +30,7 @@
     <div class="content">
       <div class="background"></div>
       <div class="invite-info">
-        <div class="container-title">INVITE</div>
+        <div class="container-title">Invite</div>
         <div class="info-container">
           <div class="info-item">
             <div class="title">My Address</div>
@@ -45,7 +45,7 @@
             <div class="value">{{ myInvitationLink }}</div>
           </div>
         </div>
-        <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
+        <div class="copy-all" @click="tapHandle">Copy all links</div>
       </div>
       <div class="org-ref-container">
         <div class="border-container organization">
@@ -71,6 +71,12 @@
             </el-table>
           </div>
         </div>
+      </div>
+      <div class="icon-btn-tool">
+            <img class="img" :src="require('@/themes/images/common/telegram@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/twitter@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/discord@2x.png')" alt=""/>
+            <img class="img" :src="require('@/themes/images/common/medium@2x.png')" alt=""/>
       </div>
     </div>
   </div>

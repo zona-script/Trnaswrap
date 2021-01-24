@@ -1,6 +1,6 @@
 .invite {
-  height: 2588px;
   background: #f9f9f9;
+  padding-bottom: 100px;
   .banner {
     height: 700px;
     padding: 30px 30px 0;
@@ -34,7 +34,7 @@
       align-items: center;
       width: 100%;
       height: 146px;
-      margin: 20px 0 0;
+      margin: 80px 0 0;
       background: #ffefe6;
       border-radius: 15px;
       .start {
@@ -130,13 +130,13 @@
       .info-container {
         padding: 0px 30px 40px;
         .title {
-          height: 38x;
-          margin: 20px 0 0;
-          font-size: 24px;
+          height: 43px;
+          margin: 50px 0 0;
+          font-size: 28px;
           font-family: AlibabaSans-Medium, AlibabaSans;
           font-weight: 400;
           color: #888d97;
-          line-height: 38px;
+          line-height: 43px;
         }
         .value {
           margin: 10px 0 0;
@@ -384,11 +384,14 @@
             border-radius: 15px;
             border: 1px solid #cccccc;
             .title {
-              padding: 0 0 0 30px;
+              // padding: 0 0 0 30px;
               font-size: 24px;
               color: #999999;
               line-height: 100px;
               border-bottom: 1px solid #d8d8d8;
+              margin:0;
+              padding: 0 0 0 30px;
+              height: 100px;
             }
             .value {
               padding: 22px 30px 0 30px;
@@ -423,7 +426,13 @@
         margin: 0 auto;
         .border-container {
           width: 49.167%;
+          min-height: 424px;
           .tab-container {
+            .cell{
+              color: #323232;
+              font-weight: 400;
+              font-size: 24px;
+            }
             .tab-container-inner {
               .tab-title-line {
                 font-size: 16px;
@@ -446,6 +455,9 @@
             }
           }
         }
+      }
+      .icon-btn-tool{
+        display: block;
       }
     }
   }
