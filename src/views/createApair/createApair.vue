@@ -65,6 +65,7 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
                 <!--Confirm-->
                 <el-button class="btn confirm mt50" :loading='isCreateding' :disabled='isCreateding' @click="coinfirmCreate">Confirm</el-button>
             </div>
+            <tool-icon></tool-icon>
         </div>
     </div>
 </template>

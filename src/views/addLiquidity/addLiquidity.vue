@@ -126,6 +126,7 @@
             </div>
           </div>
         </div>
+        <tool-icon></tool-icon>
       </div>
     </div>
   </div>
