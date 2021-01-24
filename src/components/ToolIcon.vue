@@ -12,7 +12,9 @@ export default {
   props: {},
   computed: {},
   watch: {},
-  data() {},
+  data() {
+    return {}
+  },
   created() {},
   methods: {},
   mounted() {}
