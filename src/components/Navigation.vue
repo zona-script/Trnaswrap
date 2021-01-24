@@ -29,7 +29,7 @@ export default {
           },
           {
             name: 'Exchange',
-            url: '/invite'
+            url: '/exchange'
           },
           {
             name: 'Pool',
@@ -41,7 +41,7 @@ export default {
           },
           {
             name: 'Convert',
-            url: '/exchange'
+            url: '/convert'
           },
           {
             name: 'Stake',
