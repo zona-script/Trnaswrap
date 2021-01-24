@@ -108,12 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="icon-btn-tool">
-            <img class="img" :src="require('@/themes/images/common/telegram@2x.png')" alt=""/>
-            <img class="img" :src="require('@/themes/images/common/twitter@2x.png')" alt=""/>
-            <img class="img" :src="require('@/themes/images/common/discord@2x.png')" alt=""/>
-            <img class="img" :src="require('@/themes/images/common/medium@2x.png')" alt=""/>
-      </div>
+      <tool-icon></tool-icon>
     </div>
   </div>
 </template>
