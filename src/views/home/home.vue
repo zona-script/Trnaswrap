@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="home">
-    <headTitle></headTitle>
-    <navigation></navigation>
+    <!-- <headTitle></headTitle> -->
+    <!-- <navigation></navigation> -->
     <div class="banner">
       <div class="banner-inner">
         <div class="banner-image"></div>

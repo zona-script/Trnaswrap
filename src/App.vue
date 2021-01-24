@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <headTitle></headTitle>
+    <navigation></navigation>
     <!-- 开启顶部安全区适配 -->
     <!-- <van-nav-bar safe-area-inset-top /> -->
     <router-view />

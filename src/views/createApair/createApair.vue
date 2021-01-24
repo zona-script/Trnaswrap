@@ -1,6 +1,6 @@
 <template>
     <div id="createApair" class="createApair">
-        <headTitle></headTitle>
+        <!-- <headTitle></headTitle> -->
         <select-token :show="selectTokenShow" :item='selectItem' @selected-token='selectToken' @selected-token-close="selectedTokenClose"></select-token>
         <div class="content-wrap">
             <div class="background"></div>

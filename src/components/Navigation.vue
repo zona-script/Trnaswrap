@@ -2,9 +2,17 @@
   <div class="navigation">
     <div class="wrap">
       <div class="inner">
-        <div v-for="(item, index) in navList" class="nav-item" @click="click(item, index)" :class="actIndex === index ? 'active' : ''">{{ item }}</div>
+        <div
+          v-for="(item, index) in navList"
+          class="nav-item"
+          @click="click(item, index)"
+          :class="actIndex === index ? 'active' : ''"
+        >
+          {{ item.name }}
+        </div>
       </div>
-      <div class="block" :style="{width: width + 'px',left: left + 'px'}"></div>
+      <!-- 留着做动画用 -->
+      <!-- <div class="block" :style="{ width: width + 'px', left: left + 'px' }"></div> -->
     </div>
   </div>
 </template>
@@ -14,14 +22,43 @@ export default {
   props: {
     list: {
       default: () => {
-        return ['Home', 'Exchange', 'Pool', 'Abelo', 'Convert', 'Stake', 'Farm'];
+        return [
+          {
+            name: 'Home',
+            url: '/home'
+          },
+          {
+            name: 'Exchange',
+            url: '/invite'
+          },
+          {
+            name: 'Pool',
+            url: '/pool'
+          },
+          {
+            name: 'Abelo',
+            url: '/createApair'
+          },
+          {
+            name: 'Convert',
+            url: '/exchange'
+          },
+          {
+            name: 'Stake',
+            url: '/addLiquidity'
+          },
+          {
+            name: 'Farm',
+            url: '/convert'
+          }
+        ]
       }
     }
   },
   computed: {},
   watch: {},
   data() {
-    let self = this;
+    let self = this
     return {
       navList: [...self.list],
       actIndex: 0,
@@ -33,7 +70,7 @@ export default {
   methods: {
     click(item, index, target) {
       this.actIndex = index;
-      console.log(e.target)
+      this.$router.push(item.url);
     }
   },
   mounted() {}

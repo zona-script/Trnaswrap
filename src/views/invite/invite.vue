@@ -1,6 +1,6 @@
 <template>
   <div id="invite" class="invite">
-    <headTitle></headTitle>
+    <!-- <headTitle></headTitle> -->
     <div class="banner">
       <div class="banner-inner">
         <div class="banner-image"></div>

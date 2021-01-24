@@ -13,7 +13,7 @@
     ></transaction-setting>
 
     <div id="exchange" class="exchange">
-      <headTitle></headTitle>
+      <!-- <headTitle></headTitle> -->
       <div class="content-wrap">
         <div class="background"></div>
         <div class="title">Exchange</div>

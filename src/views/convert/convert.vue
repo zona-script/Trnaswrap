@@ -1,6 +1,6 @@
 <template>
   <div id="convert" class="convert">
-    <headTitle></headTitle>
+    <!-- <headTitle></headTitle> -->
     <div class="content-wrap">
       <div class="background"></div>
       <div class="title">Convert</div>

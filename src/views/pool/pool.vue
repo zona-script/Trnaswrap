@@ -1,6 +1,6 @@
 <template>
   <div id="pool" class="pool">
-    <headTitle></headTitle>
+    <!-- <headTitle></headTitle> -->
     <div class="content-wrap">
       <div class="background"></div>
       <div class="title">Pool</div>

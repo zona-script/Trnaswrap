@@ -13,7 +13,7 @@
       @selected-token="selectedToken"
       @selected-token-close="selectedTokenClose"
     ></select-token>
-    <headTitle></headTitle>
+    <!-- <headTitle></headTitle> -->
     <div class="content">
       <div class="background"></div>
       <div class="title">Add Liquidity</div>
