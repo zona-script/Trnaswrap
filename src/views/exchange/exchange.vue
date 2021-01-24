@@ -13,16 +13,15 @@
     ></transaction-setting>
 
     <div id="exchange" class="exchange">
-      <!-- <headTitle></headTitle> -->
       <div class="content-wrap">
         <div class="background"></div>
         <div class="title">Exchange</div>
         <div class="pannel-info pd">
-          <div class="headline mt50">Exchange</div> 
+          <div class="headline mt50">Exchange</div>
           <div class="form-view">
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
-                 <div class="droplist">
+                <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(item)">
                     <span class="arrow down"></span>
                     <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
@@ -42,13 +41,15 @@
                 </div>
               </div>
             </div>
-            <div class="btn-icon-wrap"><div class="btn-icon"><span>+</span></div></div>
+            <div class="btn-icon-wrap">
+              <div class="btn-icon"><span>+</span></div>
+            </div>
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
-                 <div class="droplist">
+                <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(item)">
                     <span class="arrow down"></span>
-                     <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
                     <span class="drop-head-text">USDT</span>
                   </div>
                 </div>
@@ -160,7 +161,6 @@ export default {
 }
 </script>
 <style lang="less">
-@import '@/themes/style/common.less';
 @import '@/themes/style/button.less';
 @import '@/themes/style/pannel.less';
 @import '@/themes/style/formview.less';

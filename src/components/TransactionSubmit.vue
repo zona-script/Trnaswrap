@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog-wrap" v-show="isShow">
+  <div class="dialog-wrap transaction-submit" v-show="isShow">
     <div class="mantle"></div>
     <div class="dialog-pannel">
       <img class="submitte-img mt100" :src="require('@/themes/images/dialog/submit_illustration.png')" />
@@ -46,6 +46,5 @@ export default {
 }
 </script>
 <style lang="less">
-@import '@/themes/style/common.less';
 @import '@/themes/style/dialog.less';
 </style>

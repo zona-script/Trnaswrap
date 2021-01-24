@@ -222,7 +222,6 @@ please click "Confirm" when you have confirmedthe above proportion.</p>
   }
 </script>
 <style lang="less">
-  @import "@/themes/style/common.less";
   @import "@/themes/style/button.less";
   @import "@/themes/style/pannel.less";
   @import "@/themes/style/formview.less";

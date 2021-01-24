@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog-wrap" v-show="isShow">
+  <div class="dialog-wrap transaction-setting" v-show="isShow">
     <div class="mantle" @touchend="close"></div>
     <div class="dialog-pannel min-h626">
       <h3 class="title"><span class="close"></span>Transaction Settings</h3>
@@ -19,6 +19,7 @@
           </div>
         </div>
       </div>
+      <el-button :loading="false" class="btn confirm mt50">Cancel</el-button>
     </div>
   </div>
 </template>
@@ -59,6 +60,5 @@ export default {
 }
 </script>
 <style lang="less">
-@import '@/themes/style/common.less';
 @import '@/themes/style/dialog.less';
 </style>

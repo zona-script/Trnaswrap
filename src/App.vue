@@ -34,6 +34,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="less">
 @import './themes/style/normalize.less';
+@import './themes/style/common.less';
 </style>
