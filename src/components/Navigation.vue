@@ -50,6 +50,14 @@ export default {
           {
             name: 'Farm',
             url: '/convert'
+          },
+          {
+            name: 'Vote',
+            url: '/vote'
+          },
+          {
+            name: 'About',
+            url: '/about'
           }
         ]
       }

@@ -1,0 +1,182 @@
+.vote {
+  background: #f9f9f9;
+  .vote-banner {
+    padding: 0 30px 50px 30px;
+    background: #fff;
+    border: 1px solid transparent;
+    .vote-banner-inner {
+      .banner-img {
+        width: 474px;
+        height: 469px;
+        margin: 50px auto 50px;
+      }
+      .banner-des {
+        padding: 0 0 50px 0;
+        background: #fff0e6;
+        border-radius: 15px;
+        .title {
+          padding: 50px 0 30px 30px;
+          font-size: 36px;
+          font-weight: bold;
+          color: #323232;
+          line-height: 56px;
+        }
+        .describe {
+          padding: 0 30px 50px 30px;
+          font-size: 30px;
+          font-weight: bold;
+          color: #323232;
+          line-height: 44px;
+          border-bottom: 1px solid #fff;
+        }
+        .note {
+          padding: 0 30px 0 30px;
+          .note-item {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            line-height: 80px;
+            &:not(:last-child) {
+              border-bottom: 1px solid #fff;
+            }
+            .key {
+              font-size: 24px;
+              color: #323232;
+            }
+            .value {
+              font-size: 30px;
+              font-weight: bold;
+              color: #323232;
+            }
+          }
+        }
+        .code {
+          margin: 30px 30px 50px;
+          background: #ffdcc4;
+          text-align: center;
+          line-height: 70px;
+          border-radius: 15px;
+        }
+        .btn-container {
+          margin: 50px 30px 0;
+        }
+      }
+    }
+  }
+  .vote-content {
+    .background {
+      background: transparent;
+    }
+    .vote-content-inner {
+      padding: 0 30px 0 30px;
+      margin: 50px 0 200px 0;
+      .statistic {
+        margin: 0 0 50px 0;
+        background: #ffffff;
+        box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        border: 1px solid #cccccc;
+        .title {
+          padding: 0 0 0 30px;
+          line-height: 100px;
+          font-size: 34px;
+          font-weight: bold;
+          color: #323232;
+          border-bottom: 1px solid #d8d8d8;
+        }
+        .statis-container {
+          padding: 0 30px 0 30px;
+          .statis-container-item {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            line-height: 80px;
+            &:not(:last-child) {
+              border-bottom: 1px solid #d8d8d8;
+            }
+            .key {
+              font-size: 24px;
+              color: #323232;
+            }
+            .value {
+              font-size: 30px;
+              font-weight: bold;
+              color: #323232;
+            }
+          }
+        }
+      }
+      .poll {
+        margin: 35px 0 0 0;
+        background: #ffffff;
+        box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        border: 1px solid #cccccc;
+        .title {
+          padding: 0 0 0 30px;
+          line-height: 100px;
+          font-size: 34px;
+          font-weight: bold;
+          color: #323232;
+          border-bottom: 1px solid #d8d8d8;
+        }
+        .text-area {
+          display: block;
+          width: 89.655%;
+          margin: 30px auto 50px;
+          padding: 16px 20px 16px 20px;
+          border-radius: 15px;
+          border: 2px solid #e5e5e5;
+        }
+        .btn {
+          display: block;
+          width: 89.655%;
+          margin: 0 auto 30px;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .vote {
+    .vote-banner {
+      height: 583px;
+      .vote-banner-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px; /*no*/
+        margin: 0 auto;
+        padding: 50px 0 50px 50px;
+        .banner-des {
+          width: 58.333%;
+          .btn-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+      }
+    }
+    .vote-content {
+      .vote-content-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px; /*no*/
+        margin: 0 auto;
+        .statistic {
+          width: 40%;
+        }
+        .poll {
+          width: 58.333%;
+        }
+      }
+    }
+  }
+}

@@ -17,5 +17,6 @@ export const constantRouterMap = [
   { path: '/createApair', name: 'createApair', component: () => import('@/views/createApair/createApair')},
   { path: '/exchange', name: 'exchange', component: () => import('@/views/exchange/exchange') },
   { path: '/addLiquidity', name: 'addLiquidity', component: () => import('@/views/addLiquidity/addLiquidity') },
-  { path: '/convert', name: 'convert', component: () => import('@/views/convert/convert') }
+  { path: '/convert', name: 'convert', component: () => import('@/views/convert/convert') },
+  { path: '/vote', name: 'vote', component: () => import('@/views/vote/vote') },
 ]
