@@ -5,12 +5,8 @@
             <div class="logo"></div>
         </div>
         <ul class="menu-info">
-             <li class="menu-itme">Home</li>
-             <li class="menu-itme select">Exchange</li>
-             <li class="menu-itme">Pool</li>
-             <li class="menu-itme">About</li>
-             <li class="menu-itme">convert</li>
-             <li class="menu-itme">Farm</li>
+             <li class="menu-itme"  v-for="(item, index) in navList"  @click="click(item, index)"
+              :class="actIndex === index ? 'select' : ''" >{{ item.name }}</li>
         </ul>
         <div class="btn-wrap">
             <div class="btn-setting-wrap"><el-button :loading="false"  icon="el-icon-setting" class="btn setting">Greate a Pair</el-button></div>
@@ -31,7 +27,42 @@ export default {
   props: {
     show: {
       default: false
+    },
+    list: {
+      default: () => {
+        return [
+          {
+            name: 'Home',
+            url: '/home'
+          },
+          {
+            name: 'Exchange',
+            url: '/exchange'
+          },
+          {
+            name: 'Pool',
+            url: '/pool'
+          },
+          {
+            name: 'Abelo',
+            url: '/createApair'
+          },
+          {
+            name: 'Convert',
+            url: '/convert'
+          },
+          {
+            name: 'Stake',
+            url: '/addLiquidity'
+          },
+          {
+            name: 'Farm',
+            url: '/convert'
+          }
+        ]
+      }
     }
+
   },
   computed: {},
   watch: {
@@ -40,8 +71,11 @@ export default {
     }
   },
   data() {
+    let self = this
     return {
-      isShow: this.show
+      isShow: this.show,
+      actIndex: 0,
+      navList: [...self.list]
     }
   },
   created() {},
@@ -54,6 +88,11 @@ export default {
     },
     confirm() {
       this.$emit('confirm')
+    },
+    click(item, index, target) {
+      this.actIndex = index;
+      this.$emit('menu-close', false)
+      this.$router.push(item.url);
     }
   },
   mounted() {}
