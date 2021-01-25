@@ -1,6 +1,6 @@
 <template>
   <div>
-   <Menu :show="menuShow" @menu-close="menuClose"></Menu>
+   <Menu :show="show" @menu-close="menuClose"></Menu>
   <div class="header">
     <div class="header-inner">
       <div class="logo"></div>
@@ -20,15 +20,15 @@ export default {
   name: 'HeadTitle',
   data() {
     return {
-       menuShow:false,
+       show:false,
     }
   },
   methods: {
      clickHand(){
-        this.menuShow = true
+        this.show = true
     },
     menuClose() {
-      this.menuShow = false
+      this.show = false
     }
   },
   mounted() {
