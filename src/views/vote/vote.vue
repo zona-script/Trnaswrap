@@ -54,7 +54,7 @@
         <el-button :loading="false" class="btn confirm mt50">poll</el-button>
         <div class="poll">
           <div class="title">Poll</div>
-          <textarea class="text-area" name="" id="" cols="30" rows="10" placeholder="Voting content"></textarea>
+          <textarea class="text-area" name="" id="" cols="30" rows="10" resize="none" placeholder="Voting content"></textarea>
           <el-button :loading="false" class="btn confirm">Submit</el-button>
         </div>
       </div>

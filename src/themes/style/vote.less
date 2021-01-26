@@ -129,6 +129,7 @@
           padding: 16px 20px 16px 20px;
           border-radius: 15px;
           border: 2px solid #e5e5e5;
+          resize: none;
         }
         .btn {
           display: block;
@@ -153,11 +154,55 @@
         padding: 50px 0 50px 50px;
         .banner-des {
           width: 58.333%;
+          padding: 0 0 40px 0;
+          > .title {
+            padding: 30px 0 10px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #323232;
+            line-height: 38px;
+          }
+          .describe {
+            padding: 0 30px 30px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #323232;
+            line-height: 26px;
+          }
+          .note {
+            .note-item {
+              line-height: 40px;
+              .key {
+                font-size: 14px;
+                color: #323232;
+                line-height: 40px;
+              }
+              .value {
+                font-size: 18px;
+                color: #323232;
+                line-height: 40px;
+              }
+            }
+          }
+          .code {
+            width: 400px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #ff652b;
+            line-height: 50px;
+          }
           .btn-container {
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-between;
             align-items: center;
+            margin: 30px 40px 0 40px;
+            .btn {
+              width: 42.857%;
+              height: 50px;
+              line-height: 50px;
+            }
           }
         }
       }
@@ -170,11 +215,57 @@
         align-items: flex-start;
         max-width: 1200px; /*no*/
         margin: 0 auto;
+        padding: 50px 0 50px 0;
         .statistic {
           width: 40%;
+          margin: 0;
+          box-shadow: none;
+          .title {
+            padding: 30px 0 30px 30px;
+            font-size: 24px;
+            line-height: 38px;
+          }
+          .statis-container {
+            .statis-container-item {
+              line-height: 50px;
+              .key {
+                font-size: 14px;
+              }
+              .value {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+        .poll {
+          box-shadow: none;
+          .title {
+            padding: 30px 0 30px 30px;
+            font-size: 24px;
+            line-height: 38px;
+            border: none;
+          }
+          .text-area {
+            width: 91.428%;
+            height: 80px;
+            margin: 0 30px 30px 30px;
+            padding: 10px;
+            border-radius: 5px;
+          }
+          .btn {
+            width: 300px;
+            height: 50px;
+            background: linear-gradient(90deg, #ff9132 0%, #ff7834 100%);
+            line-height: 50px;
+            border-radius: 37px;
+          }
+        }
+        > .btn {
+          display: none;
         }
         .poll {
           width: 58.333%;
+          margin: 0;
         }
       }
     }
