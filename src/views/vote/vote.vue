@@ -58,6 +58,7 @@
           <el-button :loading="false" class="btn confirm">Submit</el-button>
         </div>
       </div>
+      <tool-icon></tool-icon>
     </div>
   </div>
 </template>

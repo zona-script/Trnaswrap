@@ -144,14 +144,21 @@
   .vote {
     .vote-banner {
       height: 583px;
+      padding: 0;
       .vote-banner-inner {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
         max-width: 1200px; /*no*/
+        height: 100%;
         margin: 0 auto;
-        padding: 50px 0 50px 50px;
+        // padding: 50px 0 50px 50px;
+        .banner-img {
+          width: 331px;
+          height: 332px;
+          margin: 0 94px 0 55px;
+        }
         .banner-des {
           width: 58.333%;
           padding: 0 0 40px 0;
@@ -215,7 +222,7 @@
         align-items: flex-start;
         max-width: 1200px; /*no*/
         margin: 0 auto;
-        padding: 50px 0 50px 0;
+        padding: 50px 0 0 0;
         .statistic {
           width: 40%;
           margin: 0;
@@ -267,6 +274,9 @@
           width: 58.333%;
           margin: 0;
         }
+      }
+      .icon-btn-tool {
+        padding: 50px 0 50px 0;
       }
     }
   }
