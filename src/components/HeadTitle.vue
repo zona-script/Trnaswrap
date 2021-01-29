@@ -1,4 +1,6 @@
 <template>
+  <div>
+   <Menu :show="show" @menu-close="menuClose"></Menu>
   <div class="header">
     <div class="header-inner">
       <div class="logo"></div>
@@ -7,8 +9,9 @@
         <div class="language">Transaction Settings</div>
         <div class="connect">Connect to a Wallet</div>
       </div>
-      <div class="menu"></div>
+      <div class="menu"  @touchend="clickHand"></div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -16,10 +19,20 @@
 export default {
   name: 'HeadTitle',
   data() {
-    return {}
+    return {
+       show:false,
+    }
   },
-  methods: {},
-  mounted() {}
+  methods: {
+     clickHand(){
+        this.show = true
+    },
+    menuClose() {
+      this.show = false
+    }
+  },
+  mounted() {
+  }
 }
 </script>
 

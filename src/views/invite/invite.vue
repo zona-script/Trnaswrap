@@ -1,59 +1,78 @@
 <template>
   <div id="invite" class="invite">
-    <headTitle></headTitle>
+    <!-- <headTitle></headTitle> -->
     <div class="banner">
-      <div class="banner-image"></div>
-      <div class="banner-logo"></div>
-      <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
-      <div class="banner-info">
-        <div class="start">
-          <div class="value">1.0</div>
-          <div class="unit">TNS</div>
-        </div>
-        <div class="exchange"></div>
-        <div class="end">
-          <div class="value">{{ tnsPrice }}</div>
-          <div class="unit">USDT</div>
+      <div class="banner-inner">
+        <div class="banner-image"></div>
+        <div class="banner-desc-container">
+          <div class="banner-logo"></div>
+          <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
+          <div class="banner-info">
+            <div class="start">
+              <img class="exchange-img fir" :src="require('@/themes/images/common/token_02_2x.png')" alt=""/>
+              <div class="txt-container">
+                <div class="value">1.0</div>
+                <div class="unit">TNS</div>
+              </div>
+            </div>
+            <div class="exchange"></div>
+            <div class="end">
+              <img class="exchange-img sec" :src="require('@/themes/images/common/token_04_2x.png')" alt=""/>
+              <div class="txt-container">
+                <div class="value">{{ tnsPrice }}</div>
+                <div class="unit">USDT</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="content">
       <div class="background"></div>
       <div class="invite-info">
-        <div class="container-title">INVITE</div>
+        <div class="container-title">Invite</div>
         <div class="info-container">
-          <div class="title">My Address</div>
-          <div class="value">{{ myAddress }}</div>
-          <div class="title">My Inviter Address</div>
-          <div class="value">{{ myInviterAddress }}</div>
-          <div class="title">My Invitation Link</div>
-          <div class="value">{{ myInvitationLink }}</div>
+          <div class="info-item">
+            <div class="title">My Address</div>
+            <div class="value">{{ myAddress }}</div>
+          </div>
+          <div class="info-item">
+            <div class="title">My Inviter Address</div>
+            <div class="value">{{ myInviterAddress }}</div>
+          </div>
+          <div class="info-item">
+            <div class="title">My Invitation Link</div>
+            <div class="value">{{ myInvitationLink }}</div>
+          </div>
         </div>
-        <div class="copy-all" @click="tapHandle">COPY ALL LINKS</div>
+        <div class="copy-all" @click="tapHandle">Copy all links</div>
       </div>
-      <div class="border-container organization">
-        <div class="title">Organization</div>
-        <div class="tab-container">
-          <el-table :data="origanizationData" style="width: 100%" :show-header="false">
-            <el-table-column prop="name"></el-table-column>
-            <el-table-column prop="value" align="right">
-              <template slot-scope="scope">
-                <div class="organization-value">{{ scope.row.value }}</div>
-              </template>
-            </el-table-column>
-          </el-table>
+      <div class="org-ref-container">
+        <div class="border-container organization">
+          <div class="title">Organization</div>
+          <div class="tab-container">
+            <el-table :data="origanizationData" style="width: 100%" :show-header="false">
+              <el-table-column prop="name"></el-table-column>
+              <el-table-column prop="value" align="right">
+                <template slot-scope="scope">
+                  <div class="organization-value">{{ scope.row.value }}</div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+        <div class="border-container referral">
+          <div class="title">Referral</div>
+          <div class="tab-container">
+            <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
+              <el-table-column prop="address" label="Referral"></el-table-column>
+              <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
+              <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
+            </el-table>
+          </div>
         </div>
       </div>
-      <div class="border-container referral">
-        <div class="title">Referral</div>
-        <div class="tab-container">
-          <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-            <el-table-column prop="address" label="Referral"></el-table-column>
-            <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
-            <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
-          </el-table>
-        </div>
-      </div>
+      <tool-icon></tool-icon>
     </div>
   </div>
 </template>
@@ -70,8 +89,8 @@ export default {
       myInviterAddress: '',
       myInvitationLink: '',
       tnsPrice: 0,
-      referralData:[],
-      origanizationData:[
+      referralData: [],
+      origanizationData: [
         {
           name: 'Global quantity',
           value: '0'
@@ -88,7 +107,7 @@ export default {
           name: 'Grade',
           value: ''
         }
-      ]  
+      ]
     }
   },
   methods: {
@@ -141,34 +160,34 @@ export default {
         })
       }
     },
-    joinClub(){
+    joinClub() {
       let that = this
       let params = {
-        address:that.myAddress,
-        invitedAddress:that.myInviterAddress
+        address: that.myAddress,
+        invitedAddress: that.myInviterAddress
       }
-      joinConnection(params).then(result=>{
-        if(result.data.code==0){
-          axios.defaults.headers.common['Authorization'] = 'Bearer '+result.data.data.token
+      joinConnection(params).then(result => {
+        if (result.data.code == 0) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.data.token
           that.getTeam()
           that.getInviter()
-        }else{
+        } else {
           that.myInviterAddress = 'Please contact your superior'
         }
       })
     },
-    getPrice(){
+    getPrice() {
       let that = this
-      getTnsPrice().then(res=>{
-        if(res.data.code==0){
+      getTnsPrice().then(res => {
+        if (res.data.code == 0) {
           that.tnsPrice = res.data.data.tnsprice
         }
       })
     },
-    getTeam(){
+    getTeam() {
       let that = this
-      getUserTeam().then(res=>{
-        if(res.data.code==0){
+      getUserTeam().then(res => {
+        if (res.data.code == 0) {
           that.origanizationData[0].value = res.data.data.wholeNetworkNum
           that.origanizationData[1].value = res.data.data.teamTotalNum
           that.origanizationData[2].value = res.data.data.teamTotalPerformance
@@ -177,13 +196,12 @@ export default {
         }
       })
     }
-  },  
+  },
   mounted() {
     let that = this
     this.init()
-    this.myInviterAddress = this.getUrlKey('inviter',window.location.href)
+    this.myInviterAddress = this.getUrlKey('inviter', window.location.href)
     this.getPrice()
-    
   }
 }
 </script>

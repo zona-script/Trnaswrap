@@ -1,9 +1,10 @@
 <template>
-  <div class="dialog-wrap" v-show="isShow" @touchstart="wrapTouch">
+  <div class="dialog-wrap select-token" v-show="isShow" @touchstart="wrapTouch">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title"><span class="close" @touchend="close"></span>Select a token</h3>
-      <div class="input-warp mt50 mr30 ml30">
+      <h3 class="title"><span class="close" @click="close"></span>Select a token</h3>
+      <div class="add-btn">+</div>
+      <div class="input-warp">
         <input type="text" placeholder="Search name or paste" @change="change($event)" />
       </div>
       <div class="info-list-wrap mlr mt50">
@@ -80,6 +81,5 @@ export default {
 }
 </script>
 <style lang="less">
-@import '@/themes/style/common.less';
 @import '@/themes/style/dialog.less';
 </style>

@@ -1,75 +1,218 @@
 .addLiquidity {
-  height: 1508px;
   background: #f9f9f9;
+  min-height: 100%;
   .content {
+    > .title {
+      margin: 47px 0 49px 51px;
+      font-size: 36px;
+      font-weight: bold;
+      color: #323232;
+      line-height: 56px;
+    }
     .pannel-info {
-      margin-bottom: 100px;
+      // overflow: hidden;
+      margin: 0 30px 100px 30px;
+      border-radius: 15px;
       .tabs-container {
         width: 100%;
         height: 88px;
         .tabs {
           float: left;
           width: 50%;
-          background: #F4F4F4;
+          background: #f4f4f4;
           line-height: 88px;
           text-align: center;
           font-size: 28px;
           font-weight: 500;
-          color: #E5E5E5;
-          border-bottom: 1px solid #E8E8E8;
+          color: #e5e5e5;
+          border-bottom: 1px solid #e8e8e8;
           &.fir {
-            border-right: 1px solid #E8E8E8;
+            border-right: 1px solid #e8e8e8;
           }
           &.active {
-            background: #FFF;
-            color: #FF7140;
-            border-bottom: 0px solid #E8E8E8;
+            background: #fff;
+            color: #ff7140;
+            border-bottom: 0px solid #e8e8e8;
           }
         }
       }
       .configuration {
         padding: 50px 30px 0;
-        background: #FFF;
+        background: #fff;
+        .img-text-wrap {
+          line-height: 70px;
+          text-align: center;
+          border-radius: 15px;
+          border: 3px dashed #DDD;
+          .img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            &.sec {
+              transform: translateX(-20%);
+            }
+          }
+          .img-text {
+            font-size: 24px;
+            font-family: AlibabaSans-Regular, AlibabaSans;
+            font-weight: 400;
+            color: #000000;
+            line-height: 38px;
+            margin-left: 20px;
+            vertical-align: middle;
+          }
+        }
+        // .form-view.img-text-wrap {
+        //   padding: 15px 0;
+        //   .img {
+        //     width: 40px;
+        //     height: 40px;
+        //     vertical-align: middle;
+        //     &.sec {
+        //       transform: translateX(-20%);
+        //     }
+        //   }
+        // }
+        .pannel-info-share {
+          .btn-con {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            height: 74px;
+            .btn {
+              flex: 1;
+              line-height: 74px;
+              display: block;
+              &:first-child {
+                margin-right:1%;
+              }
+              &:last-child{
+                margin-left: 1%;
+              }
+            }
+          }
+        }
       }
     }
   }
   .pos-con {
-    background: #F7F7F7;
-  }
-  .your-position {
-    height: 100px;
-    padding-left: 30px;
-    font-size: 30px;
-    font-family: AlibabaSans-Bold, AlibabaSans;
-    font-weight: bold;
-    color: #313131;
-    line-height: 100px;
-    border-bottom: 1px solid #d8d8d8;
-  }
-  .tab-container {
-    margin: 0 30px 0;
-    div {
-      background: transparent;
-    }
-    .el-table th, .el-table tr {
-      background-color: transparent;
-    }
-    .cell {
-      padding: 0;
-    }
-    .organization-name {
-      font-size: 24px;
-      font-family: AlibabaSans-Regular, AlibabaSans;
-      font-weight: 400;
-      color: #323232;
-      line-height: 38px;
-    }
-    .organization-value {
+    background: #f7f7f7;
+    .your-position {
+      height: 100px;
+      padding-left: 30px;
       font-size: 30px;
-      font-family: AlibabaSans-Medium, AlibabaSans;
+      font-family: AlibabaSans-Bold, AlibabaSans;
       font-weight: bold;
-      color: #323232;
-      line-height: 47px;
+      color: #313131;
+      line-height: 100px;
+      border-bottom: 1px solid #d8d8d8;
+    }
+    .tab-container {
+      margin: 0 30px 0;
+      .item {
+        display: flex;
+        flex-wrap: nowrap;
+        &:not(:last-child) {
+          border-bottom: 1px solid #d8d8d8;
+        }
+        .key {
+          width: 50%;
+          font-size: 24px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #323232;
+          line-height: 78px;
+          &.con {
+            font-size: 0;
+          }
+          .img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            &.sec {
+              transform: translateX(-20%);
+            }
+          }
+          .txt {
+            display: inline-block;
+            font-size: 24px;
+            vertical-align: middle;
+          }
+        }
+        .value {
+          width: 50%;
+          font-size: 30px;
+          font-family: AlibabaSans-Medium, AlibabaSans;
+          font-weight: bold;
+          color: #323232;
+          line-height: 78px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .addLiquidity {
+    .content {
+      margin: 120px auto 0;
+      > .title {
+        display: none;
+      }
+      .pannel-info {
+        position: relative;
+        max-width: 1200px;/*no*/
+        margin:0 auto;
+        .tabs-container {
+          overflow: hidden;
+          position: absolute;
+          top: -69px;
+          left: 0;
+          width: 41.667%;
+          border-top-left-radius: 15px;
+          border-top-right-radius: 15px;
+          .tabs {
+            line-height: 70px;
+          }
+        }
+        .configuration {
+          padding: 50px;
+          .form-view {
+            &.img-text-wrap.bd {
+              // border: none;
+            }
+
+          }
+          .pannel-info-share {
+            .btn-con {
+              display: flex;
+              flex-wrap: nowrap;
+              justify-content: space-between;
+              height: 50px;
+              .btn {
+                width: 49.091%;
+                line-height: 50px;
+                &:first-child {
+                  // margin: 0 auto;
+                }
+              }
+            }
+            .item-wrap {
+              .item-box {
+                width: 32.091%;
+              }
+            }
+          }
+        }
+      }
+      .icon-btn-tool{
+        padding-bottom: 100px;
+      }
+    }
+    .pos-con {
+      .tab-container {
+        margin: 0 50px 0 50px;
+      }
     }
   }
 }

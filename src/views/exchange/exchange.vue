@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="exchange-wrap">
     <select-token
       :tokens="selectTokens"
       :show="selectTokenShow"
@@ -13,23 +13,24 @@
     ></transaction-setting>
 
     <div id="exchange" class="exchange">
-      <headTitle></headTitle>
-      <div class="content">
+      <div class="content-wrap">
         <div class="background"></div>
         <div class="title">Exchange</div>
         <div class="pannel-info pd">
+          <div class="headline mt50">Exchange</div>
           <div class="form-view">
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
-                <div class="max-num">
-                  <span class="max-wrap">MAX</span>
-                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
-                </div>
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(item)">
                     <span class="arrow down"></span>
+                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
                     <span class="drop-head-text">WTRX</span>
                   </div>
+                </div>
+                <div class="max-num">
+                  <span class="max-wrap">MAX</span>
+                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
                 </div>
               </div>
               <div class="balance-wrap">
@@ -40,17 +41,21 @@
                 </div>
               </div>
             </div>
+            <div class="btn-icon-wrap">
+              <div class="btn-icon"><span>+</span></div>
+            </div>
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
-                <div class="max-num">
-                  <span class="max-wrap">MAX</span>
-                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
-                </div>
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(item)">
                     <span class="arrow down"></span>
+                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
                     <span class="drop-head-text">USDT</span>
                   </div>
+                </div>
+                <div class="max-num">
+                  <span class="max-wrap">MAX</span>
+                  <div class="input-wrap"><input class="num" value="94.850.00" /></div>
                 </div>
               </div>
               <div class="balance-wrap">
@@ -62,8 +67,9 @@
               </div>
             </div>
           </div>
-          <el-button :loading="false" class="btn confirm mt50">Greate a Pair</el-button>
+          <el-button :loading="false" class="btn confirm mt50">Supply</el-button>
         </div>
+        <tool-icon></tool-icon>
       </div>
     </div>
   </div>
@@ -155,7 +161,6 @@ export default {
 }
 </script>
 <style lang="less">
-@import '@/themes/style/common.less';
 @import '@/themes/style/button.less';
 @import '@/themes/style/pannel.less';
 @import '@/themes/style/formview.less';

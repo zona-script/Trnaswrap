@@ -1,7 +1,25 @@
-
 .createApair {
-    height: 1508px;
-    background: #F9F9F9;
+  background: #f9f9f9;
+  min-height: 100%;
+  padding-bottom: 100px;
 }
 
-
+@media screen and (min-width: 1200px) {
+  .createApair {
+    .content-wrap {
+      .btn.confirm {
+        width: 540px;
+        margin: 50px auto;
+      }
+    }
+    .pannel-info {
+      text-align: center;
+      .headline {
+        text-align: left;
+      }
+      &.pd{
+        padding: 0 50px 50px;
+      }
+    }
+  }
+}
