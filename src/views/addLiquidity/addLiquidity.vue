@@ -126,8 +126,8 @@
             </div>
           </div>
         </div>
-        <tool-icon></tool-icon>
       </div>
+      <tool-icon></tool-icon>
     </div>
   </div>
 </template>

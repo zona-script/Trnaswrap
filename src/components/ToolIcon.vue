@@ -24,7 +24,7 @@ export default {
 .icon-btn-tool {
   display: none;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 50px;
   .img {
     height: 52px;
     width: 52px;

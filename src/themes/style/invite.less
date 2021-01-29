@@ -2,8 +2,8 @@
   background: #f9f9f9;
   padding-bottom: 100px;
   .banner {
-    height: 700px;
-    padding: 30px 30px 0;
+    // height: 700px;
+    padding: 30px 30px 50px;
     background: #fff;
     .banner-image {
       width: 368px;
@@ -103,8 +103,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url(../images/invite/tunas.png) no-repeat 110% top / 206px 238px,
-        url(../images/invite/tunasch.png) no-repeat left bottom / 287px 186px;
+      background: url(../images/common/tunas.png) no-repeat right 50px ~'/' 206px 238px,
+        url(../images/common/tunasch.png) no-repeat left 547px ~'/' 287px 186px,
+        url(../images/common/tunasblock.png) no-repeat right 1170px ~'/' 200px 211px;
     }
     .invite-info {
       transform: scale(1);
@@ -365,8 +366,13 @@
       }
     }
     .content {
+      .background {
+        background: url(../images/common/tunas.png) no-repeat right 215px ~'/' 206px 238px,
+          url(../images/common/tunasch.png) no-repeat left 331px ~'/' 287px 186px,
+          url(../images/common/tunasblock.png) no-repeat left 689px ~'/' 200px 211px;
+      }
       .invite-info {
-        max-width: 1200px;/*no*/
+        max-width: 1200px; /*no*/
         background: transparent;
         border: none;
         .container-title {
@@ -389,7 +395,7 @@
               color: #999999;
               line-height: 100px;
               border-bottom: 1px solid #d8d8d8;
-              margin:0;
+              margin: 0;
               padding: 0 0 0 30px;
               height: 100px;
             }
@@ -408,7 +414,7 @@
           // width: 100%;
           width: 400px;
           margin: 50px auto 100px;
-          background: linear-gradient(90deg, #FF8215 0%, #FF5809 100%);
+          background: linear-gradient(90deg, #ff8215 0%, #ff5809 100%);
           border-radius: 35px;
           font-size: 28px;
           font-weight: bold;
@@ -422,13 +428,13 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: flex-start;
-        max-width: 1200px;/*no*/
+        max-width: 1200px; /*no*/
         margin: 0 auto;
         .border-container {
           width: 49.167%;
           min-height: 424px;
           .tab-container {
-            .cell{
+            .cell {
               color: #323232;
               font-weight: 400;
               font-size: 24px;
