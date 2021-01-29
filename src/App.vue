@@ -20,9 +20,9 @@ export default {
     TokenData().then((res) => {
       that.$store.dispatch('setTokenData', res)
     })
-    // PairData().then((res) => {
-    //   that.$store.dispatch('setPairData', res)
-    // })
+    PairData().then((res) => {
+      that.$store.dispatch('setPairData', res)
+    })
   },
   methods: {
     ...mapActions(['connectWallett']),

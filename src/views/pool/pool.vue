@@ -14,8 +14,8 @@
         </p>
         <div class="rect">Connect to a wallet to view your liquidity.</div>
         <div class="btn-box">
-          <el-button :loading="false"  class="btn create">Greate a Pair</el-button>
-          <el-button :loading="false"  class="btn add mt10">Add Liquidity</el-button>
+          <el-button :loading="false" @click="toCreate"  class="btn create">Greate a Pair</el-button>
+          <el-button :loading="false" @click="toLiquidity" class="btn add mt10">Add Liquidity</el-button>
         </div>
         <a class="btn-link" href="#">Connect to a wallet</a>
       </div>
@@ -62,6 +62,12 @@ export default {
   methods: {
     collapseFunc() {
       this.collapse = !this.collapse;
+    },
+    toCreate(){
+      this.$router.push('/createApair')
+    },
+    toLiquidity(){
+      this.$router.push('/addLiquidity')
     }
   }
 }
