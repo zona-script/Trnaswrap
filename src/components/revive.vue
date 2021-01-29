@@ -44,6 +44,15 @@ export default {
   props: {
     show: {
       default: false
+    },
+    popsData: {
+      type: Object,
+      default: () => {
+        return {
+          token1: {},
+          token2: {}
+        }
+      }
     }
   },
   computed: {},
