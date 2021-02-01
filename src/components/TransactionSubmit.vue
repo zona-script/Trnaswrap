@@ -4,7 +4,7 @@
     <div class="dialog-pannel">
       <img class="submitte-img mt100" :src="require('@/themes/images/dialog/submit_illustration.png')" />
       <div class="prompt-text mt50">Transaction Submitted</div>
-      <div class="prompt-text2 mt20"><a href="#">View on Tronscan</a></div>
+      <div class="prompt-text2 mt20"><a :href="url">View on Tronscan</a></div>
       <div class="btn cancel mt100 mt50 ml30 mr30 confirm" @click="cancel">Cancel</div>
     </div>
   </div>
@@ -16,6 +16,9 @@ export default {
   props: {
     show: {
       default: false
+    },
+    url: {
+      default: ''
     }
   },
   computed: {},
