@@ -1,10 +1,10 @@
 <template>
   <div id="addLiquidity" class="addLiquidity">
     <!-- 第一种弹框样式 -->
-    <transaction-submit :show="transactionShow" @transaction-close="transactionClose"></transaction-submit>
+    <transaction-submit :show="showAlert1" @transaction-close="transactionClose"></transaction-submit>
 
     <!-- 第二种弹框样式 -->
-    <revive :show="confirmPop" :popsData='popsData' :confirm="confirm" @revive-close="reviveClose"></revive>
+    <revive :show="confirmPop" :popsData='popsData' @change="confirm" @revive-close="reviveClose"></revive>
 
     <!-- 第三种弹框样式 -->
     <select-token
@@ -105,28 +105,28 @@
             </div>
           </div>
         </div>
-        <div class="pos-con">
+        <div class="pos-con" v-show="JSON.stringify(token1)!='{}'||JSON.stringify(token2)!='{}'">
           <div class="your-position">Your position</div>
           <div class="tab-container">
             <div class="item">
               <div class="key con">
-                <img class="img" :src="require('@/themes/images/common/token_02_2x.png')" />
-                <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')" />
-                <div class="txt">WTRX-USDT</div>
+                <img class="img" :src="requierImg(token1.name)" />
+                <img class="img sec" v-show="showFees(token2)" :src="requierImg(token2.name)" />
+                <div class="txt">{{token1.name}}-{{token2.name}}</div>
               </div>
-              <div class="value">0.00089</div>
+              <div class="value">{{(myBalanceInPool/Math.pow(10,18)).toFixed(6)}}</div>
             </div>
             <div class="item">
               <div class="key">Your pool share</div>
-              <div class="value">0.00%</div>
+              <div class="value">{{(myShare*100).toFixed(2)}}%</div>
             </div>
             <div class="item">
-              <div class="key">WTRX-USDT</div>
-              <div class="value">0.000000</div>
+              <div class="key">{{token1.name}}</div>
+              <div class="value">{{myToken1Balance}}</div>
             </div>
             <div class="item">
-              <div class="key">USDT</div>
-              <div class="value">0.000000</div>
+              <div class="key">{{token2.name}}</div>
+              <div class="value">{{myToken2Balance}}</div>
             </div>
           </div>
         </div>
@@ -197,13 +197,24 @@ export default {
       share: 0,
       lpTotal:0,
       myBalanceInPool:0,
-      popsData:{}
+      popsData:{},
+      iSingle:false,
+      showAlert1:false
     }
   },
   computed: {
     ...mapState(['pairData'])
   },
   watch: {
+    token1Num() {
+      this.validity()
+    },
+    token2Num() {
+      this.validity()
+    },
+    iSingle() {
+      this.validity()
+    },
     pairData(list) {
       this.pairList = JSON.parse(JSON.stringify(list))
     },
@@ -215,6 +226,21 @@ export default {
     this.pairList = JSON.parse(JSON.stringify(this.pairData))
   },
   methods: {
+    requierImg(name) {
+      if (name) {
+        try {
+          return require('@/assets/img/currency/' + name + '.png')
+        } catch (error) {
+          return require('@/assets/img/currency/avitve.png')
+        }
+      }
+    },
+    showFees(n) { // 是否显示联动框
+      if (JSON.stringify(n) == '{}') {
+        return false
+      }
+      return true
+    },
     async getBalance(token) {
       // 获取余额
       const that = this
@@ -491,12 +517,113 @@ export default {
       this.selectTokenShow = false
     },
     reviveClose() {
-      this.reviveShow = false
+      this.confirmPop = false
     },
     transactionClose() {
-      this.transactionShow = false
+      this.showAlert1 = false
     },
-    confirm() {},
+    confirm() {
+      this.charm1(1)
+      if (this.token1ApproveBalance == 0 || this.token2ApproveBalance == 0) {
+        this.$message({
+          message: this.$t('pewe3'),
+          type: 'error'
+        })
+        return
+      }
+
+      if (this.iSingle) {
+        this.joinswapExternAmountIn()
+      } else {
+        this.joinPool()
+      }
+      this.confirmPop = false
+    },
+    async joinPool() {
+      const that = this
+      var functionSelector = 'joinPool(uint256,uint256[])'
+      let token1balance = new BigNumber(that.token1.balance)
+      token1balance = token1balance.times(Math.pow(10, that.token1.decimals)).toFixed()
+      let token2balance = new BigNumber(that.token2.balance)
+      token2balance = token2balance.times(Math.pow(10, that.token2.decimals)).toFixed()
+      console.log('token1balance====' + token1balance)
+      console.log('token2balance====' + token2balance)
+      const MAX = Web3Utils.utils.toTwosComplement(-1)
+      let num1 = new BigNumber(1000000000000000000000000000000)
+      num1 = num1.toFixed()
+      let lptokenNum = new BigNumber(that.reciveLptoken)
+      lptokenNum = lptokenNum.times(Math.pow(10, that.pair.decimals))
+      var parameter = [
+        { type: 'uint256', value: lptokenNum.toFixed() },
+        { type: 'uint256[]', value: [MAX, MAX] }
+      ]
+      console.log(parameter)
+      try {
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(this.pair.address, functionSelector, {}, parameter)
+        if (!transaction.result || !transaction.result.result) {
+          that.charm1()
+          return console.error('Unknown error: ' + transaction, null, 2)
+        }
+        window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
+          window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
+            that.$message.success('SUCCESS!')
+            that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
+            that.charm1()
+            that.charm2()
+            that.showAlert1 = true
+          }).catch((err) => {
+            console.log(err)
+            that.charm1()
+            that.charm2()
+            that.showAlert1 = true
+          })
+        })
+      } catch (error) {
+        console.log(error)
+        that.charm1()
+      }
+    },
+    async joinswapExternAmountIn() {
+      const that = this
+      var functionSelector = 'joinswapExternAmountIn(address,uint256,uint256)'
+      let token1num = new BigNumber(that.token1Num)
+      token1num = token1num.times(Math.pow(10, that.token1.decimals))
+      let token1balance = new BigNumber(this.token1Balance)
+      token1balance = token1balance.times(Math.pow(10, 18))
+      console.log('this.token1Balance=====' + token1balance)
+      console.log('token1num=====' + token1num)
+      if (token1num > token1balance / 2) {
+        that.$message.error('添加数量不能大于流动池的50%!')
+        this.charm1()
+        return
+      }
+      var parameter = [
+        { type: 'address', value: that.token1.address },
+        { type: 'uint256', value: token1num.toFixed() },
+        { type: 'uint256', value: 0 }
+      ]
+      try {
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(that.pair.address, functionSelector, {}, parameter)
+        if (!transaction.result || !transaction.result.result) {
+          that.charm1()
+          return console.error('Unknown error: ' + transaction, null, 2)
+        }
+        window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
+          window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
+            that.$message.success('success')
+            that.charm1()
+            that.showAlert1 = true
+          }).catch(err => {
+            that.charm1()
+            console.log(err)
+            that.showAlert1 = true
+          })
+        })
+      } catch (error) {
+        console.log(111, error)
+        that.charm1()
+      }
+    },
     singleSet() {
       this.assetMode = false
     },

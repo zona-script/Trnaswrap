@@ -5,35 +5,35 @@
       <h3 class="title"><span class="close" @click="close"></span>You will revive</h3>
       <div class="revive-container">
         <div class="revive-head">
-          <div class="num">14.496876</div>
-          <div class="prompt-text3">JST SUN Pool Tokens</div>
+          <div class="num">{{popsData.reciveLptoken}}</div>
+          <div class="prompt-text3">{{popsData.token1.name}}{{popsData.token2.name}} Pool Tokens</div>
           <div class="desc-text ml30 mr30 mt30">
             OutPut is estimated.if the price change by more than 0.5% your transaction will revert
           </div>
         </div>
         <div class="info-list-wrap mlr mt50">
           <div class="info-item">
-            <span class="num-text fr">1</span>
-            <img class="img" :src="require('@/themes/images/dialog/token_03_2x.png')" />
-            <span class="text">JST</span>
+            <span class="num-text fr">{{popsData.token1Num}}</span>
+            <img class="img" :src="requierImg(popsData.token1.name,0)" />
+            <span class="text">{{popsData.token1.name}}</span>
+          </div>
+          <div class="info-item mt10" v-show="popsData.token2Num>0">
+            <span class="num-text fr">{{popsData.token2Num}}</span>
+            <img class="img" :src="requierImg(popsData.token2.name,0)" />
+            <span class="text">{{popsData.token2.name}}</span>
           </div>
           <div class="info-item mt10">
-            <span class="num-text fr">16.013137</span>
-            <img class="img" :src="require('@/themes/images/dialog/b_2x.png')" />
-            <span class="text">SUN</span>
-          </div>
-          <div class="info-item mt10">
-            <span class="num-text fr">0%</span>
+            <span class="num-text fr">{{popsData.share}}%</span>
             <span class="num-text">share of Pool</span>
           </div>
           <div class="info-item mt10 mb50">
             <div class="desc-title">Rates</div>
-            <div class="desc-info mt10">1 JST = NaN Sun</div>
-            <div class="desc-info">1 Sun = 19.630547 JST</div>
+            <div class="desc-info mt10">1 {{popsData.token1.name}} = {{popsData.t1Per.toFixed(6)}} {{popsData.token2.name}}</div>
+            <div class="desc-info">1 {{popsData.token2.name}} = {{popsData.t2Per.toFixed(6)}} {{popsData.token1.name}}</div>
           </div>
         </div>
       </div>
-      <div class="btn confirm mb50 ml30 mr30" @touchend="confirm">Confirm</div>
+      <div class="btn confirm mb50 ml30 mr30" @click="confirm">Confirm</div>
     </div>
   </div>
 </template>
@@ -68,6 +68,22 @@ export default {
   },
   created() {},
   methods: {
+    requierImg(name, number) {
+      let str
+      if (name) {
+        try {
+          if (number != undefined) {
+            str = name.split('/')
+            return require('@/assets/img/currency/' + str[number] + '.png')
+          }
+          return require('@/assets/img/currency/' + name + '.png')
+        } catch (error) {
+          return require('@/assets/img/currency/avitve.png')
+        }
+      } else {
+        return require('@/assets/img/currency/avitve.png')
+      }
+    },
     wrapTouch(e) {
       e.stopPropagation()
     },
@@ -75,7 +91,7 @@ export default {
       this.$emit('revive-close', false)
     },
     confirm() {
-      this.$emit('confirm')
+      this.$emit('change')
     }
   },
   mounted() {}
