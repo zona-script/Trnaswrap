@@ -2,8 +2,8 @@
   background: #f9f9f9;
   min-height: 100%;
   .content {
-    border-top: 1px solid transparent; 
-    border-bottom: 1px solid transparent; 
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     > .title {
       margin: 47px 0 49px 51px;
       font-size: 36px;
@@ -45,7 +45,7 @@
           line-height: 70px;
           text-align: center;
           border-radius: 15px;
-          border: 3px dashed #DDD;
+          border: 3px dashed #ddd;
           .img {
             width: 40px;
             height: 40px;
@@ -86,9 +86,9 @@
               line-height: 74px;
               display: block;
               &:first-child {
-                margin-right:1%;
+                margin-right: 1%;
               }
-              &:last-child{
+              &:last-child {
                 margin-left: 1%;
               }
             }
@@ -163,8 +163,8 @@
       }
       .pannel-info {
         position: relative;
-        max-width: 1200px;/*no*/
-        margin:0 auto;
+        max-width: 1200px; /*no*/
+        margin: 0 auto;
         .tabs-container {
           overflow: hidden;
           position: absolute;
@@ -179,11 +179,36 @@
         }
         .configuration {
           padding: 50px;
+          &.single-mode {
+            .img-text-wrap.bd {
+              display: none;
+            }
+            .form-view {
+              .form-view-item {
+                width: 100%;
+                margin: 0;
+                & ~ .form-view-item {
+                  display: none;
+                }
+                .form-view-item-top {
+                  .droplist {
+                    width: 38.33%;
+                  }
+                  .max-num {
+                    width: 38.33%;
+                    margin: 0;
+                  }
+                }
+              }
+              .btn-icon-wrap {
+                display: none;
+              }
+            }
+          }
           .form-view {
             &.img-text-wrap.bd {
               // border: none;
             }
-
           }
           .pannel-info-share {
             .btn-con {
@@ -207,7 +232,7 @@
           }
         }
       }
-      .icon-btn-tool{
+      .icon-btn-tool {
         padding-bottom: 100px;
       }
     }

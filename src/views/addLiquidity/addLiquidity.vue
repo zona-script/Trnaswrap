@@ -13,16 +13,15 @@
       @selected-token="selectedToken"
       @selected-token-close="selectedTokenClose"
     ></select-token>
-    <!-- <headTitle></headTitle> -->
     <div class="content">
       <div class="background"></div>
       <div class="title">Add Liquidity</div>
       <div class="pannel-info">
         <div class="tabs-container">
-          <div @click="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">Single assets</div>
-          <div @click="doubleSet" class="tabs sec" :class="assetMode ? 'active' : ''">Double assets</div>
+          <div @click="singleSet" class="tabs fir" :class="doubleMode ? '' : 'active'">Single assets</div>
+          <div @click="doubleSet" class="tabs sec" :class="doubleMode ? 'active' : ''">Double assets</div>
         </div>
-        <div class="configuration">
+        <div class="configuration" :class="doubleMode ? '' : 'single-mode'">
           <div class="img-text-wrap bd">
             <img class="img" :src="require('@/themes/images/common/token_02_2x.png')" />
             <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')" />
@@ -150,7 +149,7 @@ export default {
       confirmPop:false,
       transactionShow: false,
       selectTokenShow: false,
-      assetMode: true,
+      doubleMode: true,
       charm: {
         btnLoading1: false,
         disabled1: true,
@@ -625,10 +624,10 @@ export default {
       }
     },
     singleSet() {
-      this.assetMode = false
+      this.doubleMode = false
     },
     doubleSet() {
-      this.assetMode = true
+      this.doubleMode = true
     },
     charm1(n) {
       if (n) {
