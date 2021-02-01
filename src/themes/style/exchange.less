@@ -1,14 +1,23 @@
 .exchange-wrap {
+  height: 100%;
   .exchange {
-    background: url(../images/common/orange.png) no-repeat left 184px ~'/' 194px auto,
-        url(../images/common/pink.png) no-repeat right 773px ~'/' 210px auto #f9f9f9;
+    background: url(../images/common/orange.png) no-repeat -194px 184px ~'/' 388px auto,
+      url(../images/common/pink.png) no-repeat right -210px bottom 124px ~'/' 420px auto #f9f9f9;
     min-height: 100%;
+    &::before {
+      content: '';
+      display: table;
+    }
   }
 }
 @media screen and (min-width: 1200px) {
   .exchange-wrap {
     // padding: 0 0 169px 0;
     // min-height: 100%;
+    .exchange {
+      background: url(../images/common/orange.png) no-repeat -300px 50px ~'/' 600px auto,
+        url(../images/common/pink.png) no-repeat right -300px bottom 0px ~'/' 600px auto #f9f9f9;
+    }
     .content-wrap {
       padding: 0 0 169px 0;
       .btn.confirm {

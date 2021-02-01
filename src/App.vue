@@ -23,6 +23,7 @@ export default {
     PairData().then((res) => {
       that.$store.dispatch('setPairData', res)
     })
+    that.setRem();
   },
   methods: {
     ...mapActions(['connectWallett']),
@@ -30,6 +31,13 @@ export default {
       this.$initTronWeb().then((tronWeb) => {
         this.connectWallett()
       })
+    },
+    // 适应PC端函数，设置fontsize:75px;
+    setRem() {
+      let screenWidth = window.screen.width;
+      if (screenWidth > 750) {
+        // document.getElementsByTagName('html')[0].style['fontSize'] = '75px';
+      }
     }
   }
 }
