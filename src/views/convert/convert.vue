@@ -133,7 +133,8 @@ export default {
       showAlert: false,
       typeName: 'success',
       stup: 1,
-      typeUrl: ''
+      typeUrl: '',
+      approveUsdtBalance:0
     }
   },
   watch: {
@@ -222,6 +223,42 @@ export default {
         this.loading1()
         console.log(error)
       }
+    },
+    getUsdtAllowance(){
+      const that = this
+      that.loading1(1)
+      allowance(ipConfig.UsdtAddress, ipConfig.TusdAddress).then((res) => {
+        if (res) {
+          that.approveUsdtBalance = parseInt(res._hex ? res._hex : res.constant_result[0], 16)
+          if (that.approveUsdtBalance == 0 || window.tronWeb.toSun(this.wtrxNum) > that.approveUsdtBalance) {
+            // alert('    ');
+            if (that.proNmae == 'approved') {
+              that.loading1(1)
+              // that.showAlert = true;
+              approved(ipConfig.wtrxAddress, ipConfig.wtrxAddress).then(res => {
+                console.log(res)
+                that.proNmae = 'Confirm'
+                that.loading2(0)
+              }).catch(() => {
+                that.$message.error('privilege grant failed')
+                that.loading2(0)
+              })
+            } else {
+              if (that.stup == 1) {
+                that.proNmae = 'approved'
+                that.loading2(0)
+                that.stup += 1
+              } else {
+                that.changeTrx()
+              }
+            }
+          } else {
+            that.changeTrx()
+          }
+        } else {
+          that.loading2()
+        }
+      })
     },
     getAllowance() { // 查询授权
       const that = this
