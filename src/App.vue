@@ -36,7 +36,7 @@ export default {
     setRem() {
       let screenWidth = window.screen.width;
       if (screenWidth > 750) {
-        // document.getElementsByTagName('html')[0].style['fontSize'] = '75px';
+        document.getElementsByTagName('html')[0].style['fontSize'] = '75px';
       }
     }
   }
