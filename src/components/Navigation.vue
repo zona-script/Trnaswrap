@@ -49,7 +49,7 @@ export default {
           },
           {
             name: 'Farm',
-            url: '/convert'
+            url: '/farm'
           },
           {
             name: 'Vote',

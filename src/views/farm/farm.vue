@@ -1,5 +1,6 @@
 <template>
   <div id="farm" class="farm">
+    <deposit-withdraw></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/menu/image_02.png')" alt="" />
