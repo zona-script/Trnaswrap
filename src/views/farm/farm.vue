@@ -1,6 +1,6 @@
 <template>
   <div id="farm" class="farm">
-    <deposit-withdraw></deposit-withdraw>
+    <deposit-withdraw :show="showDepositWithdraw" @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/menu/image_02.png')" alt="" />
@@ -74,15 +74,20 @@
 </template>
 <script>
 export default {
-  name: 'Pool',
+  name: 'Farm',
   data() {
     return {
+      showDepositWithdraw: true,
       collapse: true
     }
   },
   methods: {
     collapseFunc() {
       this.collapse = !this.collapse
+    },
+    depositWithdrawClose() {
+      console.log('test')
+      this.showDepositWithdraw = false
     }
   }
 }
