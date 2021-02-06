@@ -20,4 +20,5 @@ export const constantRouterMap = [
   { path: '/convert', name: 'convert', component: () => import('@/views/convert/convert') },
   { path: '/vote', name: 'vote', component: () => import('@/views/vote/vote') },
   { path: '/farm', name: 'farm', component: () => import('@/views/farm/farm') },
+  { path: '/removeLiquidity', name: 'removeLiquidity', component: () => import('@/views/removeLiquidity/removeLiquidity') },
 ]

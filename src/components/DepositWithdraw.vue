@@ -93,7 +93,7 @@ export default {
   name: 'DepositWithdraw',
   props: {
     show: {
-      default: true
+      default: false
     },
     selectedIndex: {
       default: 'withdraw'
@@ -101,7 +101,7 @@ export default {
   },
   data() {
     return {
-      isShow: true,
+      isShow: false,
       tabSelected: this.selectedIndex
     }
   },

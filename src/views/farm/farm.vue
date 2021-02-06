@@ -1,5 +1,6 @@
 <template>
   <div id="farm" class="farm">
+    <!-- 弹窗 -->
     <deposit-withdraw :show="showDepositWithdraw" @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
@@ -77,7 +78,7 @@ export default {
   name: 'Farm',
   data() {
     return {
-      showDepositWithdraw: true,
+      showDepositWithdraw: false,
       collapse: true
     }
   },
