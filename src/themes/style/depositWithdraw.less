@@ -109,6 +109,56 @@
         .btn {
         }
       }
+      &.withdraw {
+        .revenue-container {
+          .revenue {
+            padding: 0 0 50px 0;
+            .title {
+              font-size: 30px;
+              font-weight: bold;
+              color: #313131;
+              line-height: 47px;
+            }
+            .subtitle {
+              margin: 30px 0 10px 0;
+              font-size: 20px;
+              color: #999999;
+              line-height: 30px;
+            }
+            .info-container {
+              .info-item {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px 0 20px;
+                line-height: 80px;
+                background: #f9f9f9;
+                border-radius: 15px;
+                &:not(:last-child) {
+                  margin: 0 0 10px 0;
+                }
+                .key {
+                  font-size: 30px;
+                  color: #323232;
+                }
+                .value {
+                  font-size: 0;
+                  div {
+                    display: inline-block;
+                    font-size: 30px;
+                    font-weight: bold;
+                    color: #323232;
+                    .unit {
+                      color: #999999;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -162,6 +212,51 @@
         .btn-container {
           padding: 0;
           .btn {
+          }
+        }
+        &.withdraw {
+          display: block;
+          .revenue-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            .revenue {
+              width: 47.65%;
+              padding: 0 0 30px 0;
+              .title {
+                font-size: 18px;
+                line-height: 28px;
+              }
+              .subtitle {
+                font-size: 12px;
+                line-height: 18px;
+              }
+              .info-container {
+                .info-item {
+                  height: 50px;
+                  border-radius: 10px;
+                  .key {
+                    font-size: 14px;
+                  }
+                  .value {
+                    div {
+                      font-size: 16px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .btn-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .btn {
+              width: 47.65%;
+            }
           }
         }
       }

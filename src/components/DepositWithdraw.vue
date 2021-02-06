@@ -4,7 +4,7 @@
     <div class="container">
       <div class="tabs">
         <div class="tab deposit" @click="tabDeposit" :class="tabSelected === 'deposit' ? 'active' : ''">Deposit</div>
-        <div class="tab withdraw" @click="tabWithdraw" :class="tabSelected === 'withdraw' ? 'active' : ''">Widthdraw</div>
+        <div class="tab withdraw" @click="tabWithdraw" :class="tabSelected === 'withdraw' ? 'active' : ''">Withdraw</div>
       </div>
       <div class="deposit content" v-show="tabSelected === 'deposit'">
         <div class="top-container">
@@ -34,11 +34,11 @@
           <el-button :loading="false" class="btn confirm">Select</el-button>
         </div>
       </div>
-      <div class="widthdraw content" v-show="tabSelected === 'widthdraw'">
+      <div class="withdraw content" v-show="tabSelected === 'withdraw'">
         <div class="revenue-container">
-          <div class="revenue-1">
-            <div class="title"></div>
-            <div class="subtitle"></div>
+          <div class="revenue fir">
+            <div class="title">Deposit revenue</div>
+            <div class="subtitle">Extracted at any time</div>
             <div class="info-container">
               <div class="info-item">
                 <div class="key">balance</div>
@@ -56,9 +56,9 @@
               </div>
             </div>
           </div>
-          <div class="revenue-1">
-            <div class="title"></div>
-            <div class="subtitle"></div>
+          <div class="revenue sec">
+            <div class="title">Mining revenue</div>
+            <div class="subtitle">Automatically withdraw to the wallet after seven days</div>
             <div class="info-container">
               <div class="info-item">
                 <div class="key">balance</div>
@@ -94,7 +94,7 @@ export default {
       default: false
     },
     tabSelected: {
-      default: "deposit"
+      default: "withdraw"
     }
   },
   data() {
