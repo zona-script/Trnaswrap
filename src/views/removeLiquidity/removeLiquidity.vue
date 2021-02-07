@@ -11,9 +11,9 @@
             </div>
             <div class="slider-outer">
               <div class="slider-container">
-                <div class="track">
-                  <div class="process"></div>
-                  <div class="block">
+                <div class="track" ref="track" @mousedown="slideStart" @mousemove="slideMove" @mouseup="slideEnd">
+                  <div class="process" ref="track"></div>
+                  <div class="block" ref="block">
                     <div class="block-inner"></div>
                   </div>
                 </div>
@@ -28,10 +28,10 @@
             </div>
           </div>
           <div class="mode">
-            <div class="mode-item">25%</div>
-            <div class="mode-item">50%</div>
-            <div class="mode-item">75%</div>
-            <div class="mode-item">MAX</div>
+            <div class="mode-item" :class="mode == '25' ? 'active' : ''" @click="modeClick(25)">25%</div>
+            <div class="mode-item" :class="mode == '50' ? 'active' : ''" @click="modeClick(50)">50%</div>
+            <div class="mode-item" :class="mode == '75' ? 'active' : ''" @click="modeClick(75)">75%</div>
+            <div class="mode-item" :class="mode == 'max' ? 'active' : ''" @click="modeClick('max')">MAX</div>
           </div>
         </div>
       </div>
@@ -62,8 +62,13 @@ export default {
   name: 'RemoveLiquidity',
   data() {
     return {
+      mode: 25,
       showDepositWithdraw: true,
-      collapse: true
+      collapse: true,
+      // 滑动器变量
+      trackWidth: 0,
+      trackLeft: 0,
+      startLeft: 0,
     }
   },
   methods: {
@@ -73,6 +78,22 @@ export default {
     depositWithdrawClose() {
       console.log('test')
       this.showDepositWithdraw = false
+    },
+    modeClick(value){
+      this.mode = value;
+    },
+    slideStart(e) {
+      // console.log(this.$refs.track.getBoundingClientRect());
+      this.startLeft = e.clientX;
+      this.trackLeft = this.$refs.track.getBoundingClientRect().left;
+      this.trackWidth = this.$refs.track.getBoundingClientRect().width;
+
+    },
+    slideMove() {
+      console.log(arguments)
+    },
+    slideEnd() {
+      console.log(arguments)
     }
   }
 }

@@ -1,4 +1,5 @@
 .remove-liquidity {
+  padding: 50px 30px 300px 30px;
   .inner-wrap {
     .content {
       padding: 30px 30px 50px 30px;
@@ -13,6 +14,7 @@
         line-height: 56px;
       }
       .per-container {
+        padding: 0 20px 0 20px;
         .top-container {
           .current-value {
             margin: 66px auto 30px;
@@ -27,6 +29,7 @@
           }
           .slider-outer {
             .slider-container {
+              position: relative;
               .track {
                 height: 10px;
                 background: #f9f9f9;
@@ -47,6 +50,7 @@
                 height: 40px;
                 background: #ffffff;
                 box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
                 .block-inner {
                   transform: translate(-50%, -50%);
                   position: absolute;
@@ -55,6 +59,7 @@
                   width: 26px;
                   height: 26px;
                   background: #ff652b;
+                  border-radius: 50%;
                 }
               }
             }
@@ -63,7 +68,7 @@
               flex-wrap: nowrap;
               justify-content: space-between;
               align-items: center;
-              margin: 15px 0 30px 0;
+              margin: 30px 0 30px 0;
               .calibration {
                 width: 2px;
                 height: 10px;
@@ -74,12 +79,18 @@
           }
         }
         .mode {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: center;
           .mode-item {
             width: 112px;
             height: 70px;
+            text-align: center;
+            line-height: 70px;
             border-radius: 35px;
             border: 2px solid #e5e5e5;
-            .active {
+            &.active {
               background: linear-gradient(90deg, #ff8e18 0%, #ff4804 100%);
               border-radius: 35px;
             }
@@ -87,6 +98,7 @@
         }
       }
       &.sec {
+        margin: 50px 0 0 0;
         .info-container {
           padding: 20px 0 50px 0;
           .info-item {
@@ -94,6 +106,7 @@
             flex-wrap: nowrap;
             justify-content: space-between;
             align-items: center;
+            padding: 0 20px 0 20px;
             line-height: 80px;
             background: #f9f9f9;
             border-radius: 15px;
@@ -116,7 +129,6 @@
               }
             }
             .value {
-              height: 38px;
               font-size: 24px;
               color: #323232;
             }
