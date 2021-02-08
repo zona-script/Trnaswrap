@@ -2,7 +2,10 @@
   <div id="remove-liquidity" class="remove-liquidity">
     <div class="inner-wrap">
       <div class="content fir">
-        <div class="title">Remove Liquidity</div>
+        <div class="title">
+          <img class="icon" :src="require('@/themes/images/common/telegram@2x.png')" alt="">
+          <div class="txt">Remove Liquidity</div>
+        </div>
         <div class="per-container">
           <div class="top-container">
             <div class="current-value">
@@ -12,8 +15,8 @@
             <div class="slider-outer">
               <div class="slider-container">
                 <div class="track" ref="track" @mousedown="slideStart" @mousemove="slideMove" @mouseup="slideEnd">
-                  <div class="process" ref="track"></div>
-                  <div class="block" ref="block">
+                  <div class="process" ref="process" :style="{width: process + '%'}"></div>
+                  <div class="block" ref="block" :style="{left: process + '%'}">
                     <div class="block-inner"></div>
                   </div>
                 </div>
@@ -69,6 +72,7 @@ export default {
       trackWidth: 0,
       trackLeft: 0,
       startLeft: 0,
+      process: 0,
     }
   },
   methods: {
@@ -87,13 +91,15 @@ export default {
       this.startLeft = e.clientX;
       this.trackLeft = this.$refs.track.getBoundingClientRect().left;
       this.trackWidth = this.$refs.track.getBoundingClientRect().width;
-
+      this.process = Math.round((this.startLeft - this.trackLeft) / this.trackWidth * 100)
     },
-    slideMove() {
-      console.log(arguments)
+    slideMove(e) {
+      // console.log(arguments)
+      // let currentLeft = e.clientX;
+      // this.process = Math.round((currentLeft - this.trackLeft) / this.trackWidth * 100)
     },
     slideEnd() {
-      console.log(arguments)
+      // console.log(arguments)
     }
   }
 }
