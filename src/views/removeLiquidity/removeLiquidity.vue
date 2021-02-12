@@ -1,5 +1,6 @@
 <template>
   <div id="remove-liquidity" class="remove-liquidity">
+    <remove-liquidity-confirm :show="popShow" @close="closePop"></remove-liquidity-confirm>
     <div class="inner-wrap">
       <div class="content fir">
         <div class="title">
@@ -13,14 +14,6 @@
               <div class="percent">%</div>
             </div>
             <div class="slider-outer">
-              <!-- <div class="slider-container">
-                <div class="track" ref="track" @mousedown="slideStart" @mouseup="slideEnd">
-                  <div class="process" ref="process" :style="{width: process + '%'}"></div>
-                  <div class="block" ref="block" @mousemove="pcMove" :style="{left: process + '%'}">
-                    <div class="block-inner"></div>
-                  </div>
-                </div>
-              </div> -->
               <el-slider
                 v-model="slideValue"
                 :show-tooltip="false"
@@ -76,12 +69,7 @@ export default {
       showDepositWithdraw: true,
       collapse: true,
       slideValue: 0,
-      // 滑动器变量
-      // trackWidth: 0,
-      // trackLeft: 0,
-      // startLeft: 0,
-      // process: 0,
-      // drag: false
+      popShow: true
     }
   },
   methods: {
@@ -100,29 +88,10 @@ export default {
     sliderInput(value) {
       // 滑动式添加按钮激活样式
       // this.mode = value
+    },
+    closePop() {
+      this.popShow = false;
     }
-    // slideStart(e) {
-    //   this.drag = true;
-    //   // console.log(this.$refs.track.getBoundingClientRect());
-    //   this.startLeft = e.clientX;
-    //   this.trackLeft = this.$refs.track.getBoundingClientRect().left;
-    //   this.trackWidth = this.$refs.track.getBoundingClientRect().width;
-    //   let process = Math.round((this.startLeft - this.trackLeft) / this.trackWidth * 100);
-    //   process = process < 0 ? 0 : process > 100 ? 100 : process;
-    //   this.process = process;
-    // },
-    // pcMove(e) {
-    //   if (!IsPc()) return;
-    //   console.log(e)
-    //   let currentLeft = e.clientX;
-
-    //   this.process = Math.round((currentLeft - this.trackLeft) / this.trackWidth * 100);
-
-    // },
-    // slideEnd() {
-      // this.drag = false;
-      // console.log(arguments)
-    // }
   }
 }
 </script>
