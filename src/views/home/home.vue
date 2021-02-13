@@ -8,8 +8,8 @@
         <div class="banner-desc-container">
           <div class="banner-logo"></div>
           <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
-          <div class="exchange">Go to exchange</div>
-          <div class="menu">See The Menu</div>
+          <el-button :loading="false" class="btn confirm">Go to exchange</el-button>
+          <el-button :loading="false" class="btn confirm">See The Menu</el-button>
         </div>
         <div class="banner-info-con">
           <div class="banner-info">
@@ -41,7 +41,7 @@
       <div class="border-container">
         <div class="title">
           <div class="text">Top Pairs</div>
-          <div class="detail">&gt;</div>
+          <!-- <div class="detail">&gt;</div> -->
         </div>
         <div class="tab-container">
           <div class="tab-container-inner">

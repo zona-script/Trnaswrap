@@ -6,9 +6,9 @@
           v-for="(item, index) in navList"
           class="nav-item"
           @click="click(item, index)"
-          :class="actIndex === index ? 'active' : ''"
+          :class="actIndex === item.name ? 'active' : ''"
         >
-          {{ item.name }}
+          {{ item.text }}
         </div>
       </div>
       <!-- 留着做动画用 -->
@@ -24,39 +24,48 @@ export default {
       default: () => {
         return [
           {
-            name: 'Home',
+            name: 'home',
+            text: 'Home',
             url: '/home'
           },
           {
-            name: 'Exchange',
+            name: 'exchange',
+            text: 'Exchange',
             url: '/exchange'
           },
           {
-            name: 'Pool',
+            name: 'pool',
+            text: 'Pool',
             url: '/pool'
           },
+          // {
+          //   name: 'abelo',
+          //   text: 'Abelo',
+          //   url: '/createApair'
+          // },
           {
-            name: 'Abelo',
-            url: '/createApair'
-          },
-          {
-            name: 'Convert',
+            name: 'convert',
+            text: 'Convert',
             url: '/convert'
           },
+          // {
+          //   name: 'stake',
+          //   text: 'Stake',
+          //   url: '/addLiquidity'
+          // },
           {
-            name: 'Stake',
-            url: '/addLiquidity'
-          },
-          {
-            name: 'Farm',
+            name: 'farm',
+            text: 'Farm',
             url: '/farm'
           },
           {
-            name: 'Vote',
+            name: 'vote',
+            text: 'Vote',
             url: '/vote'
           },
           {
-            name: 'About',
+            name: 'about',
+            text: 'About',
             url: '/about'
           }
         ]
@@ -69,15 +78,18 @@ export default {
     let self = this
     return {
       navList: [...self.list],
-      actIndex: 0,
+      actIndex: 'home',
       width: 91,
       left: 0
     }
   },
-  created() {},
+  created() {
+    let hash = window.location.hash.split('/')[1];//获取当前路由哈希
+    this.actIndex = hash;
+  },
   methods: {
     click(item, index, target) {
-      this.actIndex = index;
+      this.actIndex = item.name;
       this.$router.push(item.url);
     }
   },

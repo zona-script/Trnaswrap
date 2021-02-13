@@ -47,7 +47,7 @@
         height: 146px;
         margin: 30px 0 0;
         padding: 0 0 0 90px;
-        background: #ffefe6;
+        background: #fff0e6;
         border-radius: 15px;
         .icon-container {
           transform: translateY(-50%);
@@ -127,7 +127,9 @@
       }
       .tab-container {
         // width: 1200px;/*no*/
-        &::-webkit-scrollbar { width: 0 !important }
+        &::-webkit-scrollbar {
+          width: 0 !important;
+        }
         overflow-x: scroll;
         .tab-container-inner {
           width: 1200px; /*no*/
@@ -137,6 +139,7 @@
           }
           .cell {
             padding: 0;
+            line-height: 20px;
             white-space: nowrap;
           }
           .tab-title-line {
@@ -144,7 +147,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #323232;
-            line-height: 70px;
+            // line-height: 70px;
             th {
               padding: 0;
               background: #f7f7f7;
@@ -220,7 +223,8 @@
 @media screen and (min-width: 1200px) {
   .home {
     .banner {
-      background: #fff url(../images/invite/fish.png) no-repeat center 100px ~'/' 800px auto;
+      padding: 0px 0px 50px;
+      background: #fff url(../images/invite/fish.png) no-repeat center 100px ~'/' 600px auto;
       .banner-inner {
         max-width: 1200px; /*no*/
         margin: 0 auto;
@@ -228,13 +232,13 @@
           display: inline-block;
           width: 350px;
           height: 326px;
-          margin: 72px 120px 0 100px;
+          margin: 72px 100px 85px 100px;
         }
         .banner-desc-container {
           display: inline-block;
           width: auto;
           vertical-align: top;
-          margin-top: 142px;
+          margin-top: 162px; //142+20
           .banner-logo {
             margin: 0;
           }
@@ -261,6 +265,12 @@
             background: linear-gradient(to right, #ff8e18, #ff4804);
             border-radius: 30px;
           }
+          .btn {
+            display: inline-block;
+            width: 220px;
+            height: 60px;
+            margin: 0 20px 0 0;
+          }
         }
         .banner-info-con {
           display: flex;
@@ -269,6 +279,26 @@
           width: 100%;
           .banner-info {
             width: 32.5%;
+            height: 98px;
+            margin: 0;
+            padding: 0 0 0 50px;
+            .icon-container {
+              width: 60px;
+              height: 60px;
+            }
+            .context {
+              left: 140px;
+              .main-title {
+                font-size: 36px;
+                color: #191919;
+                line-height: 1;
+              }
+              .subtitle {
+                font-size: 16px;
+                color: #878d98;
+                line-height: 25px;
+              }
+            }
           }
         }
       }
@@ -277,25 +307,50 @@
       .border-container {
         max-width: 1200px; /*no*/
         margin: 0 auto;
+        .title {
+          height: 80px;
+          line-height: 80px;
+          font-size: 24px;
+        }
         .tab-container {
           .tab-container-inner {
-            .tab-title-line {
-              font-size: 16px;
-              .name-head {
-                padding: 0 0 0 20px;
+            .el-table {
+              .tab-title-line {
+                height: 60px;
+                font-size: 16px;
+                .name-head {
+                  padding: 0 0 0 20px;
+                }
+                .operation-head {
+                  padding: 0 20px 0 0;
+                }
               }
-              .operation-head {
+              .operation {
                 padding: 0 20px 0 0;
               }
-            }
-            .operation {
-              padding: 0 20px 0 0;
-            }
-            .icon-container {
-              padding: 0 0 0 20px;
-            }
-            td div {
-              font-size: 14px;
+              .icon-container {
+                padding: 0 0 0 20px;
+              }
+              td div {
+                font-size: 14px;
+              }
+              .el-table__body-wrapper {
+                .el-table__body {
+                  .el-table__row {
+                    td {
+                      height: 80px;
+                      .icon-container {
+                        height: 25px;
+                        line-height: 25px;
+                        img {
+                          width: 25px;
+                          height: 25px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
