@@ -40,6 +40,9 @@
         .menu {
           display: none;
         }
+        .btn {
+          display: none;
+        }
       }
       .banner-info {
         position: relative;
@@ -134,86 +137,92 @@
         .tab-container-inner {
           width: 1200px; /*no*/
           // font-size: 14px;
-          div {
-            display: inline-block;
-          }
-          .cell {
-            padding: 0;
-            line-height: 20px;
-            white-space: nowrap;
-          }
-          .tab-title-line {
-            background: #f7f7f7;
-            font-size: 24px;
-            font-weight: bold;
-            color: #323232;
-            // line-height: 70px;
-            th {
-              padding: 0;
-              background: #f7f7f7;
+          .el-table {
+            &::before {
+              height: 0;
             }
             div {
+              display: inline-block;
+            }
+            .cell {
               padding: 0;
+              line-height: 30px;
+              white-space: nowrap;
             }
-            .name-head {
-              padding: 0 0 0 30px;
+            .tab-title-line {
+              height: 80px;
+              background: #f7f7f7;
+              font-size: 24px;
+              font-weight: bold;
+              color: #323232;
+              line-height: 30px;
+              th {
+                padding: 0;
+                background: #f7f7f7;
+              }
+              div {
+                padding: 0;
+              }
+              .name-head {
+                padding: 0 0 0 30px;
+              }
+              .operation-head {
+                padding: 0 30px 0 0;
+              }
             }
-            .operation-head {
-              padding: 0 30px 0 0;
+            td div {
+              font-size: 18px;
             }
-          }
-          td div {
-            font-size: 18px;
-          }
-
-          .icon-container {
-            display: inline-block;
-            height: 33px;
-            line-height: 33px;
-            padding: 0 0 0 30px;
-            vertical-align: middle;
-            img {
-              width: 33px;
+  
+            .icon-container {
+              display: inline-block;
               height: 33px;
+              line-height: 33px;
+              padding: 0 0 0 30px;
+              vertical-align: middle;
+              img {
+                width: 33px;
+                height: 33px;
+              }
+              .second-img {
+                transform: translateX(-30%);
+              }
             }
-            .second-img {
-              transform: translateX(-30%);
+            .text-container {
+              display: inline-block;
+              font-family: AlibabaSans-Regular, AlibabaSans;
+              font-weight: 400;
+              color: #323232;
+              line-height: 28px;
+              vertical-align: middle;
             }
-          }
-          .text-container {
-            display: inline-block;
-            font-family: AlibabaSans-Regular, AlibabaSans;
-            font-weight: 400;
-            color: #323232;
-            line-height: 28px;
-            vertical-align: middle;
-          }
-          .assets {
-            font-weight: 400;
-            color: #323232;
-            line-height: 28px;
-          }
-          .liquidity {
-            // padding: 0 29px 0 0;
-            font-family: AlibabaSans-Medium, AlibabaSans;
-            font-weight: 500;
-            color: #ff652b;
-            line-height: 28px;
-          }
-          .price {
-            color: #ff652b;
-          }
-          .voluem-head {
-            display: block;
-          }
-          .priceChange-head {
-            display: block;
-          }
-          .operation {
-            display: block;
-            padding: 0 30px 0 0;
-            color: #ff652b;
-            text-decoration: underline;
+            .assets {
+              font-weight: 400;
+              color: #323232;
+              line-height: 28px;
+            }
+            .liquidity {
+              // padding: 0 29px 0 0;
+              font-family: AlibabaSans-Medium, AlibabaSans;
+              font-weight: 500;
+              color: #ff652b;
+              line-height: 28px;
+            }
+            .price {
+              color: #ff652b;
+            }
+            .voluem-head {
+              display: block;
+            }
+            .priceChange-head {
+              display: block;
+            }
+            .operation {
+              display: block;
+              padding: 0 30px 0 0;
+              color: #ff652b;
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -315,6 +324,9 @@
         .tab-container {
           .tab-container-inner {
             .el-table {
+              .cell {
+                line-height: 20px;
+              }
               .tab-title-line {
                 height: 60px;
                 font-size: 16px;
