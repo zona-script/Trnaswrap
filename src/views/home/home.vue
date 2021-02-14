@@ -1,7 +1,5 @@
 <template>
   <div id="home" class="home">
-    <!-- <headTitle></headTitle> -->
-    <!-- <navigation></navigation> -->
     <div class="banner">
       <div class="banner-inner">
         <div class="banner-image"></div>
@@ -41,7 +39,7 @@
       <div class="border-container">
         <div class="title">
           <div class="text">Top Pairs</div>
-          <!-- <div class="detail">&gt;</div> -->
+          <div class="detail"></div>
         </div>
         <div class="tab-container">
           <div class="tab-container-inner">
