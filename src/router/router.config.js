@@ -21,4 +21,5 @@ export const constantRouterMap = [
   { path: '/vote', name: 'vote', component: () => import('@/views/vote/vote') },
   { path: '/farm', name: 'farm', component: () => import('@/views/farm/farm') },
   { path: '/removeLiquidity', name: 'removeLiquidity', component: () => import('@/views/removeLiquidity/removeLiquidity') },
+  { path: '/tradingPair', name: 'tradingPair', component: () => import('@/views/tradingPair/tradingPair') },
 ]
