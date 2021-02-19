@@ -1,12 +1,14 @@
 .createApair {
-  background: #f9f9f9;
   min-height: 100%;
   padding-bottom: 100px;
+  background: url(../images/common/orange.png) no-repeat left -194px top 184px ~'/' 388px auto,
+    url(../images/common/pink.png) no-repeat right -210px bottom 124px ~'/' 420px auto #f9f9f9;
 }
 
 @media screen and (min-width: 750px) {
   .createApair {
     .content-wrap {
+      max-width: 900px; /*no*/
       .btn.confirm {
         width: 540px;
         margin: 50px auto;
@@ -17,8 +19,48 @@
       .headline {
         text-align: left;
       }
-      &.pd{
+      &.pd {
         padding: 0 50px 50px;
+      }
+      .form-view {
+        .droplist {
+          height: 50px;
+          .drop-head {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            .icon-txt {
+              display: flex;
+              flex-wrap: nowrap;
+              justify-content: space-between;
+              align-items: center;
+              .img {
+                width: 30px;
+                height: 30px;
+                margin: 0 20px 0 20px;
+              }
+              .drop-head-text {
+                font-size: 14px;
+                color: #323232;
+              }
+            }
+            .arrow.down {
+              margin: 0 20px 0 0;
+            }
+          }
+        }
+        .max-num {
+          .max-wrap {
+            width: 50px;
+            height: 24px;
+            background: #fff0e6;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #323232;
+            line-height: 24px;
+          }
+        }
       }
     }
   }

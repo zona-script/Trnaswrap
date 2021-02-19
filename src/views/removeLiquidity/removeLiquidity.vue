@@ -69,7 +69,7 @@ export default {
       showDepositWithdraw: true,
       collapse: true,
       slideValue: 0,
-      popShow: true
+      popShow: false
     }
   },
   methods: {
