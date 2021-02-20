@@ -23,9 +23,11 @@
               <div class="form-view-item-top">
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(0)">
+                    <div class="icon-txt">
+                      <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                      <span class="drop-head-text">{{ token1.name }}</span>
+                    </div>
                     <span class="arrow down"></span>
-                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
-                    <span class="drop-head-text">{{ token1.name }}</span>
                   </div>
                 </div>
                 <div class="max-num">
@@ -48,9 +50,11 @@
               <div class="form-view-item-top">
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(1)">
+                    <div class="icon-txt">
+                      <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                      <span class="drop-head-text">{{ token2.name }}</span>
+                    </div>
                     <span class="arrow down"></span>
-                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
-                    <span class="drop-head-text">{{ token2.name }}</span>
                   </div>
                 </div>
                 <div class="max-num">
