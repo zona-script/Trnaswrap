@@ -34,4 +34,8 @@ export function getPairList(params) {
   return fet('api/coin/pairInfo', params, 'get')
 }
 
+//资金池
+export function getPools(params){
+  return fet('api/capitalPool', params, 'post')
+}
 export { api }

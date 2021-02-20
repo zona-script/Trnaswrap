@@ -181,6 +181,9 @@ export default {
       var that = this
       window.tronWeb.trx.getAccount(window.tronWeb.defaultAddress.base58).then(function(account) {
         that.trxBalance = window.tronWeb.fromSun(account.balance)
+        if(that.trxBalance>0){
+          that.inputdisabled1 = false
+        }
       })
     },
     async getWtrxContract() { // 链接wtrx合约

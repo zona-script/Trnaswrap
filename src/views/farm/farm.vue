@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <el-button :loading="false" class="btn confirm">Select</el-button>
+        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">Select</el-button>
       </div>
     </div>
     <div class="farm-content-2">
@@ -74,6 +74,7 @@
   </div>
 </template>
 <script>
+import { getPools } from '@/api/api'
 export default {
   name: 'Farm',
   data() {
@@ -82,6 +83,9 @@ export default {
       collapse: true
     }
   },
+  created(){
+    this.getPool()
+  },
   methods: {
     collapseFunc() {
       this.collapse = !this.collapse
@@ -89,6 +93,11 @@ export default {
     depositWithdrawClose() {
       console.log('test')
       this.showDepositWithdraw = false
+    },
+    getPool(){
+      getPools().then(res=>{
+        console.log(res.data)
+      })
     }
   }
 }
