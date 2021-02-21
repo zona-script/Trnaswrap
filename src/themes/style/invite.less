@@ -1,6 +1,6 @@
 .invite {
   background: #f9f9f9;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   .banner {
     // height: 700px;
     padding: 30px 30px 50px;
@@ -96,7 +96,7 @@
   .content {
     position: relative;
     margin: 40px 0 0;
-    padding: 0 30px;
+    padding: 0 30px 100px 30px;
     .background {
       opacity: 0.6;
       position: absolute;
@@ -198,22 +198,18 @@
         }
         .organization-value {
           font-size: 30px;
-          font-family: AlibabaSans-Medium, AlibabaSans;
           font-weight: bold;
           color: #323232;
           line-height: 47px;
         }
         .el-table_1_column_1 {
           font-size: 24px;
-          font-family: AlibabaSans-Regular, AlibabaSans;
-          font-weight: 400;
           color: #323232;
           line-height: 78px;
         }
         .el-table_1_column_2 {
           text-align: right;
           font-size: 30px;
-          font-family: AlibabaSans-Medium, AlibabaSans;
           font-weight: bold;
           color: #323232;
           line-height: 78px;
@@ -270,13 +266,17 @@
     }
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 750px) {
   .invite {
     display: block;
     .banner {
       height: 467px;
       background: #fff url(../images/invite/fish.png) no-repeat center 100px ~'/' 800px auto;
       .banner-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
         max-width: 1200px; /*no*/
         margin: 0 auto;
         .banner-image {
@@ -287,7 +287,7 @@
         }
         .banner-desc-container {
           display: inline-block;
-          width: auto;
+          // width: auto;
           vertical-align: top;
           margin-top: 142px;
           .banner-logo {
@@ -392,18 +392,18 @@
             .title {
               // padding: 0 0 0 30px;
               font-size: 24px;
-              color: #999999;
-              line-height: 100px;
+              font-weight: bold;
+              color: #323232;
+              line-height: 80px;
               border-bottom: 1px solid #d8d8d8;
               margin: 0;
               padding: 0 0 0 30px;
-              height: 100px;
+              height: 80px;
             }
             .value {
               padding: 22px 30px 0 30px;
-              height: 168px;
+              height: 120px;
               font-size: 24px;
-              font-weight: bold;
               color: #323232;
               line-height: 32px;
             }
@@ -413,13 +413,14 @@
           transform: scale(1);
           // width: 100%;
           width: 400px;
-          margin: 50px auto 100px;
+          height: 50px;
+          margin: 50px auto 50px;
           background: linear-gradient(90deg, #ff8215 0%, #ff5809 100%);
           border-radius: 35px;
-          font-size: 28px;
+          font-size: 18px;
           font-weight: bold;
           color: #ffffff;
-          line-height: 70px;
+          line-height: 50px;
           text-align: center;
         }
       }
@@ -432,12 +433,40 @@
         margin: 0 auto;
         .border-container {
           width: 49.167%;
-          min-height: 424px;
+          min-height: 304px;
+          margin: 0;
+          .title {
+            height: 80px;
+            line-height: 80px;
+            font-size: 24px;
+          }
           .tab-container {
+            .el-table {
+              .el-table__row td {
+                padding: 0;
+              }
+            }
             .cell {
+              height: 50px;
+              padding: 0;
               color: #323232;
-              font-weight: 400;
-              font-size: 24px;
+              font-size: 16px;
+              line-height: 50px;
+            }
+            .tab-title-line {
+              line-height: 50px;
+            }
+            .organization-value {
+              font-size: 16px;
+              line-height: 50px;
+            }
+            .el-table_1_column_1 {
+              font-size: 14px;
+              line-height: 50px;
+            }
+            .el-table_1_column_2 {
+              font-size: 16px;
+              line-height: 50px;
             }
             .tab-container-inner {
               .tab-title-line {
@@ -457,6 +486,18 @@
               }
               td div {
                 font-size: 14px;
+              }
+            }
+          }
+          &.referral {
+            .el-table__header-wrapper {
+              .cell {
+                padding: 0 30px 0 30px;
+              }
+            }
+            .el-table__body-wrapper {
+              .cell {
+                padding: 0 30px 0 30px;
               }
             }
           }

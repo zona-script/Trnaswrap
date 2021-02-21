@@ -30,7 +30,7 @@ export default {
     width: 52px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 750px) {
   .icon-btn-tool {
     display: block;
   }

@@ -1,5 +1,7 @@
 <template>
   <div id="farm" class="farm">
+    <!-- 弹窗 -->
+    <deposit-withdraw :show="showDepositWithdraw" @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/menu/image_02.png')" alt="" />
@@ -29,7 +31,7 @@
             </div>
           </div>
         </div>
-        <el-button :loading="false" class="btn confirm">Select</el-button>
+        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">Select</el-button>
       </div>
     </div>
     <div class="farm-content-2">
@@ -72,16 +74,30 @@
   </div>
 </template>
 <script>
+import { getPools } from '@/api/api'
 export default {
-  name: 'Pool',
+  name: 'Farm',
   data() {
     return {
+      showDepositWithdraw: false,
       collapse: true
     }
+  },
+  created(){
+    this.getPool()
   },
   methods: {
     collapseFunc() {
       this.collapse = !this.collapse
+    },
+    depositWithdrawClose() {
+      console.log('test')
+      this.showDepositWithdraw = false
+    },
+    getPool(){
+      getPools().then(res=>{
+        console.log(res.data)
+      })
     }
   }
 }
