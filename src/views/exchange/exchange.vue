@@ -15,9 +15,9 @@
     <div id="exchange" class="exchange">
       <div class="content-wrap">
         <div class="background"></div>
-        <div class="title">Exchange</div>
+        <!-- <div class="title">Exchange</div> -->
         <div class="pannel-info pd">
-          <div class="headline mt50">Exchange</div>
+          <!-- <div class="headline mt50">Exchange</div> -->
           <div class="form-view">
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
@@ -71,7 +71,7 @@
               </div>
             </div>
           </div>
-          <el-button  :loading="btnLoading1" :disabled="tobtnDisabled()" @click="confirmSwap" class="btn confirm mt50">Supply</el-button>
+          <el-button :loading="btnLoading1" :disabled="tobtnDisabled()" @click="confirmSwap" class="btn confirm mt50">Supply</el-button>
         </div>
         <tool-icon></tool-icon>
       </div>

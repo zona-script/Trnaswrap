@@ -14,26 +14,26 @@
   .exchange-wrap {
     // padding: 0 0 169px 0;
     // min-height: 100%;
-    .exchange {
-      background: url(../images/common/orange.png) no-repeat -300px 50px ~'/' 600px auto,
-        url(../images/common/pink.png) no-repeat right -300px bottom 0px ~'/' 600px auto #f9f9f9;
-    }
+    background: url(../images/common/orange.png) no-repeat -300px 50px ~'/' 600px auto,
+      url(../images/common/pink.png) no-repeat right -300px bottom 0px ~'/' 600px auto #f9f9f9;
     .content-wrap {
+      max-width: 900px; /*no*/
       padding: 0 0 169px 0;
       .btn.confirm {
-        width: 540px;
+        width: 405px;
         margin: 50px auto;
       }
     }
     .pannel-info {
+      padding: 50px 30px 50px 30px;
       text-align: center;
-      &.pd {
-        padding: 0 50px 50px;
-      }
       .headline {
         text-align: left;
       }
       .form-view {
+        .form-view-item.mt {
+          margin: 0;
+        }
         .droplist {
           height: 50px;
           .drop-head {
@@ -56,20 +56,73 @@
                 color: #323232;
               }
             }
-            .arrow.down {
+            .arrow {
+              width: 0;
+              height: 0;
+              float: right;
               margin: 0 20px 0 0;
+              &.down {
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid#323232;
+              }
             }
           }
         }
         .max-num {
           .max-wrap {
-            width: 50px;
+            min-width: 50px;
             height: 24px;
             background: #fff0e6;
             border-radius: 12px;
             font-size: 12px;
             color: #323232;
             line-height: 24px;
+          }
+          .input-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            .num {
+              height: 30px;
+              font-size: 20px;
+              font-weight: 500;
+              line-height: 30px;
+            }
+          }
+        }
+        .balance-wrap {
+          margin: 10px 0 0 0;
+          line-height: 22px;
+          .num {
+            font-size: 14px;
+            color: #313131;
+            line-height: 22px;
+          }
+          .balance {
+            line-height: 22px;
+            .img {
+              width: 11px;
+              height: 10px;
+              margin: 0 11px 0 0;
+            }
+            .balance-text {
+              font-size: 12px;
+              color: #999999;
+              line-height: 18px;
+            }
+          }
+        }
+        .btn-icon-wrap {
+          .btn-icon {
+            width: 40px;
+            height: 40px;
+            span {
+              vertical-align: top;
+              line-height: 40px;
+              font-size: 30px;
+            }
           }
         }
       }
