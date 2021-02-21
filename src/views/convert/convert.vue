@@ -234,8 +234,6 @@ export default {
     getUsdtAllowance(){
       const that = this
       that.loading1(1)
-      console.log('UsdtAddress=========='+ipConfig.UsdtAddress)
-      console.log('TusdtAddress=========='+ipConfig.TusdtAddress)
       allowance(ipConfig.UsdtAddress, ipConfig.TusdtAddress).then((res) => {
         if (res) {
           that.approveUsdtBalance = parseInt(res._hex ? res._hex : res.constant_result[0], 16)
