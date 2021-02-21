@@ -6,7 +6,7 @@
           <input type="text" placeholder="Search name or paste address"/>
         </div>
         <div class="search">
-          <img src="" alt="" />
+          <img :src="require('@/themes/images/common/search@2x.png')" alt="" />
         </div>
       </div>
       <div class="pair box-shadow">
