@@ -11,14 +11,14 @@
       <div class="deposit content" v-show="tabSelected === 'deposit'">
         <div class="top-container">
           <div class="input-container">
-            <input type="text" placeholder="Deposit amount" />
+            <input type="text" v-model="depostNum" placeholder="Deposit amount" />
             <div class="unit">TNS</div>
           </div>
           <div class="info-container">
             <div class="info-item">
               <div class="key">balance</div>
               <div class="value">
-                <div class="num">200</div>
+                <div class="num">{{tnsBalance}}</div>
                 <div class="unit">TNS</div>
               </div>
             </div>
@@ -97,12 +97,17 @@ export default {
     },
     selectedIndex: {
       default: 'withdraw'
+    },
+    tnsBalance:{
+      type:Number,
+      default:0
     }
   },
   data() {
     return {
       isShow: false,
-      tabSelected: this.selectedIndex
+      tabSelected: this.selectedIndex,
+      depostNum:0
     }
   },
   watch: {
@@ -129,7 +134,7 @@ export default {
     },
     deposit() {
       this.close();
-      this.$emit('deposit');
+      this.$emit('deposit',this.depostNum);
     },
     withdraw() {
       this.close();

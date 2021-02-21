@@ -4,6 +4,7 @@
 let ipConfig = {}
 if (process.env.NODE_ENV === 'development') {
   ipConfig = {
+    TnsAddress:'TY4qtw3j3R7NqsysEx4ZhGS5oSVNgiMhYk',
     UsdtAddress:'TBen279FEKKSd6RF2jiLWQdqnCzyTCak9a',
     TusdtAddress: 'TLHLj2DM7rW6yy3ggE7D3C9F8DnbVp2cmz',
     BFactory: 'TJCqsG9xgaPK6ftVJg5EPNzTSvvb1TVdi2',
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   }
 } else {
   ipConfig = {
+    TnsAddress:'TY4qtw3j3R7NqsysEx4ZhGS5oSVNgiMhYk',
     UsdtAddress:'',
     TusdtAddress: 'TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR',
     BFactory: 'TXU7bsdPKp8KdgPDTtf2VdAvZmGjFs5Wt8',
