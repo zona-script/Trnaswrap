@@ -6,8 +6,8 @@
       <div class="title">Convert</div>
       <div class="pannel-info pd">
         <div class="tabs-container">
-          <div @click="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">TRX - WTRX</div>
-          <div @click="doubleSet" class="tabs sec" :class="assetMode ? 'active' : ''">WTRX - TRX</div>
+          <div @click="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">USDT - TUSD</div>
+          <div @click="doubleSet" class="tabs sec" :class="assetMode ? 'active' : ''">TUSD - USDT</div>
         </div>
         <div class="title-inner">Convert</div>
         <div class="convert-container">
@@ -15,7 +15,7 @@
             <div class="form-view bd">
               <div class="img-text-wrap">
                 <img class="img" :src="require('@/themes/images/common/token_04_2x.png')" />
-                <span class="img-text">TRX - WTRX</span>
+                <span class="img-text">USDT - TUSD</span>
                 <img class="img res" :src="require('@/themes/images/common/token_04_2x.png')" />
               </div>
             </div>
@@ -30,7 +30,7 @@
                          v-model="trxNum" 
                          :disabled="inputdisabled1" 
                          onKeypress="return (/[\d,.]/.test(String.fromCharCode(event.keyCode)))"
-                         placeholder="Please enter the amout of WTRX"
+                         placeholder="Please enter the amout of TUSD"
                          />
                     </div>
                   </div>
@@ -48,18 +48,18 @@
             <div class="result">
               <div class="key">
                 <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
-                <div class="txt">WTRX</div>
+                <div class="txt">TUSD</div>
               </div>
               <div class="num">{{trxNum?trxNum:'0'}}</div>
             </div>
-            <el-button  :loading="btnLoading1" :disabled="btnDisabled1" @click="changeWtrx" class="btn create mt50">Confirm</el-button>
+            <el-button  :loading="btnLoading1" :disabled="btnDisabled1" @click="getUsdtAllowance" class="btn create mt50">Confirm</el-button>
           </div>
           <div class="split"></div>
           <div class="convert-box convert-2" :class="assetMode ? '' : 'toggle'">
             <div class="form-view bd">
               <div class="img-text-wrap">
                 <img class="img" :src="require('@/themes/images/common/token_04_2x.png')" />
-                <span class="img-text">WTRX - TRX</span>
+                <span class="img-text">TUSD - USDT</span>
                 <img class="img res" :src="require('@/themes/images/common/token_04_2x.png')" />
               </div>
             </div>
@@ -74,7 +74,7 @@
                          v-model="wtrxNum" 
                          :disabled="inputdisabled1" 
                          onKeypress="return (/[\d,.]/.test(String.fromCharCode(event.keyCode)))"
-                         placeholder="Please enter the amout of TRX"
+                         placeholder="Please enter the amout of USDT"
                          />
                     </div>
                   </div>
@@ -92,11 +92,11 @@
             <div class="result">
               <div class="key">
                 <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
-                <div class="txt">WTRX</div>
+                <div class="txt">TUSD</div>
               </div>
               <div class="num">{{wtrxNum?wtrxNum:0}}</div>
             </div>
-            <el-button class="btn create mt50" :loading="btnLoading2" :disabled="btnDisabled2" @click="getAllowance">Confirm</el-button>
+            <el-button class="btn create mt50" :loading="btnLoading2" :disabled="btnDisabled2" @click="changeTrx">Confirm</el-button>
           </div>
         </div>
       </div>
@@ -106,6 +106,7 @@
   </div>
 </template>
 <script>
+import BigNumber from 'bignumber.js'
 import ipConfig from '../../config/contracts'
 import { approved, allowance, getConfirmedTransaction } from '../../utils/tronwebFn'
 import TransactionSubmit from '../../components/TransactionSubmit'
@@ -184,8 +185,7 @@ export default {
       })
     },
     async getWtrxContract() { // 链接wtrx合约
-      console.log('ipConfig.wtrxAddress===========' + ipConfig.wtrxAddress)
-      this.wtrxContract = await window.tronWeb.contract().at(ipConfig.wtrxAddress)
+      this.wtrxContract = await window.tronWeb.contract().at(ipConfig.TusdtAddress)
       if (this.wtrxContract) {
         this.getWtrx()
       }
@@ -194,7 +194,7 @@ export default {
       const that = this
       try {
         const res = await that.wtrxContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
-        that.wtrxBalance = window.tronWeb.fromSun(res)
+        that.wtrxBalance = res/Math.pow(10,8)
         this.inputdisabled1 = false
         this.inputdisabled2 = false
       } catch (error) {
@@ -204,59 +204,47 @@ export default {
     async changeWtrx() { // 兑换wtrx
       const that = this
       this.loading1(1)
-      try {
-        const res = await that.wtrxContract['deposit']().send({
-          feeLimit: 100000000,
-          callValue: window.tronWeb.toSun(that.trxNum),
-          tokenId: 0,
-          shouldPollResponse: true
-        })
-        if (res) {
-          this.getWtrx()
-          this.gettrx()
+        let trxNum = new BigNumber(that.trxNum)
+        trxNum = trxNum.times(Math.pow(10,8))
+        const functionSelector = 'deposit(address,uint256)'
+        const options = {}
+        const parameter = [
+          { type: 'address', value: ipConfig.UsdtAddress },
+          { type: 'uint256', value: trxNum.toFixed() }
+        ]
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TusdtAddress, functionSelector, options, parameter)
+        if (!transaction.result || !transaction.result.result) {
+          that.loading1()
+          return console.error('Unknown error: ' + transaction, null, 2)
         }
-        this.loading1()
-      } catch (error) {
-        if (error == 'Confirmation declined by user') {
-          that.$message.success('success')
-        }
-        this.loading1()
-        console.log(error)
-      }
+        window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
+          window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
+            getConfirmedTransaction(res.txid).then((res1) => {
+              that.loading1()
+              that.getWtrx()
+              that.gettrx()
+            })
+          })
+        })    
     },
+
     getUsdtAllowance(){
       const that = this
       that.loading1(1)
-      allowance(ipConfig.UsdtAddress, ipConfig.TusdAddress).then((res) => {
+      console.log('UsdtAddress=========='+ipConfig.UsdtAddress)
+      console.log('TusdtAddress=========='+ipConfig.TusdtAddress)
+      allowance(ipConfig.UsdtAddress, ipConfig.TusdtAddress).then((res) => {
         if (res) {
           that.approveUsdtBalance = parseInt(res._hex ? res._hex : res.constant_result[0], 16)
-          if (that.approveUsdtBalance == 0 || window.tronWeb.toSun(this.wtrxNum) > that.approveUsdtBalance) {
-            // alert('    ');
-            if (that.proNmae == 'approved') {
-              that.loading1(1)
-              // that.showAlert = true;
-              approved(ipConfig.wtrxAddress, ipConfig.wtrxAddress).then(res => {
-                console.log(res)
-                that.proNmae = 'Confirm'
-                that.loading2(0)
-              }).catch(() => {
-                that.$message.error('privilege grant failed')
-                that.loading2(0)
-              })
-            } else {
-              if (that.stup == 1) {
-                that.proNmae = 'approved'
-                that.loading2(0)
-                that.stup += 1
-              } else {
-                that.changeTrx()
-              }
-            }
+          if (that.approveUsdtBalance == 0) {
+            approved(ipConfig.UsdtAddress, ipConfig.TusdtAddress).then(res => {
+              that.changeWtrx()
+            })
           } else {
-            that.changeTrx()
+            that.changeWtrx()
           }
         } else {
-          that.loading2()
+          that.loading1()
         }
       })
     },
@@ -298,13 +286,14 @@ export default {
     },
     async changeTrx() { // 兑换trx
       const that = this
-      const contractAddress = ipConfig.wtrxAddress
       const functionSelector = 'withdraw(uint256)'
       const options = {}
       that.loading2(1)
-      const parameter = [{ type: 'uint256', value: window.tronWeb.toSun(this.wtrxNum) }]
+      let wtrxNum = new BigNumber(this.wtrxNum) 
+      wtrxNum = wtrxNum.times(Math.pow(10,8))
+      const parameter = [{ type: 'uint256', value: wtrxNum.toFixed() }]
       try {
-        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(contractAddress, functionSelector, options, parameter)
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TusdtAddress, functionSelector, options, parameter)
         if (!transaction.result || !transaction.result.result) {
           that.loading2(0)
           return console.error('Unknown error: ' + transaction, null, 2)
@@ -314,12 +303,6 @@ export default {
             that.showAlert = true
             that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + res.txid
             getConfirmedTransaction(res.txid).then((res1) => {
-              console.log(res1)
-              that.$message.success(this.$t('aut'))
-              if (that.stup != 1) {
-                that.proNmae = 'Confirm'
-              }
-              that.stup = 1
               that.getWtrx()
               that.gettrx()
               that.loading2(0)
