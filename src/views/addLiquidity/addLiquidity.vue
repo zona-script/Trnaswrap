@@ -4,7 +4,7 @@
     <transaction-submit :show="showAlert1" @transaction-close="transactionClose"></transaction-submit>
 
     <!-- 第二种弹框样式 -->
-    <revive :show="confirmPop" :popsData='popsData' @change="confirm" @revive-close="reviveClose"></revive>
+    <revive :show="confirmPop" :popsData="popsData" @change="confirm" @revive-close="reviveClose"></revive>
 
     <!-- 第三种弹框样式 -->
     <select-token
@@ -40,7 +40,7 @@
                 <div class="max-num">
                   <span class="max-wrap" @click="token1Num = token1.balance">MAX</span>
                   <div class="input-wrap">
-                    <input class="num" v-model="token1Num"  @input="calcShare" />
+                    <input class="num" v-model="token1Num" @input="calcShare" />
                   </div>
                 </div>
               </div>
@@ -84,48 +84,57 @@
             <div class="title">Prices and pool share</div>
             <div class="item-wrap mt50">
               <div class="item-box">
-                <div class="num">{{justPrice?justPrice.toFixed(4):'--'}}</div>
-                <div class="text-info">{{token1.name}} Per {{token2.name}}</div>
+                <div class="num">{{ justPrice ? justPrice.toFixed(4) : '--' }}</div>
+                <div class="text-info">{{ token1.name }} Per {{ token2.name }}</div>
               </div>
               <div class="item-box">
-                <div class="num">{{reversePrice?reversePrice.toFixed(4):'--'}}</div>
-                <div class="text-info">{{token2.name}} Per {{token1.name}}</div>
+                <div class="num">{{ reversePrice ? reversePrice.toFixed(4) : '--' }}</div>
+                <div class="text-info">{{ token2.name }} Per {{ token1.name }}</div>
               </div>
               <div class="item-box">
-                <div class="num">{{share}}%</div>
+                <div class="num">{{ share }}%</div>
                 <div class="text-info">Share of Pool</div>
               </div>
             </div>
             <div class="btn-con mt50">
-              <el-button class="btn add" v-show="!isApproved" :loading="charm.btnLoading2" :disabled="charm.disabled2" @click="doApprove">Approve</el-button>
-              <el-button :loading="charm.btnLoading1" :disabled="btndisable()" @click="confirmSupply" class="btn add">Supply</el-button>
+              <el-button
+                class="btn add"
+                v-show="!isApproved"
+                :loading="charm.btnLoading2"
+                :disabled="charm.disabled2"
+                @click="doApprove"
+                >Approve</el-button
+              >
+              <el-button :loading="charm.btnLoading1" :disabled="btndisable()" @click="confirmSupply" class="btn add"
+                >Supply</el-button
+              >
               <!-- <div class="btn create mt50">Approve</div>
               <div class="btn add mt50">Supply</div> -->
             </div>
           </div>
         </div>
-        <div class="pos-con" v-show="JSON.stringify(token1)!='{}'||JSON.stringify(token2)!='{}'">
+        <div class="pos-con" v-show="JSON.stringify(token1) != '{}' || JSON.stringify(token2) != '{}'">
           <div class="your-position">Your position</div>
           <div class="tab-container">
             <div class="item">
               <div class="key con">
                 <img class="img" :src="requierImg(token1.name)" />
                 <img class="img sec" v-show="showFees(token2)" :src="requierImg(token2.name)" />
-                <div class="txt">{{token1.name}}-{{token2.name}}</div>
+                <div class="txt">{{ token1.name }}-{{ token2.name }}</div>
               </div>
-              <div class="value">{{(myBalanceInPool/Math.pow(10,18)).toFixed(6)}}</div>
+              <div class="value">{{ (myBalanceInPool / Math.pow(10, 18)).toFixed(6) }}</div>
             </div>
             <div class="item">
               <div class="key">Your pool share</div>
-              <div class="value">{{(myShare*100).toFixed(2)}}%</div>
+              <div class="value">{{ (myShare * 100).toFixed(2) }}%</div>
             </div>
             <div class="item">
-              <div class="key">{{token1.name}}</div>
-              <div class="value">{{myToken1Balance}}</div>
+              <div class="key">{{ token1.name }}</div>
+              <div class="value">{{ myToken1Balance }}</div>
             </div>
             <div class="item">
-              <div class="key">{{token2.name}}</div>
-              <div class="value">{{myToken2Balance}}</div>
+              <div class="key">{{ token2.name }}</div>
+              <div class="value">{{ myToken2Balance }}</div>
             </div>
           </div>
         </div>
@@ -139,14 +148,21 @@ const Web3Utils = require('web3')
 const Decimal = require('decimal.js')
 import BigNumber from 'bignumber.js'
 import { mapState } from 'vuex'
-import { decimals, allowance, approved, getLpBalanceInPool, getMyBalanceInPool, getTokenDenormalizedWeight } from '../../utils/tronwebFn'
+import {
+  decimals,
+  allowance,
+  approved,
+  getLpBalanceInPool,
+  getMyBalanceInPool,
+  getTokenDenormalizedWeight
+} from '../../utils/tronwebFn'
 import ipConfig from '../../config/contracts'
 import { calcPoolOutGivenSingleIn, getTokenInGivenPoolOut } from '../../utils/calc_comparisons'
 export default {
   name: 'addLiquidity',
   data() {
     return {
-      confirmPop:false,
+      confirmPop: false,
       transactionShow: false,
       selectTokenShow: false,
       doubleMode: true,
@@ -183,22 +199,22 @@ export default {
       token1: {},
       token2: {},
       item: 0,
-      selectType:'',
-      pairList:[],
-      justPrice:'',
-      reversePrice:'',
-      isApproved:false,
-      token1ApproveBalance:0,
-      token2ApproveBalance:0,
-      myToken1Balance:0,
-      myToken2Balance:0,
-      myShare:0,
+      selectType: '',
+      pairList: [],
+      justPrice: '',
+      reversePrice: '',
+      isApproved: false,
+      token1ApproveBalance: 0,
+      token2ApproveBalance: 0,
+      myToken1Balance: 0,
+      myToken2Balance: 0,
+      myShare: 0,
       share: 0,
-      lpTotal:0,
-      myBalanceInPool:0,
-      popsData:{},
-      iSingle:false,
-      showAlert1:true
+      lpTotal: 0,
+      myBalanceInPool: 0,
+      popsData: {},
+      iSingle: false,
+      showAlert1: false
     }
   },
   computed: {
@@ -216,7 +232,7 @@ export default {
     },
     pairData(list) {
       this.pairList = JSON.parse(JSON.stringify(list))
-    },
+    }
     // pair(news) {
     //   this.changePair()
     // }
@@ -234,7 +250,8 @@ export default {
         }
       }
     },
-    showFees(n) { // 是否显示联动框
+    showFees(n) {
+      // 是否显示联动框
       if (JSON.stringify(n) == '{}') {
         return false
       }
@@ -264,7 +281,7 @@ export default {
     dialogCancel() {},
     selectedToken(token) {
       token.item == 0 ? (this.token1 = token) : (this.token2 = token)
-      if(token.item == 0){
+      if (token.item == 0) {
         this.selectType = token.name
       }
       this.getBalance(token)
@@ -274,7 +291,7 @@ export default {
       const that = this
       const pairname = this.token1.name + '/' + this.token2.name
       const pairname1 = this.token2.name + '/' + this.token1.name
-      const pair = this.pairList.filter((item) => {
+      const pair = this.pairList.filter(item => {
         return item.pair.toUpperCase() == pairname.toUpperCase() || item.pair.toUpperCase() == pairname1.toUpperCase()
       })
       if (pair && pair.length > 0) {
@@ -287,35 +304,51 @@ export default {
       const pair = this.pair
       this.getSpotPrice(this.token1.address, this.token2.address, 'justPrice')
       this.getSpotPrice(this.token2.address, this.token1.address, 'reversePrice')
-      this.getBalanceInPool(pair, this.token1).then((res) => { // 获取token1在pool中的总量
+      this.getBalanceInPool(pair, this.token1).then(res => {
+        // 获取token1在pool中的总量
         console.log('this.token1Balance=====' + res)
         this.token1Balance = res
-        getMyBalanceInPool(pair).then((res) => {
+        getMyBalanceInPool(pair).then(res => {
           that.myBalanceInPool = Decimal(res)
           console.log('that.myBalanceInPool========' + that.myBalanceInPool)
           if (that.lpTotal) {
             that.myShare = Decimal(that.myBalanceInPool).div(Decimal(that.lpTotal))
-            that.myToken1Balance = Decimal(that.token1Balance).mul(Decimal(that.myShare)).toFixed(6)
-            that.myToken2Balance = Decimal(that.token2Balance).mul(Decimal(that.myShare)).toFixed(6)
-            console.log('that.myShare========' + Decimal(that.myBalanceInPool).div(Decimal(that.lpTotal)).toString())
+            that.myToken1Balance = Decimal(that.token1Balance)
+              .mul(Decimal(that.myShare))
+              .toFixed(6)
+            that.myToken2Balance = Decimal(that.token2Balance)
+              .mul(Decimal(that.myShare))
+              .toFixed(6)
+            console.log(
+              'that.myShare========' +
+                Decimal(that.myBalanceInPool)
+                  .div(Decimal(that.lpTotal))
+                  .toString()
+            )
           }
         })
       })
-      this.getBalanceInPool(pair, this.token2).then((res) => { // 获取token2在pool中的总量
+      this.getBalanceInPool(pair, this.token2).then(res => {
+        // 获取token2在pool中的总量
         console.log('this.token2Balance=====' + res)
         this.token2Balance = res
-        getLpBalanceInPool(this.pair).then((res) => { // 获取lptoken总量
+        getLpBalanceInPool(this.pair).then(res => {
+          // 获取lptoken总量
           that.lpTotal = Decimal(res)
           if (that.myBalanceInPool) {
             that.myShare = Decimal(that.myBalanceInPool).div(Decimal(that.lpTotal))
-            that.myToken1Balance = Decimal(that.token1Balance).mul(Decimal(that.myShare)).toFixed(6)
-            that.myToken2Balance = Decimal(that.token2Balance).mul(Decimal(that.myShare)).toFixed(6)
+            that.myToken1Balance = Decimal(that.token1Balance)
+              .mul(Decimal(that.myShare))
+              .toFixed(6)
+            that.myToken2Balance = Decimal(that.token2Balance)
+              .mul(Decimal(that.myShare))
+              .toFixed(6)
             console.log('that.myShare========' + Decimal(that.myBalanceInPool).div(Decimal(that.lpTotal)))
           }
         })
       })
 
-      allowance(this.token1.address, pair.address).then((res) => {
+      allowance(this.token1.address, pair.address).then(res => {
         if (res) {
           that.token1ApproveBalance = parseInt(res._hex ? res._hex : res.remaining._hex, 16)
           console.log(that.token1ApproveBalance)
@@ -326,7 +359,7 @@ export default {
           }
         }
       })
-      allowance(this.token2.address, pair.address).then((res) => {
+      allowance(this.token2.address, pair.address).then(res => {
         if (res) {
           that.token2ApproveBalance = parseInt(res._hex ? res._hex : res.remaining._hex, 16)
           if (that.token2ApproveBalance == 0) {
@@ -337,17 +370,18 @@ export default {
         }
       })
     },
-    getBalanceInPool(pair, coin) { // 获取Pool中的余额
+    getBalanceInPool(pair, coin) {
+      // 获取Pool中的余额
       const that = this
       return new Promise(function(resolve, reject) {
         var functionSelector = 'getBalance(address)'
-        var parameter = [
-          { type: 'address', value: coin.address }
-        ]
-        window.tronWeb.transactionBuilder.triggerConstantContract(pair.address, functionSelector, {}, parameter).then((transaction) => {
-          const tokenBalanceInPool = parseInt(transaction.constant_result[0], 16) / Math.pow(10, coin.decimals)
-          resolve(tokenBalanceInPool)
-        })
+        var parameter = [{ type: 'address', value: coin.address }]
+        window.tronWeb.transactionBuilder
+          .triggerConstantContract(pair.address, functionSelector, {}, parameter)
+          .then(transaction => {
+            const tokenBalanceInPool = parseInt(transaction.constant_result[0], 16) / Math.pow(10, coin.decimals)
+            resolve(tokenBalanceInPool)
+          })
       })
     },
     async getSpotPrice(address1, address2, name) {
@@ -357,7 +391,12 @@ export default {
         { type: 'address', value: address2 }
       ]
       console.log('this.pair.address==========' + this.pair.address)
-      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(this.pair.address, functionSelector, {}, parameter)
+      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(
+        this.pair.address,
+        functionSelector,
+        {},
+        parameter
+      )
       if (transaction) {
         if (name == 'justPrice') {
           const justPrice = parseInt(transaction.constant_result[0], 16) / Math.pow(10, this.pair.decimals)
@@ -383,13 +422,13 @@ export default {
       this.charm2(1)
       if (this.pair) {
         if (this.token1ApproveBalance == 0) {
-          approved(this.token1.address, this.pair.address).then((res) => {
+          approved(this.token1.address, this.pair.address).then(res => {
             this.getPairAddress()
             this.charm2()
           })
         }
         if (this.token2ApproveBalance == 0 && !this.iSingle) {
-          approved(this.token2.address, this.pair.address).then((res) => {
+          approved(this.token2.address, this.pair.address).then(res => {
             this.getPairAddress()
             this.charm2()
           })
@@ -398,7 +437,8 @@ export default {
         this.$layer.msg(this.$t('pewe4'))
       }
     },
-    confirmSupply() { // 输出的lptoken数量
+    confirmSupply() {
+      // 输出的lptoken数量
       if (this.token1Num > this.token1.balance || this.token2Num > this.token2.balance) {
         this.$message({
           message: this.$t('pewe2'),
@@ -408,10 +448,23 @@ export default {
       }
 
       if (this.iSingle) {
-        const reciveLptoken = calcPoolOutGivenSingleIn(this.token1Balance, this.token1denormalizedWeight, Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))), this.totalDenormalizedWeight, this.token1Num, Decimal(this.foxDex).div(Decimal(Math.pow(10, 18))))
+        const reciveLptoken = calcPoolOutGivenSingleIn(
+          this.token1Balance,
+          this.token1denormalizedWeight,
+          Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))),
+          this.totalDenormalizedWeight,
+          this.token1Num,
+          Decimal(this.foxDex).div(Decimal(Math.pow(10, 18)))
+        )
         this.reciveLptoken = Decimal(reciveLptoken).toFixed(6)
       } else {
-        const reciveLptoken = getTokenInGivenPoolOut(this.token1Balance, Decimal(this.token1Num), this.token2Balance, Decimal(this.token2Num), Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))))
+        const reciveLptoken = getTokenInGivenPoolOut(
+          this.token1Balance,
+          Decimal(this.token1Num),
+          this.token2Balance,
+          Decimal(this.token2Num),
+          Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18)))
+        )
         this.reciveLptoken = Decimal(reciveLptoken).toFixed(6)
       }
       this.popsData = {
@@ -431,7 +484,7 @@ export default {
         return
       }
       if (this.token1Balance && this.token2Balance) {
-        this.token1Num = (this.token2Num / this.token2Balance * this.token1Balance).toFixed(6)
+        this.token1Num = ((this.token2Num / this.token2Balance) * this.token1Balance).toFixed(6)
         // let differ = this.token2.decimals-this.token1.decimals
         // if(differ!==0 && differ>0){
         //   this.token1Num = (this.token1Num/Math.pow(10,Math.abs(differ))).toFixed(6)
@@ -446,7 +499,7 @@ export default {
         return
       }
       if (this.token1Balance && this.token2Balance && !this.iSingle) {
-        this.token2Num = (this.token1Num / this.token1Balance * this.token2Balance).toFixed(6)
+        this.token2Num = ((this.token1Num / this.token1Balance) * this.token2Balance).toFixed(6)
         // let differ = this.token1.decimals-this.token2.decimals
         // if(differ!==0 && differ>0){
         //   this.token2Num = (this.token2Num/Math.pow(10,Math.abs(differ))).toFixed(6)
@@ -462,21 +515,30 @@ export default {
       const that = this
       if (this.token1Num && this.token1Num !== 0) {
         if (this.token1Balance && this.token1denormalizedWeight && this.lpTotal && this.totalDenormalizedWeight) {
-          const poolOut = calcPoolOutGivenSingleIn(this.token1Balance, this.token1denormalizedWeight, Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))), this.totalDenormalizedWeight, this.token1Num, Decimal(this.foxDex).div(Decimal(Math.pow(10, 18))))
+          const poolOut = calcPoolOutGivenSingleIn(
+            this.token1Balance,
+            this.token1denormalizedWeight,
+            Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))),
+            this.totalDenormalizedWeight,
+            this.token1Num,
+            Decimal(this.foxDex).div(Decimal(Math.pow(10, 18)))
+          )
           const plus = Decimal(poolOut).plus(Decimal(this.lpTotal).div(Decimal(Math.pow(10, 18))))
-          const share = Decimal(poolOut).div(plus).mul(100)
+          const share = Decimal(poolOut)
+            .div(plus)
+            .mul(100)
           this.share = share.toFixed(2)
         } else {
-          getTokenDenormalizedWeight(this.token1.address, this.pair.address).then((response) => {
+          getTokenDenormalizedWeight(this.token1.address, this.pair.address).then(response => {
             that.token1denormalizedWeight = parseInt(response, 16) / Math.pow(10, that.pair.decimals)
             console.log('token1denormalizedWeight=========' + that.token1denormalizedWeight)
           })
-          getTokenDenormalizedWeight(this.token2.address, this.pair.address).then((response) => {
+          getTokenDenormalizedWeight(this.token2.address, this.pair.address).then(response => {
             that.token2denormalizedWeight = parseInt(response, 16) / Math.pow(10, that.pair.decimals)
             console.log('token2denormalizedWeight=========' + that.token2denormalizedWeight)
           })
-          this.getTotalDenormalizedWeight()// 获取lptoken总权重
-          this.getSwapFeeForDex()// 获取swapfee
+          this.getTotalDenormalizedWeight() // 获取lptoken总权重
+          this.getSwapFeeForDex() // 获取swapfee
           // this.getShare()
         }
       } else {
@@ -486,7 +548,12 @@ export default {
     async getTotalDenormalizedWeight() {
       var functionSelector = 'getTotalDenormalizedWeight()'
       var parameter = []
-      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(this.pair.address, functionSelector, {}, parameter)
+      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(
+        this.pair.address,
+        functionSelector,
+        {},
+        parameter
+      )
       if (transaction) {
         this.totalDenormalizedWeight = parseInt(transaction.constant_result[0], 16) / Math.pow(10, this.pair.decimals)
       }
@@ -494,11 +561,17 @@ export default {
     async getSwapFeeForDex() {
       var functionSelector = 'swapFeeForDex()'
       var parameter = []
-      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(ipConfig.FactoryManager, functionSelector, {}, parameter)
+      const transaction = await window.tronWeb.transactionBuilder.triggerConstantContract(
+        ipConfig.FactoryManager,
+        functionSelector,
+        {},
+        parameter
+      )
       this.foxDex = parseInt(transaction.constant_result[0], 16)
     },
     btndisable() {
-      if (!this.charm.disabled1) { // 可以执行
+      if (!this.charm.disabled1) {
+        // 可以执行
         if (this.token1ApproveBalance == 0) {
           return true
         } else {
@@ -558,24 +631,32 @@ export default {
       ]
       console.log(parameter)
       try {
-        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(this.pair.address, functionSelector, {}, parameter)
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(
+          this.pair.address,
+          functionSelector,
+          {},
+          parameter
+        )
         if (!transaction.result || !transaction.result.result) {
           that.charm1()
           return console.error('Unknown error: ' + transaction, null, 2)
         }
         window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
-          window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-            that.$message.success('SUCCESS!')
-            that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
-            that.charm1()
-            that.charm2()
-            that.showAlert1 = true
-          }).catch((err) => {
-            console.log(err)
-            that.charm1()
-            that.charm2()
-            that.showAlert1 = true
-          })
+          window.tronWeb.trx
+            .sendRawTransaction(signedTransaction)
+            .then(function(res) {
+              that.$message.success('SUCCESS!')
+              that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
+              that.charm1()
+              that.charm2()
+              that.showAlert1 = true
+            })
+            .catch(err => {
+              console.log(err)
+              that.charm1()
+              that.charm2()
+              that.showAlert1 = true
+            })
         })
       } catch (error) {
         console.log(error)
@@ -602,21 +683,29 @@ export default {
         { type: 'uint256', value: 0 }
       ]
       try {
-        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(that.pair.address, functionSelector, {}, parameter)
+        const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(
+          that.pair.address,
+          functionSelector,
+          {},
+          parameter
+        )
         if (!transaction.result || !transaction.result.result) {
           that.charm1()
           return console.error('Unknown error: ' + transaction, null, 2)
         }
         window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
-          window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-            that.$message.success('success')
-            that.charm1()
-            that.showAlert1 = true
-          }).catch(err => {
-            that.charm1()
-            console.log(err)
-            that.showAlert1 = true
-          })
+          window.tronWeb.trx
+            .sendRawTransaction(signedTransaction)
+            .then(function(res) {
+              that.$message.success('success')
+              that.charm1()
+              that.showAlert1 = true
+            })
+            .catch(err => {
+              that.charm1()
+              console.log(err)
+              that.showAlert1 = true
+            })
         })
       } catch (error) {
         console.log(111, error)
@@ -640,14 +729,21 @@ export default {
     },
     validity() {
       if (!this.charm.subimt) {
-        if (this.iSingle) { //  单1流动性
+        if (this.iSingle) {
+          //  单1流动性
           if (this.token1Num != '' && JSON.stringify(this.token1) != '{}' && JSON.stringify(this.token2) != '{}') {
             this.charm.disabled1 = false
           } else {
             this.charm.disabled1 = true
           }
-        } else { //  双向
-          if (this.token1Num != '' && JSON.stringify(this.token1) != '{}' && this.token2Num != '' && JSON.stringify(this.token2) != '{}') {
+        } else {
+          //  双向
+          if (
+            this.token1Num != '' &&
+            JSON.stringify(this.token1) != '{}' &&
+            this.token2Num != '' &&
+            JSON.stringify(this.token2) != '{}'
+          ) {
             this.charm.disabled1 = false
           } else {
             this.charm.disabled1 = true
@@ -663,7 +759,7 @@ export default {
         this.charm.btnLoading2 = false
         this.charm.disabled2 = false
       }
-    },
+    }
   },
   mounted() {}
 }
