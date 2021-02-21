@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="btn-icon-wrap">
-              <div class="btn-icon"><span>+</span></div>
+              <div class="btn-icon"><span></span></div>
             </div>
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
@@ -198,7 +198,7 @@ export default {
       myBalanceInPool:0,
       popsData:{},
       iSingle:false,
-      showAlert1:false
+      showAlert1:true
     }
   },
   computed: {

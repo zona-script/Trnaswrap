@@ -125,6 +125,7 @@
 @media screen and (min-width: 750px) {
   .convert {
     .content-wrap {
+      max-width: 900px; /*no*/
       .pannel-info {
         .tabs-container {
           display: none;
@@ -146,16 +147,35 @@
           padding: 0 50px 50px 50px;
           .split {
             display: block;
-            margin: 0 90px 0 90px;
+            margin: 50px 90px 0 90px;
             width: 1px;
-            height: 390px;
+            height:281px;
             background: #d8d8d8;
           }
           .convert-box {
             width: 41.818%;
             padding: 0;
+            margin-top:50px;
+            .btn{
+              margin: 50px 0 0 10%;
+              max-width: 80%;
+            }
             .form-view {
               display: block;
+              border:none;
+              .img-text-wrap{
+                border: none;
+                background: #F9F9F9;
+                line-height: 50px;
+                border-radius: 10px;
+                .img{
+                  width: 30px;
+                  height: 30px;
+                }
+                .img-text{
+                  font-size: 14px;
+                }
+              }
               .form-view-item {
                 display: block;
                 width: 100%;
@@ -163,6 +183,12 @@
                 .form-view-item-top {
                   .max-num {
                     margin: 0;
+                    .input-wrap{
+                      input{
+                        background: transparent;
+                        font-size: 20px;
+                      }
+                    }
                   }
                   .droplist {
                     display: none;
@@ -170,8 +196,25 @@
                 }
               }
             }
+            .result{
+              height: 50px;
+              line-height: 50px;
+              .num{
+                font-size: 20px;
+              }
+              .key {
+                >img{
+                  width: 30px;
+                  height: 30px;
+                }
+                .txt{
+                  font-size: 20px;
+                }
+              }
+            }
             .convert-box-title {
-              margin: 30px 0 30px 0;
+              margin: 13px 0 10px 0;
+              font-size: 24px;
             }
           }
           .toggle {

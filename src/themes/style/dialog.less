@@ -63,8 +63,8 @@
     text-align: center;
     vertical-align: top;
     font-size: 30px;
-    color: #FFF;
-    background: linear-gradient(90deg, #FF9132 0%, #FF7834 100%);
+    color: #fff;
+    background: linear-gradient(90deg, #ff9132 0%, #ff7834 100%);
     border-radius: 15px;
   }
   .prompt-text {
@@ -230,6 +230,37 @@
       }
     }
   }
+  &.transaction-submit {
+    .dialog-pannel {
+      min-height: 725px;
+      .submitte-img {
+        width: 354px;
+        height: 258px;
+        margin: 100px auto 50px;
+      }
+      .prompt-text {
+        height: 30px;
+        font-size: 34px;
+        font-weight: 500;
+        color: #323232;
+        line-height: 30px;
+      }
+      .prompt-text2 {
+        height: 43px;
+        margin: 20px 0 0 0;
+        font-size: 28px;
+        font-weight: 400;
+        color: #ff652b;
+        line-height: 43px;
+      }
+      .btn {
+        height: 74px;
+        margin: 50px auto 0;
+        background: linear-gradient(90deg, #ff8215 0%, #ff5809 100%);
+        border-radius: 37px;
+      }
+    }
+  }
 }
 @media screen and (min-width: 750px) {
   .dialog-wrap {
@@ -294,14 +325,42 @@
     }
     &.transaction-submit {
       .dialog-pannel {
-        max-width: 720px;/*no*/
+        max-width: 400px; /*no*/
+        min-height: 436px;
+        .submitte-img {
+          width: 250px;
+          height: 188px;
+          margin: 50px auto 33px;
+        }
+        .prompt-text {
+          height: 30px;
+          font-size: 24px;
+          font-weight: 500;
+          color: #323232;
+          line-height: 30px;
+        }
+        .prompt-text2 {
+          height: 25px;
+          margin: 0;
+          font-size: 16px;
+          font-weight: 400;
+          color: #ff652b;
+          line-height: 25px;
+        }
+        .btn {
+          width: 305px;
+          height: 50px;
+          margin: 30px auto 0;
+          background: linear-gradient(90deg, #ff8215 0%, #ff5809 100%);
+          border-radius: 37px;
+        }
       }
     }
     &.transaction-setting {
       .dialog-pannel {
-        max-width: 800px;/*no*/
+        max-width: 800px; /*no*/
         .pannel-info-share {
-          .item-wrap { 
+          .item-wrap {
             .item-box {
               width: 22.857%;
             }
@@ -315,7 +374,7 @@
     }
     &.select-token {
       .dialog-pannel {
-        max-width: 680px;/*no*/
+        max-width: 680px; /*no*/
       }
     }
   }

@@ -9,7 +9,7 @@
           <div @click="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">USDT - TUSD</div>
           <div @click="doubleSet" class="tabs sec" :class="assetMode ? 'active' : ''">TUSD - USDT</div>
         </div>
-        <div class="title-inner">Convert</div>
+        <!-- <div class="title-inner">Convert</div> -->
         <div class="convert-container">
           <div class="convert-box convert-1" :class="assetMode ? 'toggle' : ''">
             <div class="form-view bd">
