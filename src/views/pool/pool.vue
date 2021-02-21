@@ -2,9 +2,10 @@
   <div id="pool" class="pool">
     <div class="background"></div>
     <div class="content-wrap">
-      <div class="title">Pool</div>
+      <!-- <div class="title">Pool</div> -->
       <div class="pannel-info pd">
-        <div class="headline mt50">Pool</div>
+        <!-- <div class="headline mt50">Pool</div> -->
+        <div class="banner-img"></div>
         <div class="title mt50">Liquidity provider rewards</div>
         <p class="desc min-height-304 desct-mt">
           Liquidity providers can obtain fee income from the liquidity pools they participate in;The fee income is ’

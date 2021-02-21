@@ -198,7 +198,7 @@ export default {
       myBalanceInPool:0,
       popsData:{},
       iSingle:false,
-      showAlert1:false
+      showAlert1:true
     }
   },
   computed: {

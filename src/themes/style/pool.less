@@ -4,12 +4,19 @@
   background: #f9f9f9;
   background: url(../images/common/orange.png) no-repeat left -194px top 184px ~'/' 388px auto,
     url(../images/common/pink.png) no-repeat right -210px bottom 124px ~'/' 420px auto #f9f9f9;
-  .headline,.btn-link{
+  .headline,
+  .btn-link {
     display: none;
   }
   .pannel-info {
     overflow: hidden;
     border: none;
+    .banner-img {
+      width: 391px;
+      height: 339px;
+      margin: 50px auto 50px;
+      background: transparent url(../images/common/illustration02@2x.png) no-repeat center center ~'/' 100% auto,
+    }
     .tb-head {
       padding: 30px 40px;
       height: 100px;
@@ -48,6 +55,12 @@
           vertical-align: top;
         }
       }
+    }
+    .rect {
+      margin: 50px  0 0 0;
+    }
+    .btn-box {
+      margin: 50px  0 0 0;
     }
     .tab-container {
       margin: 0 30px 0;
@@ -88,52 +101,54 @@
 @media screen and (min-width: 750px) {
   .pool {
     .content-wrap {
-        >.title {
+      max-width: 700px;
+      > .title {
+        display: none;
+      }
+      .pannel-info {
+        .desc {
+          min-height: 154px;
+        }
+        .headline {
+          display: block;
+        }
+        .btn-link {
+          display: block;
+          height: 31px;
+          font-size: 20px;
+          font-family: AlibabaSans-Regular, AlibabaSans;
+          font-weight: 400;
+          color: #ff652b;
+          line-height: 31px;
+          -webkit-background-clip: text;
+          text-align: center;
+          margin: 30px auto 50px;
+        }
+        .rect {
           display: none;
         }
-        .pannel-info{
-          .desc{
-            min-height: 154px;
-          }
-          .headline {
-            display: block;
-          }
-          .btn-link{
-            display: block;
-            height: 31px;
-            font-size: 20px;
-            font-family: AlibabaSans-Regular, AlibabaSans;
-            font-weight: 400;
-            color: #FF652B;
-            line-height: 31px;
-            -webkit-background-clip: text;
-            text-align: center;
-            margin: 30px auto 50px;
-          }
-          .rect{
-            display: none;
-          }
-          .btn-box{
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            align-items: center;
-            .btn{
-              width: 49%;
-              margin-top: 0 !important;
-            }
+        .btn-box {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-around;
+          align-items: center;
+          margin: 30px 0 0 0;
+          .btn {
+            width: 49%;
+            margin-top: 0 !important;
           }
         }
+      }
     }
-    .pannel-info{
-      &.pd{
-        padding:0 50px;
+    .pannel-info {
+      &.pd {
+        padding: 0 50px;
       }
       .tb-head {
         padding: 30px 50px;
       }
-      .tab-container{
-        margin: 0 50px 0 ;
+      .tab-container {
+        margin: 0 50px 0;
       }
     }
   }
