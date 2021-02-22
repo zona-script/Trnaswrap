@@ -33,7 +33,7 @@
         </div>
         <div class="btn-container">
           <el-button :loading="false" class="btn confirm" @click="deposit">Deposit</el-button>
-          <el-button :loading="false" class="btn confirm" @click="back">Return</el-button>
+          <el-button :loading="false" class="btn confirm unselect" @click="back">Return</el-button>
         </div>
       </div>
       <div class="withdraw content" v-show="tabSelected === 'withdraw'">
@@ -81,7 +81,7 @@
         </div>
         <div class="btn-container">
           <el-button :loading="false" class="btn confirm" @click="withdraw">Withdraw</el-button>
-          <el-button :loading="false" class="btn confirm" @click="back">Return</el-button>
+          <el-button :loading="false" class="btn confirm unselect" @click="back">Return</el-button>
         </div>
       </div>
     </div>

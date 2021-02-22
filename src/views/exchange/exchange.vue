@@ -71,7 +71,23 @@
               </div>
             </div>
           </div>
-          <el-button  :loading="btnLoading1" :disabled="tobtnDisabled()" @click="confirmSwap" class="btn confirm mt50">Supply</el-button>
+          <el-button  :loading="btnLoading1" :disabled="tobtnDisabled()" @click="doswap" class="btn confirm mt50">Supply</el-button>
+        </div>
+        <div class="pos-con" v-if="JSON.stringify(token1) != '{}' || JSON.stringify(token2) != '{}'" style="box-shadow: 0 0.133333rem 0.266667rem 0 rgb(0 0 0 / 10%);border-radius: 9px;background: #fff;margin-top:20px;">
+          <div class="tab-container">
+            <div class="item">
+              <div class="key">Minimum received</div>
+              <div class="value">{{token2Num}} {{token2.name}}</div>
+            </div>
+            <div class="item">
+              <div class="key">Price Impacte</div>
+              <div class="value">{{percentage}}%</div>
+            </div>
+            <div class="item">
+              <div class="key">Liquidity Provider Fee</div>
+              <div class="value">{{thisswapFee}} {{token1.name}}</div>
+            </div>
+          </div>
         </div>
         <tool-icon></tool-icon>
       </div>
@@ -135,6 +151,7 @@ export default {
       pairList: [],
       token1spotPrice: 0,
       selectTokenShow: false,
+      connectFlag:true
     }
   },
   computed: {
@@ -162,6 +179,15 @@ export default {
     })
   },
   methods: {
+    requierImg(name) {
+      if (name) {
+        try {
+          return require('@/assets/img/currency/' + name + '.png')
+        } catch (error) {
+          return require('@/assets/img/currency/avitve.png')
+        }
+      }
+    },
     setPair() {
       const pairAddress = this.$route.query.pairAddress
       if (this.pairList && this.pairList.length > 0) {
@@ -563,4 +589,5 @@ export default {
 @import '@/themes/style/formview.less';
 @import '@/themes/style/dialog.less';
 @import '@/themes/style/exchange.less';
+@import '@/themes/style/addLiquidity.less';
 </style>

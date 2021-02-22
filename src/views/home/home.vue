@@ -13,14 +13,14 @@
           <div class="banner-info">
             <div class="icon-container balance"></div>
             <div class="context">
-              <div class="main-title">0.00000000</div>
+              <div class="main-title">{{tnsBalance}}</div>
               <div class="subtitle">My Tns Balance</div>
             </div>
           </div>
           <div class="banner-info">
             <div class="icon-container supply"></div>
             <div class="context">
-              <div class="main-title">0.00</div>
+              <div class="main-title">{{tnsTotal}}</div>
               <div class="subtitle">Current Total Supply</div>
             </div>
           </div>
@@ -39,7 +39,7 @@
       <div class="border-container">
         <div class="title">
           <div class="text">Top Pairs</div>
-          <div class="detail"></div>
+          <!-- <div class="detail"></div> -->
         </div>
         <div class="tab-container">
           <div class="tab-container-inner">
@@ -113,11 +113,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import { getOneToken, joinConnection, getTnsPrice, getInvitedAddress } from '@/api/api'
-// import { handleClipboard } from '@/assets/js/clipboard.js'
-import { IsPc } from '@/utils/index'
-
+import ipConfig from '../../config/contracts'
 export default {
   name: 'Home',
   props: {
@@ -145,15 +141,50 @@ export default {
   },
   data() {
     return {
-      IsPc: IsPc(),
       myAddress: '',
       myInviterAddress: '',
       myInvitationLink: '',
-      tnsPrice: 0
+      tnsPrice: 0,
+      tnsBalance:0,
+      tnsTotal:0
     }
   },
-  methods: {},
-  mounted() {}
+  methods: {
+    init() { // 初始化tronweb
+      const that = this
+      this.$initTronWeb().then(function(tronWeb) {
+        that.getTnsContract()
+      })
+    },
+    async getTnsContract() { // 链接tusdt合约
+      this.tnsContract = await window.tronWeb.contract().at(ipConfig.TnsAddress)
+      if (this.tnsContract) {
+        this.getTns()
+        this.getTotalTns()
+      }
+    },
+    async getTns() { // 获取wtrxbalance
+      const that = this
+      try {
+        const res = await that.tnsContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
+        that.tnsBalance = res/Math.pow(10,6)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getTotalTns() { // 获取wtrxbalance
+      const that = this
+      try {
+        const res = await that.tnsContract['totalSupply']().call()
+        that.tnsTotal = res/Math.pow(10,6)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+  mounted() {
+    this.init()
+  }
 }
 </script>
 

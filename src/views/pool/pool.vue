@@ -46,6 +46,13 @@
               <div class="key">Your Pool share</div>
               <div class="value">{{(share*100).toFixed(2)}}%</div>
             </div>
+            <div class="item" style="padding:10px 0;">
+                <el-button class="btn create" style="flex:1;margin-right:10px;" @click="toPool(item)">Add</el-button>
+                <el-button class="btn" style="flex:1;background:fff;
+border-image: linear-gradient(90deg, rgba(255, 142, 24, 1), rgba(255, 109, 15, 1), rgba(255, 72, 4, 1)) 1 1;
+border: 1px solid;
+color: #FF652B;"  @click="toRemove(item)">Delete</el-button>
+            </div>
           </div>
         </div>
       </div>
@@ -122,7 +129,7 @@ export default {
     },
     toPool(item) {
       this.$router.push({
-        name: '/addLiquidity',
+        name: 'addLiquidity',
         params: {
           pair: JSON.stringify(item)
         }

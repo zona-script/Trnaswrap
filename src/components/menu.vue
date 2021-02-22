@@ -43,21 +43,21 @@ export default {
             name: 'Pool',
             url: '/pool'
           },
-          {
-            name: 'Abelo',
-            url: '/createApair'
-          },
+          // {
+          //   name: 'Abelo',
+          //   url: '/createApair'
+          // },
           {
             name: 'Convert',
             url: '/convert'
           },
-          {
-            name: 'Stake',
-            url: '/addLiquidity'
-          },
+          // {
+          //   name: 'Stake',
+          //   url: '/addLiquidity'
+          // },
           {
             name: 'Farm',
-            url: '/convert'
+            url: '/Farm'
           }
         ]
       }

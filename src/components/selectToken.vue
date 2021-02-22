@@ -7,7 +7,7 @@
       <div class="input-warp">
         <input type="text" placeholder="Search name or paste" @change="change($event)" />
       </div>
-      <div class="info-list-wrap mlr mt50">
+      <div class="info-list-wrap mlr">
         <div class="info-item nobg" v-for="(item, index) in tokenData" :key="index" @click="touchstart(item,index)" :class="selectedIndex === index ? 'select' : ''">
           <img class="img" :src="$requierImg(item.name)" />
           <span class="text">{{ item.name }}</span>
@@ -82,4 +82,5 @@ export default {
 </script>
 <style lang="less">
 @import '@/themes/style/dialog.less';
+@import '@/themes/style/selectToken.less';
 </style>

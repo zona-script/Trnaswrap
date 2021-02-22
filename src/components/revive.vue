@@ -1,13 +1,13 @@
 <template>
-  <div class="dialog-wrap" v-show="isShow">
+  <div class="dialog-wrap revive" v-show="isShow">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title"><span class="close" @click="close"></span>You will revive</h3>
+      <h3 class="title">You will revive<span class="close" @click="close"></span></h3>
       <div class="revive-container">
         <div class="revive-head">
           <div class="num">{{popsData.reciveLptoken}}</div>
           <div class="prompt-text3">{{popsData.token1.name}}{{popsData.token2.name}} Pool Tokens</div>
-          <div class="desc-text ml30 mr30 mt30">
+          <div class="desc-text">
             OutPut is estimated.if the price change by more than 0.5% your transaction will revert
           </div>
         </div>
@@ -26,14 +26,14 @@
             <span class="num-text fr">{{popsData.share}}%</span>
             <span class="num-text">share of Pool</span>
           </div>
-          <div class="info-item mt10 mb50">
-            <div class="desc-title">Rates</div>
-            <div class="desc-info mt10">1 {{popsData.token1.name}} = {{popsData.t1Per.toFixed(6)}} {{popsData.token2.name}}</div>
-            <div class="desc-info">1 {{popsData.token2.name}} = {{popsData.t2Per.toFixed(6)}} {{popsData.token1.name}}</div>
+          <div class="desc-title">Rates</div>
+          <div class="desc-info-item">
+            <div class="desc-info"><span>1 {{popsData.token1.name}} = </span><span>{{popsData.t1Per.toFixed(6)}} {{popsData.token2.name}}</span></div>
+            <div class="desc-info"><span>1 {{popsData.token2.name}} = </span><span>{{popsData.t2Per.toFixed(6)}} {{popsData.token1.name}}</span></div>
           </div>
         </div>
       </div>
-      <div class="btn confirm mb50 ml30 mr30" @click="confirm">Confirm</div>
+      <div class="btn confirm" @click="confirm">Confirm</div>
     </div>
   </div>
 </template>
@@ -99,4 +99,5 @@ export default {
 </script>
 <style lang="less">
 @import '@/themes/style/dialog.less';
+@import '@/themes/style/revive.less';
 </style>

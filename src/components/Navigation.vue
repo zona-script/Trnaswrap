@@ -58,16 +58,16 @@ export default {
             text: 'Farm',
             url: '/farm'
           },
-          {
-            name: 'vote',
-            text: 'Vote',
-            url: '/vote'
-          },
-          {
-            name: 'about',
-            text: 'About',
-            url: '/about'
-          }
+          // {
+          //   name: 'vote',
+          //   text: 'Vote',
+          //   url: '/vote'
+          // },
+          // {
+          //   name: 'about',
+          //   text: 'About',
+          //   url: '/about'
+          // }
         ]
       }
     }

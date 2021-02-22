@@ -92,7 +92,7 @@
             <div class="result">
               <div class="key">
                 <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
-                <div class="txt">TUSD</div>
+                <div class="txt">USDT</div>
               </div>
               <div class="num">{{wtrxNum?wtrxNum:0}}</div>
             </div>
@@ -135,7 +135,8 @@ export default {
       typeName: 'success',
       stup: 1,
       typeUrl: '',
-      approveUsdtBalance:0
+      approveUsdtBalance:0,
+      usdtContract:null
     }
   },
   watch: {
@@ -174,20 +175,29 @@ export default {
     init() { // 初始化tronweb
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
-        that.gettrx()
         that.getWtrxContract()
+        that.getUsdtContract()
       })
     },
-    gettrx() {
-      var that = this
-      window.tronWeb.trx.getAccount(window.tronWeb.defaultAddress.base58).then(function(account) {
-        that.trxBalance = window.tronWeb.fromSun(account.balance)
+    async gettrx() {
+      const that = this
+      try {
+        const res = await that.usdtContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
+        that.trxBalance = res/Math.pow(10,8)
         if(that.trxBalance>0){
           that.inputdisabled1 = false
         }
-      })
+      } catch (error) {
+        console.log(error)
+      }
     },
-    async getWtrxContract() { // 链接wtrx合约
+    async getUsdtContract() { // 链接usdt合约
+      this.usdtContract = await window.tronWeb.contract().at(ipConfig.UsdtAddress)
+      if (this.usdtContract) {
+        this.gettrx()
+      }
+    },
+    async getWtrxContract() { // 链接tusdt合约
       this.wtrxContract = await window.tronWeb.contract().at(ipConfig.TusdtAddress)
       if (this.wtrxContract) {
         this.getWtrx()
@@ -301,12 +311,13 @@ export default {
         }
         window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
           window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-            that.showAlert = true
-            that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + res.txid
+            
             getConfirmedTransaction(res.txid).then((res1) => {
               that.getWtrx()
               that.gettrx()
               that.loading2(0)
+              that.showAlert = true
+              that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + res.txid
             })
           })
         })

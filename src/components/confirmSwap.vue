@@ -3,7 +3,7 @@
     <div class="mantle" @click="close"></div>
     <div class="container">
       <div class="title-pop">
-        <div class="txt">You will recevive</div>
+        <div class="txt">Confirm Swap</div>
         <img class="close" :src="require('@/themes/images/common/close.png')" @click="close" />
       </div>
       <div class="container-inner">
@@ -23,7 +23,7 @@
             <div class="value">{{token2Num}}</div>
           </div>
         </div>
-        <div class="illustration">Output is estimated. If the price change by more than 0.5% your transaction will revert.</div>
+        <div class="illustration">Output is estimated.If the price change by more than 0.5% your transaction will revert</div>
         <div class="title-price">Price</div>
         <div class="info-container">
           <div class="info-item">
