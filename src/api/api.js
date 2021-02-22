@@ -38,4 +38,9 @@ export function getPairList(params) {
 export function getPools(params){
   return fet('api/capitalPool', params, 'post')
 }
+
+//冲币
+export function doDeposit(params){
+  return fet('api/deposit', params, 'post')
+}
 export { api }

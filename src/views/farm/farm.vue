@@ -77,7 +77,7 @@
 import BigNumber from 'bignumber.js'
 import ipConfig from '../../config/contracts'
 import { approved, allowance, getConfirmedTransaction } from '../../utils/tronwebFn'
-import { getPools } from '@/api/api'
+import { getPools,doDeposit } from '@/api/api'
 export default {
   name: 'Farm',
   data() {
@@ -151,18 +151,27 @@ export default {
     async deposit(num){
       let that = this
       let func = 'transfer(address,uint256)'
-      num = new BigNumber(num)
-      num = num.times(Math.pow(10,6))
+      let transnum = new BigNumber(num)
+      transnum = transnum.times(Math.pow(10,6))
       let params = [
         {'type':'address','value':'TA6mdQTHYA6orGU2Wj97BXDThHjntCwXE4'},
-        {'type':'uint256','value':num.toFixed()}
+        {'type':'uint256','value':transnum.toFixed()}
       ]
       let transfer = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TnsAddress,func, {},params)
       window.tronWeb.trx.sign(transfer.transaction).then(function(signedTransaction) {
         window.tronWeb.trx
           .sendRawTransaction(signedTransaction)
           .then(function(res) {
-            
+            let data = {
+              address:window.tronWeb.defaultAddress.base58,
+              amount:num,
+              txhash:res.txid
+            }
+            doDeposit(data).then(res=>{
+              if(res.data.code == 0){
+                
+              }
+            })
           })
       })
     }

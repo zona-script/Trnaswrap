@@ -23,9 +23,9 @@
         </div>
         <div class="configuration" :class="doubleMode ? '' : 'single-mode'">
           <div class="img-text-wrap bd">
-            <img class="img" :src="require('@/themes/images/common/token_02_2x.png')" />
-            <img class="img sec" :src="require('@/themes/images/common/token_04_2x.png')" />
-            <span class="img-text">TRX - WTRX</span>
+            <img class="img" :src="$requierImg(token1.name)" />
+            <img class="img sec" :src="$requierImg(token2.name)" />
+            <span class="img-text">{{token1.name}} - {{token2.name}}</span>
           </div>
           <div class="form-view">
             <div class="form-view-item clearfix mt">
@@ -33,7 +33,7 @@
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(0)">
                     <span class="arrow down"></span>
-                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                    <img class="img" :src="$requierImg(token1.name)" />
                     <span class="drop-head-text">{{ token1.name }}</span>
                   </div>
                 </div>
@@ -55,12 +55,12 @@
             <div class="btn-icon-wrap">
               <div class="btn-icon"><span></span></div>
             </div>
-            <div class="form-view-item clearfix mt">
+            <div class="form-view-item clearfix mt" v-show="doubleMode">
               <div class="form-view-item-top">
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(1)">
                     <span class="arrow down"></span>
-                    <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                    <img class="img" :src="$requierImg(token2.name)" />
                     <span class="drop-head-text">{{ token2.name }}</span>
                   </div>
                 </div>
@@ -198,13 +198,17 @@ export default {
       myBalanceInPool:0,
       popsData:{},
       iSingle:false,
-      showAlert1:true
+      showAlert1:false,
+      tokenList:[]
     }
   },
   computed: {
-    ...mapState(['pairData'])
+    ...mapState(['pairData','tokenData'])
   },
   watch: {
+    tokenData(list) {
+      this.tokenList = JSON.parse(JSON.stringify(list))
+    },
     token1Num() {
       this.validity()
     },
@@ -223,6 +227,7 @@ export default {
   },
   created() {
     this.pairList = JSON.parse(JSON.stringify(this.pairData))
+    this.tokenList = JSON.parse(JSON.stringify(this.tokenData))
   },
   methods: {
     requierImg(name) {
@@ -624,9 +629,14 @@ export default {
       }
     },
     singleSet() {
+      let tokens = this.tokenList.filter(el => el.name=='USDT')
+      this.token2 = tokens[0]
       this.doubleMode = false
+      this.iSingle = true
+      this.getBalance(this.token2)
     },
     doubleSet() {
+      this.iSingle = false
       this.doubleMode = true
     },
     charm1(n) {

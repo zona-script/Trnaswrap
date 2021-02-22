@@ -168,7 +168,7 @@ export default {
       }
       joinConnection(params).then(result => {
         if (result.data.code == 0) {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + result.data.data.token
+          localStorage.setItem('oneToken',result.data.data.token)
           that.getTeam()
           that.getInviter()
         } else {

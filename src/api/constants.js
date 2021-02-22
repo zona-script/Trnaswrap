@@ -21,7 +21,10 @@ export const fet = (url, data, method) => {
   const realUrl = server[process.env.NODE_ENV] + url
   const type = method.toLowerCase()
   let res = {}
-  
+  let onetoken = localStorage.getItem('oneToken')
+  if(onetoken){
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + onetoken
+  }
   if (type === 'get') {
     res = axios.get(realUrl + '?' + jsonUrl(data))
       .catch(function(error) {
