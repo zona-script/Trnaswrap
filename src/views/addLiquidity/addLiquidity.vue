@@ -45,11 +45,11 @@
                 </div>
               </div>
               <div class="balance-wrap">
-                <span class="num">{{ token1.balance }}</span>
                 <div class="balance">
                   <span class="img"></span>
                   <span class="balance-text">Balance</span>
                 </div>
+                <span class="num">{{ token1.balance }}</span>
               </div>
             </div>
             <div class="btn-icon-wrap">
@@ -72,11 +72,11 @@
                 </div>
               </div>
               <div class="balance-wrap">
-                <span class="num">{{ token2.balance }}</span>
                 <div class="balance">
                   <span class="img"></span>
                   <span class="balance-text">Balance</span>
                 </div>
+                <span class="num">{{ token2.balance }}</span>
               </div>
             </div>
           </div>

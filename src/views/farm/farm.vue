@@ -4,7 +4,7 @@
     <deposit-withdraw :show="showDepositWithdraw" selectedIndex='deposit' :tnsBalance='tnsBalance' @deposit='toDeposit' @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
-        <img :src="require('@/themes/images/menu/image_02.png')" alt="" />
+        <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
         <div class="txt">TNS Pool</div>
       </div>
       <div class="tns-pool-con">

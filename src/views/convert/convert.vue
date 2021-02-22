@@ -36,11 +36,11 @@
                   </div>
                 </div>
                 <div class="balance-wrap">
-                  <span class="num">{{trxBalance}}</span>
                   <div class="balance">
                     <span class="img"></span>
                     <span class="balance-text">Balance</span>
                   </div>
+                  <span class="num">{{trxBalance}}</span>
                 </div>
               </div>
             </div>
@@ -80,11 +80,11 @@
                   </div>
                 </div>
                 <div class="balance-wrap">
-                  <span class="num">{{wtrxBalance}}</span>
                   <div class="balance">
                     <span class="img"></span>
                     <span class="balance-text">Balance</span>
                   </div>
+                  <span class="num">{{wtrxBalance}}</span>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@
     <div class="inner-wrap">
       <div class="content fir">
         <div class="title">
-          <img class="icon" :src="require('@/themes/images/common/telegram@2x.png')" alt="" />
+          <img class="icon" :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
           <div class="txt">Remove Liquidity</div>
         </div>
         <div class="per-container">

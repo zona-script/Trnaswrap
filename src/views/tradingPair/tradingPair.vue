@@ -12,7 +12,7 @@
       <div class="pair box-shadow">
         <div class="fir">
           <div class="title">
-            <img src="" alt="" />
+            <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
             <div class="text">USDT / TNS Pair</div>
           </div>
           <div class="info-container">
@@ -95,8 +95,8 @@
             <div class="tab" :class="tabSelect === 'removes' ? 'active' : ''" @click="tabClick('removes')">Removes</div>
           </div>
           <div class="toggle">
-            <div class="pre">&lt;</div>
-            <div class="next">&gt;</div>
+            <div class="pre"></div>
+            <div class="next negative"></div>
           </div>
         </div>
         <div class="table-container">
