@@ -43,22 +43,22 @@
             <div class="subtitle">Extracted at any time</div>
             <div class="info-container">
               <div class="info-item">
-                <div class="key">Earned</div>
+                <div class="key">Earned</div><!--已赚取-->
                 <div class="value">
-                  <div class="num">200</div>
+                  <div class="num">{{userInfo.withdrawTotal+userInfo.notExtractedIncome}}</div>
                   <div class="unit">TNS</div>
                 </div>
               </div>
               <div class="info-item">
-                <div class="key">Extracted</div>
+                <div class="key">Extracted</div><!--待提取-->
                 <div class="value">
-                  <div class="num">200</div>
+                  <div class="num">{{userInfo.notExtractedIncome}}</div>
                   <div class="unit">TNS</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="revenue sec">
+          <div class="revenue sec" v-show="false">
             <div class="title">Mining revenue</div>
             <div class="subtitle">Automatically withdraw to the wallet after seven days</div>
             <div class="info-container">
@@ -101,6 +101,10 @@ export default {
     tnsBalance:{
       type:Number,
       default:0
+    },
+    userInfo:{
+      type:Object,
+      default:{}
     }
   },
   data() {

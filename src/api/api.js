@@ -43,4 +43,14 @@ export function getPools(params){
 export function doDeposit(params){
   return fet('api/deposit', params, 'post')
 }
+
+//提币
+export function doWithdraw(params){
+  return fet('api/withdraw', params, 'post')
+}
+
+//个人数据统计
+export function userInfo(params){
+  return fet('api/info', params, 'post')
+}
 export { api }

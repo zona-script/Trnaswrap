@@ -1,7 +1,7 @@
 <template>
   <div id="farm" class="farm">
     <!-- 弹窗 -->
-    <deposit-withdraw :show="showDepositWithdraw" selectedIndex='deposit' :tnsBalance='tnsBalance' @deposit='toDeposit' @close="depositWithdrawClose"></deposit-withdraw>
+    <deposit-withdraw :show="showDepositWithdraw" selectedIndex='deposit' :tnsBalance='tnsBalance' :userInfo='userInfoData' @deposit='toDeposit' @withdraw='toWithdraw' @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
@@ -12,7 +12,7 @@
           <div class="info-item important">
             <div class="key">Locked position</div>
             <div class="value">
-              <div class="num">100</div>
+              <div class="num">{{userInfoData.depositTotal}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
@@ -39,35 +39,23 @@
       <div class="pool-info">
         <div class="info-item">
           <div class="key">Total number of TNS deposited</div>
-          <div class="value">0.00%</div>
+          <div class="value">{{userInfoData.depositTotal}}</div>
         </div>
         <div class="info-item">
           <div class="key">Total amount of TNS withdrawn</div>
-          <div class="value">0.00%</div>
+          <div class="value">{{userInfoData.withdrawTotal}}</div>
         </div>
         <div class="info-item">
           <div class="key">Time Countdown Benefit</div>
-          <div class="value">0.00%</div>
+          <div class="value">{{userInfoData.unlockTime}}</div>
         </div>
         <div class="info-item">
           <div class="key">200% income</div>
-          <div class="value">0.00%</div>
-        </div>
-        <div class="info-item">
-          <div class="key">Daily income</div>
-          <div class="value">0.00%</div>
-        </div>
-        <div class="info-item">
-          <div class="key">Direct revenue</div>
-          <div class="value">0.00%</div>
-        </div>
-        <div class="info-item">
-          <div class="key">Team benefits</div>
-          <div class="value">0.00%</div>
+          <div class="value">{{userInfoData.enlargeTotal}}</div>
         </div>
         <div class="info-item">
           <div class="key">Unclaimed income</div>
-          <div class="value">0.00%</div>
+          <div class="value">{{userInfoData.notExtractedIncome}}</div>
         </div>
       </div>
     </div>
@@ -77,7 +65,7 @@
 import BigNumber from 'bignumber.js'
 import ipConfig from '../../config/contracts'
 import { approved, allowance, getConfirmedTransaction } from '../../utils/tronwebFn'
-import { getPools,doDeposit } from '@/api/api'
+import { getPools,doDeposit,userInfo,doWithdraw } from '@/api/api'
 export default {
   name: 'Farm',
   data() {
@@ -86,12 +74,14 @@ export default {
       collapse: true,
       tnsContract:null,
       tnsBalance:0,
-      approveTnsBalance:0
+      approveTnsBalance:0,
+      userInfoData:{}
     }
   },
   created(){
     this.getPool()
     this.init()
+    this.getUserInfo()
   },
   methods: {
     init() { // 初始化tronweb
@@ -148,6 +138,14 @@ export default {
         }
       })
     },
+    toWithdraw(){
+      const that = this
+      doWithdraw().then(res=>{
+        if(res.data.code == 0){
+
+        }
+      })
+    },
     async deposit(num){
       let that = this
       let func = 'transfer(address,uint256)'
@@ -169,10 +167,18 @@ export default {
             }
             doDeposit(data).then(res=>{
               if(res.data.code == 0){
-                
+
               }
             })
           })
+      })
+    },
+    getUserInfo(){
+      let that = this
+      userInfo().then(res=>{
+        if(res.data.code==0){
+          that.userInfoData = res.data.data
+        }
       })
     }
   }  
