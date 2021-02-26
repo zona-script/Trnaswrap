@@ -54,6 +54,10 @@
           <div class="value">{{userInfoData.enlargeTotal}}</div>
         </div>
         <div class="info-item">
+          <div class="key">today income</div>
+          <div class="value">{{userInfoData.teamAmount+userInfoData.staticIncome}}</div>
+        </div>
+        <div class="info-item">
           <div class="key">Unclaimed income</div>
           <div class="value">{{userInfoData.notExtractedIncome}}</div>
         </div>

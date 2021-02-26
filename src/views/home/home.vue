@@ -114,6 +114,7 @@
 
 <script>
 import ipConfig from '../../config/contracts'
+import axios from 'axios'
 export default {
   name: 'Home',
   props: {
@@ -181,9 +182,17 @@ export default {
         console.log(error)
       }
     },
+    async getVolPrice24() { 
+      let res = await axios.get('http://chixin157.55555.io/api/trade/getTradingVolume')
+      if(res){
+
+      }
+    }
+    
   },
   mounted() {
     this.init()
+    this.getVolPrice24()
   }
 }
 </script>
