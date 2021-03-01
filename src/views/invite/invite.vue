@@ -168,7 +168,7 @@ export default {
       }
       joinConnection(params).then(result => {
         if (result.data.code == 0) {
-          localStorage.setItem('oneToken',result.data.data.token)
+          sessionStorage.setItem('oneToken',result.data.data.token)
           that.getTeam()
           that.getInviter()
         } else {
