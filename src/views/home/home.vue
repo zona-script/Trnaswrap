@@ -6,8 +6,8 @@
         <div class="banner-desc-container">
           <div class="banner-logo"></div>
           <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
-          <el-button :loading="false" class="btn confirm">Go to exchange</el-button>
-          <el-button :loading="false" class="btn confirm">See The Menu</el-button>
+          <el-button :loading="false" class="btn confirm" @click="toExchange">Go to exchange</el-button>
+          <!-- <el-button :loading="false" class="btn confirm">See The Menu</el-button> -->
         </div>
         <div class="banner-info-con">
           <div class="banner-info">
@@ -24,13 +24,13 @@
               <div class="subtitle">Current Total Supply</div>
             </div>
           </div>
-          <div class="banner-info">
+          <!-- <div class="banner-info">
             <div class="icon-container staked"></div>
             <div class="context">
-              <div class="main-title">0.00</div>
+              <div class="main-title">{{tnsTotalStaked}}</div>
               <div class="subtitle">Total Staked</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -44,54 +44,57 @@
         <div class="tab-container">
           <div class="tab-container-inner">
             <el-table :data="pairsData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-              <el-table-column prop="name" label="Name">
+              <el-table-column prop="full_name" label="Name">
                 <template slot="header" slot-scope="scope">
                   <div class="name-head">Name</div>
                 </template>
                 <template slot-scope="scope">
                   <div class="icon-container">
-                    <img class="first-img" :src="scope.row.firstImg" />
-                    <img class="second-img" :src="scope.row.secondImg" />
+                    <img class="first-img"  :src="$requierImg(scope.row.base_token_name)" />
+                    <img class="second-img" :src="$requierImg(scope.row.trade_token_name)" />
                   </div>
-                  <div class="text-container">{{ scope.row.firstType + ' /' + scope.row.secondType }}</div>
+                  <div class="text-container">{{scope.row.trade_token_name.toLocaleUpperCase()}}/
+                  {{scope.row.base_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="assets1" label="Assets" align="right">
+              <el-table-column prop="trade_token_liquidity" label="Assets" align="right">
                 <template slot-scope="scope">
-                  <div class="assets1">{{ scope.row.assets1 + ' ' + scope.row.unit1 }}</div>
+                  <div class="assets1">{{scope.row.trade_token_liquidity| setAssets  }}
+                {{scope.row.trade_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="assets2" label="Assets" align="right">
+              <el-table-column prop="base_token_liquidity" label="Assets" align="right">
                 <template slot-scope="scope">
-                  <div class="assets2">{{ scope.row.assets2 + ' ' + scope.row.unit2 }}</div>
+                  <div class="assets2">{{scope.row.base_token_liquidity | setAssets }}
+                {{scope.row.base_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="liquidity" label="Liquidity" align="right">
+              <el-table-column prop="pair_quantity" label="Liquidity" align="right">
                 <template slot-scope="scope">
-                  <div class="liquidity">{{ scope.row.liquidity }}</div>
+                  <div class="liquidity">{{scope.row.pair_quantity | setAssets }}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="price" label="Price" align="right">
+              <el-table-column prop="trade_price" label="Price" align="right">
                 <template slot-scope="scope">
-                  <div class="price">{{ scope.row.price }}</div>
+                  <div class="price">{{scope.row.trade_price ? scope.row.trade_price  : "--"}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="volume" label="Volume(24hrs)" align="right">
+              <el-table-column prop="base_quantity_24" label="Volume(24hrs)" align="right">
                 <template slot="header" slot-scope="scope">
                   <div class="voluem-head">Volume</div>
                   <div class="voluem-head">(24hrs)</div>
                 </template>
                 <template slot-scope="scope">
-                  <div class="volume">{{ scope.row.volume }}</div>
+                  <div class="volume">{{scope.row.base_quantity_24 ? scope.row.base_quantity_24  : "--"}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="priceChange" label="Price Change(24hrs)" align="right">
+              <el-table-column prop="price_change_24" label="Price Change(24hrs)" align="right">
                 <template slot="header" slot-scope="scope">
                   <div class="priceChange-head">Price Change</div>
                   <div class="priceChange-head">(24hrs)</div>
                 </template>
                 <template slot-scope="scope">
-                  <div class="priceChange">{{ scope.row.priceChange }}</div>
+                  <div class="priceChange">{{(scope.row.price_change_24*100).toFixed(2)}}%</div>
                 </template>
               </el-table-column>
               <el-table-column prop="operation" label="Operation" align="right">
@@ -99,8 +102,8 @@
                   <div class="operation-head">Price Change</div>
                 </template>
                 <template slot-scope="scope">
-                  <div class="operation">{{ scope.row.operationExchange }}</div>
-                  <div class="operation">{{ scope.row.operationAddLiquidity }}</div>
+                  <div class="operation" @click="toExchange(scope.row)">Exchange</div>
+                  <div class="operation" @click="toAddliquidity(scope.row)">AddLiquidity</div>
                 </template>
               </el-table-column>
             </el-table>
@@ -113,41 +116,45 @@
 </template>
 
 <script>
+import { getTnsPrice,joinConnection} from '@/api/api'
 import ipConfig from '../../config/contracts'
 import axios from 'axios'
 export default {
   name: 'Home',
-  props: {
-    pairsData: {
-      default: () => [
-        {
-          firstImg: require('@/themes/images/home/a.png'),
-          secondImg: require('@/themes/images/home/b.png'),
-          firstType: 'WTRX',
-          secondType: 'USDT',
-          name: '',
-          assets1: '82719.4073',
-          unit1: 'WTRX',
-          assets2: '82719.4073',
-          unit2: 'USDT',
-          liquidity: '5048.4546',
-          price: '0.028658',
-          volume: '--',
-          priceChange: '--%',
-          operationExchange: 'Exchange',
-          operationAddLiquidity: 'AddLiquidity'
-        }
-      ]
-    }
-  },
   data() {
     return {
       myAddress: '',
-      myInviterAddress: '',
-      myInvitationLink: '',
       tnsPrice: 0,
       tnsBalance:0,
-      tnsTotal:0
+      tnsTotal:0,
+      tnsTotalStaked:0,
+      pairsData:[]
+    }
+  },
+  filters: {
+    setAssets(n) {
+      console.log(n)
+      n += ''
+      if (n) {
+        try {
+          const arr = n.split('.')
+          let arr1
+          if (arr.length > 1) {
+            if (arr[1].length > 4) {
+              arr1 = arr[0] + '.' + arr[1].slice(0, 4)
+            } else {
+              arr1 = n
+            }
+          } else {
+            arr1 = arr[0]
+          }
+          return arr1
+        } catch (error) {
+          console.log(error)
+          return n
+        }
+      }
+      return '--'
     }
   },
   methods: {
@@ -155,6 +162,35 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getTnsContract()
+        that.joinClub()
+      })
+    },
+    toExchange(item){
+      this.$router.push({
+        path: '/exchange',
+        query: {
+          pairAddress: item.contract_address
+        }
+      })
+    },
+    toAddliquidity(item){
+      this.$router.push({
+        path: '/addLiquidity',
+        query: {
+          pairAddress: item.contract_address
+        }
+      })
+    },
+    joinClub() {
+      let that = this
+      let params = {
+        address: window.tronWeb.defaultAddress.base58,
+        invitedAddress: ''
+      }
+      joinConnection(params).then(result => {
+        if (result.data.code == 0) {
+          sessionStorage.setItem('oneToken',result.data.data.token)
+        } 
       })
     },
     async getTnsContract() { // 链接tusdt合约
@@ -184,15 +220,23 @@ export default {
     },
     async getVolPrice24() { 
       let res = await axios.get('http://chixin157.55555.io/api/trade/getTradingVolume')
-      if(res){
-
+      if(res.data.code==0){
+        this.pairsData = res.data.data
       }
-    }
-    
+    },
+    getPrice() {
+      let that = this
+      getTnsPrice().then(res => {
+        if (res.data.code == 0) {
+          that.tnsTotalStaked = res.data.data.tnsTotalStaked
+        }
+      })
+    },
   },
   mounted() {
     this.init()
     this.getVolPrice24()
+    this.getPrice()
   }
 }
 </script>

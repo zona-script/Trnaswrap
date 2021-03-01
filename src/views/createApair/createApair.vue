@@ -164,7 +164,7 @@ export default {
         if (this.BFactoryContract) {
           this.isCreateding = true
           const res = await that.BFactoryContract['newBPool']().send({
-            feeLimit: 1000000000,
+            feeLimit: 1000_000_000,
             callValue: 0,
             tokenId: 0,
             shouldPollResponse: true

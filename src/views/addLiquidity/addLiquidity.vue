@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="btn-icon-wrap">
-              <div class="btn-icon"><span></span></div>
+              <div class="btn-icon"><span>+</span></div>
             </div>
             <div class="form-view-item clearfix mt" v-show="doubleMode">
               <div class="form-view-item-top">
@@ -252,6 +252,19 @@ export default {
       this.token2.item = 1
       this.getBalance(this.token1)
       this.getBalance(this.token2)
+    }else if(this.$route.query.pairAddress){
+      let pairAddress = this.$route.query.pairAddress
+      this.pairList.forEach((item, index) => {
+        if (item.address == pairAddress) {
+          this.pair = item
+          this.token1 = item.token1
+          this.token2 = item.token2
+          this.token1.item = 0
+          this.token2.item = 1
+          this.getBalance(this.token1)
+          this.getBalance(this.token2)
+        }
+      })
     }
   },
   methods: {

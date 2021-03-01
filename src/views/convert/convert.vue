@@ -102,7 +102,7 @@
       </div>
       <tool-icon></tool-icon>
     </div>
-    <TransactionSubmit :show="showAlert" :url="typeUrl" @transaction-close='showAlert=false' @cancel='showAlert=false'></TransactionSubmit>
+    <TransactionSubmit :show="showAlert" :url="typeUrl" @transaction-close='showAlert=false' @cancel='reloadWindow'></TransactionSubmit>
   </div>
 </template>
 <script>
@@ -166,6 +166,9 @@ export default {
     }
   },
   methods: {
+    reloadWindow(){
+      window.location.reload()
+    },
     singleSet() {
       this.assetMode = false
     },
@@ -232,11 +235,9 @@ export default {
         }
         window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
           window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-            getConfirmedTransaction(res.txid).then((res1) => {
-              that.loading1()
-              that.getWtrx()
-              that.gettrx()
-            })
+            that.loading1()
+            that.$message.success('Success')
+            that.showAlert = true
           })
         })    
     },
@@ -311,14 +312,11 @@ export default {
         }
         window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
           window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-            
-            getConfirmedTransaction(res.txid).then((res1) => {
-              that.getWtrx()
-              that.gettrx()
-              that.loading2(0)
-              that.showAlert = true
-              that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + res.txid
-            })
+            that.getWtrx()
+            that.gettrx()
+            that.loading2(0)
+            that.showAlert = true
+            that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + res.txid
           })
         })
       } catch (error) {

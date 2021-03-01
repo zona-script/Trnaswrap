@@ -9,14 +9,14 @@
               :class="actIndex === index ? 'select' : ''" >{{ item.name }}</li>
         </ul>
         <div class="btn-wrap">
-            <div class="language">
+            <!-- <div class="language">
               <div class="chinese">中文</div>
               <div class="split">/</div>
               <div class="english">English</div>
-            </div>
+            </div> -->
             <tool-icon></tool-icon>
             <div class="btn-setting-wrap"><el-button :loading="false"  icon="el-icon-setting" class="btn fir">Connect to a Wallet</el-button></div>
-            <div class="btn-setting-wrap"><el-button :loading="false"  icon="el-icon-setting" class="btn sec">Transaction Settings</el-button></div>
+            <!-- <div class="btn-setting-wrap"><el-button :loading="false"  icon="el-icon-setting" class="btn sec">Transaction Settings</el-button></div> -->
         </div>
     </div>
 </template>

@@ -58,7 +58,7 @@
               </div>
             </div>
           </div>
-          <div class="revenue sec" v-show="false">
+          <!-- <div class="revenue sec" v-show="false">
             <div class="title">Mining revenue</div>
             <div class="subtitle">Automatically withdraw to the wallet after seven days</div>
             <div class="info-container">
@@ -77,7 +77,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="btn-container">
           <el-button :loading="false" class="btn confirm" @click="withdraw">Withdraw</el-button>
