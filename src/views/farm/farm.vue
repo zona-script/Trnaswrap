@@ -5,19 +5,19 @@
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
-        <div class="txt">TNS Pool</div>
+        <div class="txt">{{$t('lang6')}}</div>
       </div>
       <div class="tns-pool-con">
         <div class="pool-info">
           <div class="info-item important">
-            <div class="key">Locked position</div>
+            <div class="key">{{$t('lang7')}}</div>
             <div class="value">
               <div class="num">{{userInfoData.depositTotal}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
           <div class="info-item">
-            <div class="key">balance</div>
+            <div class="key">{{$t('Exc.Balance')}}</div>
             <div class="value">
               <div class="num">{{tnsBalance}}</div>
               <div class="unit">TNS</div>
@@ -35,30 +35,30 @@
       </div>
     </div>
     <div class="farm-content-2">
-      <div class="statistics-title">statistics</div>
+      <div class="statistics-title">{{$t('lang8')}}</div>
       <div class="pool-info">
         <div class="info-item">
-          <div class="key">Total number of TNS deposited</div>
+          <div class="key">{{$t('lang9')}}</div>
           <div class="value">{{userInfoData.depositTotal}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Total amount of TNS withdrawn</div>
+          <div class="key">{{$t('lang10')}}</div>
           <div class="value">{{userInfoData.withdrawTotal}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Time Countdown Benefit</div>
+          <div class="key">{{$t('lang11')}}</div>
           <div class="value">{{userInfoData.unlockTime}}</div>
         </div>
         <div class="info-item">
-          <div class="key">200% income</div>
+          <div class="key">200% {{$t('lang14')}}</div>
           <div class="value">{{userInfoData.enlargeTotal}}</div>
         </div>
         <div class="info-item">
-          <div class="key">today income</div>
+          <div class="key">{{$t('lang12')}}</div>
           <div class="value">{{userInfoData.teamAmount+userInfoData.staticIncome}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Unclaimed income</div>
+          <div class="key">{{$t('lang13')}}</div>
           <div class="value">{{userInfoData.notExtractedIncome}}</div>
         </div>
       </div>

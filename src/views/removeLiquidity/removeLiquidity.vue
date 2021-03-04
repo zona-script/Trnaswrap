@@ -15,7 +15,7 @@
       <div class="content fir">
         <div class="title">
           <img class="icon" :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
-          <div class="txt">Remove Liquidity</div>
+          <div class="txt">{{$t('rly')}}</div>
         </div>
         <div class="per-container">
           <div class="top-container">
@@ -64,7 +64,7 @@
             <div class="value">{{token2BalanceInPool}}</div>
           </div>
         </div>
-        <el-button :loading="false" @click="showAlert = true" class="btn confirm">Receive {{pair.pair}}</el-button>
+        <el-button :loading="false" @click="showAlert = true" class="btn confirm">{{$t('rly1')}} {{pair.pair}}</el-button>
       </div>
     </div>
   </div>

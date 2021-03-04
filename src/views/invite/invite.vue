@@ -6,7 +6,7 @@
         <div class="banner-image"></div>
         <div class="banner-desc-container">
           <div class="banner-logo"></div>
-          <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
+          <div class="banner-desc">{{$t('lang1')}}</div>
           <div class="banner-info">
             <div class="start">
               <img class="exchange-img fir" :src="require('@/themes/images/common/token_02_2x.png')" alt=""/>
@@ -30,26 +30,26 @@
     <div class="content">
       <div class="background"></div>
       <div class="invite-info">
-        <div class="container-title">Invite</div>
+        <div class="container-title">{{$t('lang15')}}</div>
         <div class="info-container">
           <div class="info-item">
-            <div class="title">My Address</div>
+            <div class="title">{{$t('lang16')}}</div>
             <div class="value">{{ myAddress }}</div>
           </div>
           <div class="info-item">
-            <div class="title">My Inviter Address</div>
+            <div class="title">{{$t('lang17')}}</div>
             <div class="value">{{ myInviterAddress }}</div>
           </div>
           <div class="info-item">
-            <div class="title">My Invitation Link</div>
+            <div class="title">{{$t('lang18')}}</div>
             <div class="value">{{ myInvitationLink }}</div>
           </div>
         </div>
-        <div class="copy-all" @click="tapHandle">Copy all links</div>
+        <div class="copy-all" @click="tapHandle">{{$t('lang19')}}</div>
       </div>
       <div class="org-ref-container">
         <div class="border-container organization">
-          <div class="title">Organization</div>
+          <div class="title">{{$t('lang21')}}</div>
           <div class="tab-container">
             <el-table :data="origanizationData" style="width: 100%" :show-header="false">
               <el-table-column prop="name"></el-table-column>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="border-container referral">
-          <div class="title">Referral</div>
+          <div class="title">{{$t('lang20')}}</div>
           <div class="tab-container">
             <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
               <el-table-column prop="address" label="Referral"></el-table-column>
@@ -92,19 +92,19 @@ export default {
       referralData: [],
       origanizationData: [
         {
-          name: 'Global quantity',
+          name: this.$t('lang35'),
           value: '0'
         },
         {
-          name: 'Team partner',
+          name: this.$t('lang36'),
           value: '0'
         },
         {
-          name: 'Team performance',
+          name: this.$t('lang37'),
           value: '0'
         },
         {
-          name: 'Grade',
+          name: this.$t('lang38'),
           value: ''
         }
       ]

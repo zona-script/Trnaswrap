@@ -2,13 +2,13 @@
   <div class="dialog-wrap revive" v-show="isShow">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title">You will revive<span class="close" @click="close"></span></h3>
+      <h3 class="title">{{$t('ywr')}}<span class="close" @click="close"></span></h3>
       <div class="revive-container">
         <div class="revive-head">
           <div class="num">{{popsData.reciveLptoken}}</div>
           <div class="prompt-text3">{{popsData.token1.name}}{{popsData.token2.name}} Pool Tokens</div>
           <div class="desc-text">
-            OutPut is estimated.if the price change by more than 0.5% your transaction will revert
+            {{$t('oiei')}}
           </div>
         </div>
         <div class="info-list-wrap mlr mt50">
@@ -24,9 +24,9 @@
           </div>
           <div class="info-item mt10">
             <span class="num-text fr">{{popsData.share}}%</span>
-            <span class="num-text">share of Pool</span>
+            <span class="num-text">{{$t('sopl')}}</span>
           </div>
-          <div class="desc-title">Rates</div>
+          <div class="desc-title">{{$t('lang32')}}</div>
           <div class="desc-info-item">
             <div class="desc-info"><span>1 {{popsData.token1.name}} = </span><span>{{popsData.t1Per.toFixed(6)}} {{popsData.token2.name}}</span></div>
             <div class="desc-info"><span>1 {{popsData.token2.name}} = </span><span>{{popsData.t2Per.toFixed(6)}} {{popsData.token1.name}}</span></div>

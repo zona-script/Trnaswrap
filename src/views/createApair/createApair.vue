@@ -9,13 +9,14 @@
     ></select-token>
     <div class="background"></div>
     <div class="content-wrap">
-      <div class="title">Create a pair</div>
+      <div class="title">{{$t('pool.cj1')}}</div>
       <div class="pannel-info pd">
-        <div class="headline mt50">Create a pair</div>
+        <div class="headline mt50">{{$t('pool.cj1')}}</div>
         <p class="desc mt50">
-          You ll be the first liquidity provider of this pool,and your added token proportion will determine the initial
-          price,You can also customize the distribution ratio of the pool fee income.<br />
-          please click "Confirm" when you have confirmedthe above proportion.
+          {{$t('pool.yat')}}
+          {{$t('pool.tro')}}
+          {{$t('pool.tro1')}}
+          {{$t('pool.tro2')}}
         </p>
         <div class="form-view">
           <!--TRADCOIN-->
@@ -39,7 +40,7 @@
               <span class="num">{{ token1.balance }}</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">Balance</span>
+                <span class="balance-text">{{$t('Exc.Balance')}}</span>
               </div>
             </div>
           </div>
@@ -67,7 +68,7 @@
               <span class="num">{{ token2.balance }}</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">Balance</span>
+                <span class="balance-text">{{$t('Exc.Balance')}}</span>
               </div>
             </div>
           </div>
@@ -75,7 +76,7 @@
 
         <!--Confirm-->
         <el-button class="btn confirm mt50" :loading="isCreateding" :disabled="isCreateding" @click="coinfirmCreate"
-          >Confirm</el-button
+          >{{$t('confirm')}}</el-button
         >
       </div>
       <tool-icon></tool-icon>
@@ -214,9 +215,13 @@ export default {
       if (!transaction.result || !transaction.result.result) {
         return console.error('Unknown error: ' + transaction, null, 2)
       }
+      transaction.transaction.raw_data.fee_limit = 1000_000_000
+      console.log(transaction.transaction)
       const signedTransaction = await window.tronWeb.trx.sign(transaction.transaction)
       that.showAlert1 = true
       that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
+      signedTransaction.raw_data.fee_limit = 1000_000_000
+      console.log(signedTransaction)
       const res = await window.tronWeb.trx.sendRawTransaction(signedTransaction)
       if (res) {
         getConfirmedTransaction(res.txid).then(result => {

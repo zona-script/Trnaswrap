@@ -15,9 +15,9 @@
     <div id="exchange" class="exchange">
       <div class="content-wrap">
         <div class="background"></div>
-        <div class="title">Exchange</div>
+        <div class="title">{{$t('homeb1')}}</div>
         <div class="pannel-info pd">
-          <div class="headline mt50">Exchange</div>
+          <div class="headline mt50">{{$t('homeb1')}}</div>
           <div class="form-view">
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
@@ -39,7 +39,7 @@
                 <span class="num">{{ token1.balance }}</span>
                 <div class="balance">
                   <span class="img"></span>
-                  <span class="balance-text">Balance</span>
+                  <span class="balance-text">{{$t('Exc.Balance')}}</span>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
                 <span class="num">{{ token2.balance }}</span>
                 <div class="balance">
                   <span class="img"></span>
-                  <span class="balance-text">Balance</span>
+                  <span class="balance-text">{{$t('Exc.Balance')}}</span>
                 </div>
               </div>
             </div>
@@ -76,15 +76,15 @@
         <div class="pos-con" v-if="JSON.stringify(token1) != '{}' || JSON.stringify(token2) != '{}'" style="box-shadow: 0 0.133333rem 0.266667rem 0 rgb(0 0 0 / 10%);border-radius: 9px;background: #fff;margin-top:20px;">
           <div class="tab-container">
             <div class="item">
-              <div class="key">Minimum received</div>
+              <div class="key">{{$t('Exc.Mrd')}}</div>
               <div class="value">{{token2Num}} {{token2.name}}</div>
             </div>
             <div class="item">
-              <div class="key">Price Impacte</div>
+              <div class="key">{{$t('Exc.Pre')}}</div>
               <div class="value">{{percentage}}%</div>
             </div>
             <div class="item">
-              <div class="key">Liquidity Provider Fee</div>
+              <div class="key">{{$t('Exc.Liyee')}}</div>
               <div class="value">{{thisswapFee}} {{token1.name}}</div>
             </div>
           </div>
@@ -290,7 +290,12 @@ export default {
       const tokenContract = await window.tronWeb.contract().at(token.address)
       const tokenBalance = await tokenContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
       if (token) {
-        const balance = (parseInt(tokenBalance._hex, 16) / Math.pow(10, token.decimals)).toFixed(6)
+        let balance = parseInt(tokenBalance._hex, 16)
+        console.log(balance.toFixed())
+        balance = new BigNumber(balance)
+        console.log(balance.toFixed())
+        balance = balance/Math.pow(10, token.decimals)
+        console.log(balance.toFixed())
         token.item == 0 ? that.token1.balance = balance : that.token2.balance = balance
       }
     },

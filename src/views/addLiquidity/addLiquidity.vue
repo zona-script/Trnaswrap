@@ -15,12 +15,12 @@
     ></select-token>
     <div class="content">
       <div class="background"></div>
-      <div class="title">Add Liquidity</div>
+      <div class="title">{{$t('pool.al')}}</div>
       <div class="pannel-info">
-        <div class="tabs-container">
+        <!-- <div class="tabs-container">
           <div @click="singleSet" class="tabs fir" :class="doubleMode ? '' : 'active'">Single assets</div>
           <div @click="doubleSet" class="tabs sec" :class="doubleMode ? 'active' : ''">Double assets</div>
-        </div>
+        </div> -->
         <div class="configuration" :class="doubleMode ? '' : 'single-mode'">
           <div class="img-text-wrap bd">
             <img class="img" :src="$requierImg(token1.name)" />
@@ -47,7 +47,7 @@
               <div class="balance-wrap">
                 <div class="balance">
                   <span class="img"></span>
-                  <span class="balance-text">Balance</span>
+                  <span class="balance-text">{{$t('Exc.Balance')}}</span>
                 </div>
                 <span class="num">{{ token1.balance }}</span>
               </div>
@@ -74,14 +74,14 @@
               <div class="balance-wrap">
                 <div class="balance">
                   <span class="img"></span>
-                  <span class="balance-text">Balance</span>
+                  <span class="balance-text">{{$t('Exc.Balance')}}</span>
                 </div>
                 <span class="num">{{ token2.balance }}</span>
               </div>
             </div>
           </div>
           <div class="pannel-info-share">
-            <div class="title">Prices and pool share</div>
+            <div class="title">{{$t('pool.paps')}}</div>
             <div class="item-wrap mt50">
               <div class="item-box">
                 <div class="num">{{ justPrice ? justPrice.toFixed(4) : '--' }}</div>
@@ -93,7 +93,7 @@
               </div>
               <div class="item-box">
                 <div class="num">{{ share }}%</div>
-                <div class="text-info">Share of Pool</div>
+                <div class="text-info">{{$t('sopl')}}</div>
               </div>
             </div>
             <div class="btn-con mt50">
@@ -103,10 +103,10 @@
                 :loading="charm.btnLoading2"
                 :disabled="charm.disabled2"
                 @click="doApprove"
-                >Approve</el-button
+                >{{$t('Stake.Approve')}}</el-button
               >
               <el-button :loading="charm.btnLoading1" :disabled="btndisable()" @click="confirmSupply" class="btn add"
-                >Supply</el-button
+                >{{$t('Supply')}}</el-button
               >
               <!-- <div class="btn create mt50">Approve</div>
               <div class="btn add mt50">Supply</div> -->
@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="pos-con" v-show="JSON.stringify(token1) != '{}' || JSON.stringify(token2) != '{}'">
-          <div class="your-position">Your position</div>
+          <div class="your-position">{{$t('pool.yopn')}}</div>
           <div class="tab-container">
             <div class="item">
               <div class="key con">
@@ -125,7 +125,7 @@
               <div class="value">{{ (myBalanceInPool / Math.pow(10, 18)).toFixed(6) }}</div>
             </div>
             <div class="item">
-              <div class="key">Your pool share</div>
+              <div class="key">{{$t('pool.yops')}}</div>
               <div class="value">{{ (myShare * 100).toFixed(2) }}%</div>
             </div>
             <div class="item">

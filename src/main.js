@@ -8,9 +8,10 @@ import router from './router'
 import store from './store'
 import './plugins/element-ui'
 import initTronWeb from './utils/tronwebFn'
+import i18n from './lang'
 // import './plugins/element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
-import 'amfe-flexible';
+import 'amfe-flexible'
 import 'element-ui/lib/theme-chalk/index.css'
 import './components'
 import { requierImg } from './utils/index'
@@ -33,5 +34,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })
