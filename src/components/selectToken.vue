@@ -2,10 +2,10 @@
   <div class="dialog-wrap select-token" v-show="isShow" @touchstart="wrapTouch">
     <div class="mantle"></div>
     <div class="dialog-pannel">
-      <h3 class="title"><span class="close" @click="close"></span>Select a token</h3>
+      <h3 class="title"><span class="close" @click="close"></span>{{$t('Exc.sat')}}</h3>
       <div class="add-btn" @click="checkToken">+</div>
       <div class="input-warp">
-        <input type="text" placeholder="Search name or paste" v-model="newTokenAddress" @change="change($event)" />
+        <input type="text" :placeholder="$t('lang33')" v-model="newTokenAddress" @change="change($event)" />
       </div>
       <div class="info-list-wrap mlr">
         <div class="info-item nobg" v-for="(item, index) in tokenData" :key="index" @click="touchstart(item,index)" :class="selectedIndex === index ? 'select' : ''">
@@ -64,7 +64,7 @@ export default {
     checkToken() {
       const that = this
       const data = { address: this.newTokenAddress }
-      axios.post('http://chixin157.55555.io/api/token/addToken',data).then((res)=>{
+      axios.post('http://47.242.236.26:9899/api/token/addToken',data).then((res)=>{
         if(res.data.code==0){
           alert('添加成功')
         }else{

@@ -219,7 +219,7 @@ export default {
       }
     },
     async getVolPrice24() { 
-      let res = await axios.get('http://chixin157.55555.io/api/trade/getTradingVolume')
+      let res = await axios.get('http://47.242.236.26:9899/api/trade/getTradingVolume')
       if(res.data.code==0){
         this.pairsData = res.data.data
       }

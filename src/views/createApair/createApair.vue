@@ -23,7 +23,7 @@
           <div class="form-view-item clearfix mt">
             <div class="form-view-item-top">
               <div class="droplist">
-                <div class="drop-head" v-on:click="dropHeadClick(0)">
+                <div class="drop-head">
                   <div class="icon-txt">
                     <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
                     <span class="drop-head-text">{{ token1.name }}</span>
@@ -84,6 +84,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { approved, getConfirmedTransaction } from '../../utils/tronwebFn'
 import ipConfig from '../../config/contracts'
 export default {
@@ -103,11 +104,26 @@ export default {
       isCreateding: false
     }
   },
+  computed: {
+    ...mapState(['tokenData'])
+  }, 
+  watch: {
+    tokenData(list) {
+      let tokenList = JSON.parse(JSON.stringify(list))
+      let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
+      this.token1 = token[0]
+      this.token1.item = 0
+    }
+  },
+  created(){
+
+  },
   methods: {
     init() {
       // 初始化tronweb
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
+        that.getBalance(that.token1)
         that.getBFactoryContract()
         that.getSwapFeeForDex()
       })
@@ -209,18 +225,16 @@ export default {
       const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(
         that.bPoolContract,
         functionSelector,
-        { shouldPollResponse: true },
+        { shouldPollResponse: true,feeLimit: 1000_000_000 },
         parameter
       )
       if (!transaction.result || !transaction.result.result) {
         return console.error('Unknown error: ' + transaction, null, 2)
       }
-      transaction.transaction.raw_data.fee_limit = 1000_000_000
       console.log(transaction.transaction)
       const signedTransaction = await window.tronWeb.trx.sign(transaction.transaction)
       that.showAlert1 = true
       that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
-      signedTransaction.raw_data.fee_limit = 1000_000_000
       console.log(signedTransaction)
       const res = await window.tronWeb.trx.sendRawTransaction(signedTransaction)
       if (res) {
