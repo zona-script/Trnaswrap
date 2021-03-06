@@ -3,9 +3,9 @@
     <div class="mantle"></div>
     <div class="dialog-pannel">
       <img class="submitte-img" :src="require('@/themes/images/dialog/submit_illustration.png')" />
-      <div class="prompt-text">Transaction Submitted</div>
-      <div class="prompt-text2"><a :href="url">View on Tronscan</a></div>
-      <div class="btn cancel confirm" @click="cancel">Cancel</div>
+      <div class="prompt-text">{{$t('pop.TSed')}}</div>
+      <div class="prompt-text2"><a :href="url">{{$t('vot')}}</a></div>
+      <div class="btn cancel confirm" @click="cancel">{{$t('lang34')}}</div>
     </div>
   </div>
 </template>

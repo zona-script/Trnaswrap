@@ -3,9 +3,9 @@
     <div class="mantle" @click="close"></div>
     <div class="container">
       <div class="tabs">
-        <div class="tab deposit" @click="tabDeposit" :class="tabSelected === 'deposit' ? 'active' : ''">Deposit</div>
+        <div class="tab deposit" @click="tabDeposit" :class="tabSelected === 'deposit' ? 'active' : ''">{{$t('lang23')}}</div>
         <div class="tab withdraw" @click="tabWithdraw" :class="tabSelected === 'withdraw' ? 'active' : ''">
-          Withdraw
+          {{$t('lang24')}}
         </div>
       </div>
       <div class="deposit content" v-show="tabSelected === 'deposit'">
@@ -16,7 +16,7 @@
           </div>
           <div class="info-container">
             <div class="info-item">
-              <div class="key">balance</div>
+              <div class="key">{{$t('Exc.Balance')}}</div>
               <div class="value">
                 <div class="num">{{tnsBalance}}</div>
                 <div class="unit">TNS</div>
@@ -32,25 +32,25 @@
           </div>
         </div>
         <div class="btn-container">
-          <el-button :loading="false" class="btn confirm" @click="deposit">Deposit</el-button>
-          <el-button :loading="false" class="btn confirm unselect" @click="back">Return</el-button>
+          <el-button :loading="false" class="btn confirm" @click="deposit">{{$t('lang23')}}</el-button>
+          <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
       <div class="withdraw content" v-show="tabSelected === 'withdraw'">
         <div class="revenue-container">
           <div class="revenue fir">
-            <div class="title">Deposit revenue</div>
-            <div class="subtitle">Extracted at any time</div>
+            <div class="title">{{$t('lang26')}}</div>
+            <div class="subtitle">{{$t('lang27')}}</div>
             <div class="info-container">
               <div class="info-item">
-                <div class="key">Earned</div><!--已赚取-->
+                <div class="key">{{$t('lang28')}}</div><!--已赚取-->
                 <div class="value">
                   <div class="num">{{userInfo.withdrawTotal+userInfo.notExtractedIncome}}</div>
                   <div class="unit">TNS</div>
                 </div>
               </div>
               <div class="info-item">
-                <div class="key">Extracted</div><!--待提取-->
+                <div class="key">{{$t('lang29')}}</div><!--待提取-->
                 <div class="value">
                   <div class="num">{{userInfo.notExtractedIncome}}</div>
                   <div class="unit">TNS</div>
@@ -80,8 +80,8 @@
           </div> -->
         </div>
         <div class="btn-container">
-          <el-button :loading="false" class="btn confirm" @click="withdraw">Withdraw</el-button>
-          <el-button :loading="false" class="btn confirm unselect" @click="back">Return</el-button>
+          <el-button :loading="false" class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button>
+          <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
     </div>

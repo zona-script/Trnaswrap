@@ -6,39 +6,39 @@ import axios from 'axios'
 /* eslint-disable */
 export const TokenData = function(){
   return new Promise(function (resolve, reject) {
-    // axios.get('http://chixin157.55555.io/api/token/getToken').then((res)=>{
-    //     if(res.data.code==0){
-    //       resolve(res.data.data)
-    //     }else{
-    //       resolve([])
-    //     }
-    // })
-    getTokenList().then((res)=>{
-      if(res.data.code==0){
-        resolve(res.data.data)
-      }else{
-        resolve([])
-      }
+    axios.get('http://47.242.236.26:9899/api/token/getToken').then((res)=>{
+        if(res.data.code==0){
+          resolve(res.data.data)
+        }else{
+          resolve([])
+        }
     })
+    // getTokenList().then((res)=>{
+    //   if(res.data.code==0){
+    //     resolve(res.data.data)
+    //   }else{
+    //     resolve([])
+    //   }
+    // })
   })
 }
 export const PairData = function(){
   return new Promise(function (resolve, reject) {
-    // axios.get('http://chixin157.55555.io/api/token/getPair').then((res)=>{
-    //     if(res.data.code==0){
-    //       resolve(res.data.data)
-    //     }else{
-    //       resolve([])
-    //     }
-    // })
-    getPairList().then((res)=>{
-      console.log(res.data.data)
-      if(res.data.code==0){
-        resolve(res.data.data)
-      }else{
-        resolve([])
-      }
+    axios.get('http://47.242.236.26:9899/api/token/getPair').then((res)=>{
+        if(res.data.code==0){
+          resolve(res.data.data)
+        }else{
+          resolve([])
+        }
     })
+    // getPairList().then((res)=>{
+    //   console.log(res.data.data)
+    //   if(res.data.code==0){
+    //     resolve(res.data.data)
+    //   }else{
+    //     resolve([])
+    //   }
+    // })
   })
 }
 

@@ -6,18 +6,16 @@
       <div class="pannel-info pd">
         <!-- <div class="headline mt50">Pool</div> -->
         <div class="banner-img"></div>
-        <div class="title mt50">Liquidity provider rewards</div>
+        <div class="title mt50">{{$t('pool.Lpr')}}</div>
         <p class="desc min-height-304 desct-mt">
-          Liquidity providers can obtain fee income from the liquidity pools they participate in;The fee income is ’
-          distributed according to the proportion of liquidity providers liquidity funds The allocated fees are added to
-          the corresponding pool in real time, and the liquidity provider can withdraw as required
+          {{$t('pool.Lpr2')}}
         </p>
         <div class="rect">Connect to a wallet to view your liquidity.</div>
-        <div class="btn-box">
-          <el-button :loading="false" @click="toCreate"  class="btn create">Greate a Pair</el-button>
-          <el-button :loading="false" @click="toLiquidity" class="btn add mt10">Add Liquidity</el-button>
+        <div class="btn-box" style="padding-bottom:20px;">
+          <el-button :loading="false" @click="toCreate"  class="btn create">{{$t('pool.cj1')}}</el-button>
+          <el-button :loading="false" @click="toLiquidity" class="btn add mt10">{{$t('pool.al')}}</el-button>
         </div>
-        <a class="btn-link" href="#">Connect to a wallet</a>
+        <!-- <a class="btn-link" href="#">Connect to a wallet</a> -->
       </div>
       <div class="pannel-info">
         <div  v-for="(item,index) in pairList" :key="index" v-show="parseFloat(item.myBalanceInPool)>0">
@@ -31,27 +29,27 @@
           </div>
           <div class="tab-container" :class="!item.show ? 'collapse' : ''">
             <div class="item">
-              <div class="key">Your tatal pool tokens</div>
+              <div class="key">{{$t('pool.Ytpt')}}</div>
               <div class="value">{{item.myBalanceInPool}}</div>
             </div>
             <div class="item">
-              <div class="key">Pooled {{item.token1.name}}</div>
+              <div class="key">{{$t('pool.Pooled')}} {{item.token1.name}}</div>
               <div class="value">{{token1Balance.toFixed(6)}}</div>
             </div>
             <div class="item">
-              <div class="key">Pooled {{item.token2.name}}</div>
+              <div class="key">{{$t('pool.Pooled')}} {{item.token2.name}}</div>
               <div class="value">{{token2Balance.toFixed(6)}}</div>
             </div>
             <div class="item">
-              <div class="key">Your Pool share</div>
+              <div class="key">{{$t('pool.Yops')}}</div>
               <div class="value">{{(share*100).toFixed(2)}}%</div>
             </div>
             <div class="item" style="padding:10px 0;">
-                <el-button class="btn create" style="flex:1;margin-right:10px;" @click="toPool(item)">Add</el-button>
+                <el-button class="btn create" style="flex:1;margin-right:10px;" @click="toPool(item)">{{$t('pool.Add')}}</el-button>
                 <el-button class="btn" style="flex:1;background:fff;
 border-image: linear-gradient(90deg, rgba(255, 142, 24, 1), rgba(255, 109, 15, 1), rgba(255, 72, 4, 1)) 1 1;
 border: 1px solid;
-color: #FF652B;"  @click="toRemove(item)">Delete</el-button>
+color: #FF652B;"  @click="toRemove(item)">{{$t('pool.Remove')}}</el-button>
             </div>
           </div>
         </div>

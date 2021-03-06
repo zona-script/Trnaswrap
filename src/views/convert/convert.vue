@@ -3,7 +3,7 @@
     <!-- <headTitle></headTitle> -->
     <div class="content-wrap">
       <div class="background"></div>
-      <div class="title">Convert</div>
+      <div class="title">{{$t('lang5')}}</div>
       <div class="pannel-info pd">
         <div class="tabs-container">
           <div @click="singleSet" class="tabs fir" :class="assetMode ? '' : 'active'">USDT - TUSD</div>
@@ -38,13 +38,13 @@
                 <div class="balance-wrap">
                   <div class="balance">
                     <span class="img"></span>
-                    <span class="balance-text">Balance</span>
+                    <span class="balance-text">{{$t('Exc.Balance')}}</span>
                   </div>
                   <span class="num">{{trxBalance}}</span>
                 </div>
               </div>
             </div>
-            <div class="convert-box-title">You will get</div>
+            <div class="convert-box-title">{{$t('wtrx.yog')}}</div>
             <div class="result">
               <div class="key">
                 <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
@@ -82,7 +82,7 @@
                 <div class="balance-wrap">
                   <div class="balance">
                     <span class="img"></span>
-                    <span class="balance-text">Balance</span>
+                    <span class="balance-text">{{$t('Exc.Balance')}}</span>
                   </div>
                   <span class="num">{{wtrxBalance}}</span>
                 </div>

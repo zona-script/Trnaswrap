@@ -5,8 +5,8 @@
         <div class="banner-image"></div>
         <div class="banner-desc-container">
           <div class="banner-logo"></div>
-          <div class="banner-desc">Deposit Tns Tokens and Share Trading Fees Forever</div>
-          <el-button :loading="false" class="btn confirm" @click="toExchange">Go to exchange</el-button>
+          <div class="banner-desc">{{$t('lang1')}}</div>
+          <el-button :loading="false" class="btn confirm" @click="toExchange">{{$t('lang4')}}</el-button>
           <!-- <el-button :loading="false" class="btn confirm">See The Menu</el-button> -->
         </div>
         <div class="banner-info-con">
@@ -14,14 +14,14 @@
             <div class="icon-container balance"></div>
             <div class="context">
               <div class="main-title">{{tnsBalance}}</div>
-              <div class="subtitle">My Tns Balance</div>
+              <div class="subtitle">{{$t('lang2')}}</div>
             </div>
           </div>
           <div class="banner-info">
             <div class="icon-container supply"></div>
             <div class="context">
               <div class="main-title">{{tnsTotal}}</div>
-              <div class="subtitle">Current Total Supply</div>
+              <div class="subtitle">{{$t('lang3')}}</div>
             </div>
           </div>
           <!-- <div class="banner-info">
@@ -38,15 +38,15 @@
       <div class="background"></div>
       <div class="border-container">
         <div class="title">
-          <div class="text">Top Pairs</div>
+          <div class="text">{{$t('home.TopPairs')}}</div>
           <!-- <div class="detail"></div> -->
         </div>
         <div class="tab-container">
           <div class="tab-container-inner">
             <el-table :data="pairsData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-              <el-table-column prop="full_name" label="Name">
+              <el-table-column prop="full_name" :label="$t('home.Name')">
                 <template slot="header" slot-scope="scope">
-                  <div class="name-head">Name</div>
+                  <div class="name-head">{{$t('home.Name')}}</div>
                 </template>
                 <template slot-scope="scope">
                   <div class="icon-container">
@@ -57,53 +57,53 @@
                   {{scope.row.base_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="trade_token_liquidity" label="Assets" align="right">
+              <el-table-column prop="trade_token_liquidity" :label="$t('home.Assets')" align="right">
                 <template slot-scope="scope">
                   <div class="assets1">{{scope.row.trade_token_liquidity| setAssets  }}
                 {{scope.row.trade_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="base_token_liquidity" label="Assets" align="right">
+              <el-table-column prop="base_token_liquidity" :label="$t('home.Assets')" align="right">
                 <template slot-scope="scope">
                   <div class="assets2">{{scope.row.base_token_liquidity | setAssets }}
                 {{scope.row.base_token_name.toLocaleUpperCase()}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="pair_quantity" label="Liquidity" align="right">
+              <el-table-column prop="pair_quantity" :label="$t('home.Liquidity')" align="right">
                 <template slot-scope="scope">
                   <div class="liquidity">{{scope.row.pair_quantity | setAssets }}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="trade_price" label="Price" align="right">
+              <el-table-column prop="trade_price" :label="$t('home.price')" align="right">
                 <template slot-scope="scope">
                   <div class="price">{{scope.row.trade_price ? scope.row.trade_price  : "--"}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="base_quantity_24" label="Volume(24hrs)" align="right">
-                <template slot="header" slot-scope="scope">
+              <el-table-column prop="base_quantity_24" :label="$t('home.Volume')" align="right">
+                <!-- <template slot="header" slot-scope="scope">
                   <div class="voluem-head">Volume</div>
                   <div class="voluem-head">(24hrs)</div>
-                </template>
+                </template> -->
                 <template slot-scope="scope">
                   <div class="volume">{{scope.row.base_quantity_24 ? scope.row.base_quantity_24  : "--"}}</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="price_change_24" label="Price Change(24hrs)" align="right">
-                <template slot="header" slot-scope="scope">
+              <el-table-column prop="price_change_24" :label="$t('home.Change')" align="right">
+                <!-- <template slot="header" slot-scope="scope">
                   <div class="priceChange-head">Price Change</div>
                   <div class="priceChange-head">(24hrs)</div>
-                </template>
+                </template> -->
                 <template slot-scope="scope">
                   <div class="priceChange">{{(scope.row.price_change_24*100).toFixed(2)}}%</div>
                 </template>
               </el-table-column>
-              <el-table-column prop="operation" label="Operation" align="right">
-                <template slot="header" slot-scope="scope">
+              <el-table-column prop="operation" :label="$t('operation')" align="right">
+                <!-- <template slot="header" slot-scope="scope">
                   <div class="operation-head">Price Change</div>
-                </template>
+                </template> -->
                 <template slot-scope="scope">
-                  <div class="operation" @click="toExchange(scope.row)">Exchange</div>
-                  <div class="operation" @click="toAddliquidity(scope.row)">AddLiquidity</div>
+                  <div class="operation" @click="toExchange(scope.row)">{{$t('homeb1')}}</div>
+                  <div class="operation" @click="toAddliquidity(scope.row)">{{$t('homeb2')}}</div>
                 </template>
               </el-table-column>
             </el-table>
@@ -219,7 +219,7 @@ export default {
       }
     },
     async getVolPrice24() { 
-      let res = await axios.get('http://chixin157.55555.io/api/trade/getTradingVolume')
+      let res = await axios.get('http://47.242.236.26:9899/api/trade/getTradingVolume')
       if(res.data.code==0){
         this.pairsData = res.data.data
       }

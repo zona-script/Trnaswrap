@@ -9,20 +9,20 @@
     ></select-token>
     <div class="background"></div>
     <div class="content-wrap">
-      <div class="title">Create a pair</div>
+      <div class="title">{{$t('pool.cj1')}}</div>
       <div class="pannel-info pd">
-        <div class="headline mt50">Create a pair</div>
+        <div class="headline mt50">{{$t('pool.cj1')}}</div>
         <p class="desc mt50">
-          You ll be the first liquidity provider of this pool,and your added token proportion will determine the initial
-          price,You can also customize the distribution ratio of the pool fee income.<br />
-          please click "Confirm" when you have confirmedthe above proportion.
+          {{$t('pool.yat')}},
+          {{$t('pool.tro')}}
+          {{$t('pool.tro2')}}
         </p>
         <div class="form-view">
           <!--TRADCOIN-->
           <div class="form-view-item clearfix mt">
             <div class="form-view-item-top">
               <div class="droplist">
-                <div class="drop-head" v-on:click="dropHeadClick(0)">
+                <div class="drop-head">
                   <div class="icon-txt">
                     <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
                     <span class="drop-head-text">{{ token1.name }}</span>
@@ -39,7 +39,7 @@
               <span class="num">{{ token1.balance }}</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">Balance</span>
+                <span class="balance-text">{{$t('Exc.Balance')}}</span>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
               <span class="num">{{ token2.balance }}</span>
               <div class="balance">
                 <span class="img"></span>
-                <span class="balance-text">Balance</span>
+                <span class="balance-text">{{$t('Exc.Balance')}}</span>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
 
         <!--Confirm-->
         <el-button class="btn confirm mt50" :loading="isCreateding" :disabled="isCreateding" @click="coinfirmCreate"
-          >Confirm</el-button
+          >{{$t('confirm')}}</el-button
         >
       </div>
       <tool-icon></tool-icon>
@@ -83,6 +83,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { approved, getConfirmedTransaction } from '../../utils/tronwebFn'
 import ipConfig from '../../config/contracts'
 export default {
@@ -102,11 +103,26 @@ export default {
       isCreateding: false
     }
   },
+  computed: {
+    ...mapState(['tokenData'])
+  }, 
+  watch: {
+    tokenData(list) {
+      let tokenList = JSON.parse(JSON.stringify(list))
+      let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
+      this.token1 = token[0]
+      this.token1.item = 0
+    }
+  },
+  created(){
+
+  },
   methods: {
     init() {
       // 初始化tronweb
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
+        that.getBalance(that.token1)
         that.getBFactoryContract()
         that.getSwapFeeForDex()
       })
@@ -208,15 +224,17 @@ export default {
       const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(
         that.bPoolContract,
         functionSelector,
-        { shouldPollResponse: true },
+        { shouldPollResponse: true,feeLimit: 1000_000_000 },
         parameter
       )
       if (!transaction.result || !transaction.result.result) {
         return console.error('Unknown error: ' + transaction, null, 2)
       }
+      console.log(transaction.transaction)
       const signedTransaction = await window.tronWeb.trx.sign(transaction.transaction)
       that.showAlert1 = true
       that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
+      console.log(signedTransaction)
       const res = await window.tronWeb.trx.sendRawTransaction(signedTransaction)
       if (res) {
         getConfirmedTransaction(res.txid).then(result => {

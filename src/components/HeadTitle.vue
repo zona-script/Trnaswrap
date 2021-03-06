@@ -5,8 +5,8 @@
     <div class="header-inner">
       <div class="logo"></div>
       <div class="pc-operation">
-        <!-- <div class="language">English</div>
-        <div class="language">Transaction Settings</div> -->
+        <div class="language" @click="hdel">{{this.$i18n.locale=='zh'?'English':'简体中文'}}</div>
+        <!-- <div class="language">Transaction Settings</div> -->
         <div class="connect">{{defaultAddress}}</div>
       </div>
       <div class="menu"  @touchend="clickHand"></div>
@@ -31,7 +31,12 @@ export default {
     },
     menuClose() {
       this.show = false
-    }
+    },
+    hdel(n) {
+      const i18n = this.$i18n.locale
+      this.$i18n.locale = i18n == 'en' ? 'zh' : 'en'
+      localStorage.setItem('lang', this.$i18n.locale)
+    },
   },
   mounted() {
     let that = this

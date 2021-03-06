@@ -5,19 +5,19 @@
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
-        <div class="txt">TNS Pool</div>
+        <div class="txt">{{$t('lang6')}}</div>
       </div>
       <div class="tns-pool-con">
         <div class="pool-info">
           <div class="info-item important">
-            <div class="key">Locked position</div>
+            <div class="key">{{$t('lang7')}}</div>
             <div class="value">
-              <div class="num">{{userInfoData.depositTotal}}</div>
+              <div class="num">{{userInfoData.lockAmount}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
           <div class="info-item">
-            <div class="key">balance</div>
+            <div class="key">{{$t('Exc.Balance')}}</div>
             <div class="value">
               <div class="num">{{tnsBalance}}</div>
               <div class="unit">TNS</div>
@@ -31,34 +31,34 @@
             </div>
           </div>
         </div>
-        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">Select</el-button>
+        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">{{$t('lang42')}}</el-button>
       </div>
     </div>
     <div class="farm-content-2">
-      <div class="statistics-title">statistics</div>
+      <div class="statistics-title">{{$t('lang8')}}</div>
       <div class="pool-info">
         <div class="info-item">
-          <div class="key">Total number of TNS deposited</div>
+          <div class="key">{{$t('lang9')}}</div>
           <div class="value">{{userInfoData.depositTotal}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Total amount of TNS withdrawn</div>
+          <div class="key">{{$t('lang10')}}</div>
           <div class="value">{{userInfoData.withdrawTotal}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Time Countdown Benefit</div>
+          <div class="key">{{$t('lang11')}}</div>
           <div class="value">{{userInfoData.unlockTime}}</div>
         </div>
         <div class="info-item">
-          <div class="key">200% income</div>
-          <div class="value">{{userInfoData.enlargeTotal}}</div>
+          <div class="key">200% {{$t('lang14')}}</div>
+          <div class="value">{{userInfoData.lockAmount}}</div>
         </div>
         <div class="info-item">
-          <div class="key">today income</div>
+          <div class="key">{{$t('lang12')}}</div>
           <div class="value">{{userInfoData.teamAmount+userInfoData.staticIncome}}</div>
         </div>
         <div class="info-item">
-          <div class="key">Unclaimed income</div>
+          <div class="key">{{$t('lang13')}}</div>
           <div class="value">{{userInfoData.notExtractedIncome}}</div>
         </div>
       </div>
@@ -146,12 +146,21 @@ export default {
       const that = this
       doWithdraw().then(res=>{
         if(res.data.code == 0){
-
+          that.$message.success('提币成功')
         }
       })
     },
     async deposit(num){
       let that = this
+      let oneToken = sessionStorage.getItem('oneToken')
+      if(!oneToken){
+        that.$message.error('邀请人不存在')
+        return
+      }
+      if(num<10){
+        that.$message.error('质押不得少于10个TNS')
+        return
+      }
       let func = 'transfer(address,uint256)'
       let transnum = new BigNumber(num)
       transnum = transnum.times(Math.pow(10,6))
@@ -169,11 +178,13 @@ export default {
               amount:num,
               txhash:res.txid
             }
-            doDeposit(data).then(res=>{
-              if(res.data.code == 0){
-
-              }
-            })
+            setTimeout(function(){
+              doDeposit(data).then(res=>{
+                if(res.data.code == 0){
+                  that.$message.success('质押成功')
+                }
+              })
+            },5000)
           })
       })
     },
@@ -181,6 +192,9 @@ export default {
       let that = this
       userInfo().then(res=>{
         if(res.data.code==0){
+          if(res.data.data.notExtractedIncome>res.data.data.lockAmount){
+            res.data.data.notExtractedIncome = res.data.data.lockAmount
+          }
           that.userInfoData = res.data.data
         }
       })

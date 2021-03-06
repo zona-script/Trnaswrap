@@ -20,64 +20,37 @@
 export default {
   name: 'Navigation',
   props: {
-    list: {
-      default: () => {
-        return [
-          {
-            name: 'home',
-            text: 'Home',
-            url: '/home'
-          },
-          {
-            name: 'exchange',
-            text: 'Exchange',
-            url: '/exchange'
-          },
-          {
-            name: 'pool',
-            text: 'Pool',
-            url: '/pool'
-          },
-          // {
-          //   name: 'abelo',
-          //   text: 'Abelo',
-          //   url: '/createApair'
-          // },
-          {
-            name: 'convert',
-            text: 'Convert',
-            url: '/convert'
-          },
-          // {
-          //   name: 'stake',
-          //   text: 'Stake',
-          //   url: '/addLiquidity'
-          // },
-          {
-            name: 'farm',
-            text: 'Farm',
-            url: '/farm'
-          },
-          // {
-          //   name: 'vote',
-          //   text: 'Vote',
-          //   url: '/vote'
-          // },
-          // {
-          //   name: 'about',
-          //   text: 'About',
-          //   url: '/about'
-          // }
-        ]
-      }
-    }
   },
   computed: {},
   watch: {},
   data() {
     let self = this
     return {
-      navList: [...self.list],
+      navList: [{
+            name: 'home',
+            text: this.$t('nav.home1'),
+            url: '/home'
+          },
+          {
+            name: 'exchange',
+            text: this.$t('nav.Exchange'),
+            url: '/exchange'
+          },
+          {
+            name: 'pool',
+            text: this.$t('nav.Pool'),
+            url: '/pool'
+          },
+          {
+            name: 'convert',
+            text: this.$t('lang30'),
+            url: '/convert'
+          },
+          {
+            name: 'farm',
+            text: this.$t('lang31'),
+            url: '/farm'
+          }],
       actIndex: 'home',
       width: 91,
       left: 0
