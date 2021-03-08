@@ -65,9 +65,9 @@
           <div class="title">{{$t('lang20')}}</div>
           <div class="tab-container">
             <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
-              <el-table-column prop="address" label="Referral"></el-table-column>
-              <el-table-column prop="teamNum" label="Partner" align="center"></el-table-column>
-              <el-table-column prop="teamPerformance" label="Performance" align="right"></el-table-column>
+              <el-table-column prop="address" :label="$t('lang39')"></el-table-column>
+              <el-table-column prop="teamNum" :label="$t('lang40')" align="center"></el-table-column>
+              <el-table-column prop="teamPerformance" :label="$t('lang41')" align="right"></el-table-column>
             </el-table>
           </div>
         </div>

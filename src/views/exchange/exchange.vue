@@ -86,7 +86,7 @@
             </div>
             <div class="item">
               <div class="key">{{$t('Exc.Liyee')}}</div>
-              <div class="value">{{thisswapFee}} {{token1.name}}</div>
+              <div class="value">{{thisswapFee}} TUSD</div>
             </div>
           </div>
         </div>

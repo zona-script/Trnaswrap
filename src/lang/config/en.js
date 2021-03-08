@@ -25,7 +25,7 @@ module.exports = {
   Exc: {
     plsec: 'Please select transac tion pair',
     Vpcs: 'View pair analytics',
-    Liyee: 'Liquidity Provider Fee',
+    Liyee: 'Fee',
     Pre: 'Price Impacte',
     Mrd: 'Minimum received',
     Mandate: 'Mandate',
@@ -69,8 +69,8 @@ module.exports = {
     Add: 'Add',
     Remove: 'Remove',
     to: 'TO',
-    Lpr: 'Liquidity provider rewards',
-    Lpr2: 'Liquidity providers can obtain fee income from the liquidity pools they participate in;The fee income is ’ distributed according to the proportion of liquidity providers liquidity funds The allocated fees are added to the corresponding pool in real time, and the liquidity provider can withdraw as required',
+    Lpr: 'Create a pair',
+    Lpr2: 'Anyone can easily and quickly put money on one button, and provide liquidity for existing trading pairs',
     Yly: 'Your liquidity',
     cj1: 'Create a pair',
     al: 'Add Liquidity',
@@ -80,7 +80,7 @@ module.exports = {
     yat: 'You ll be the first liquidity provider of this pool, ',
     tro: 'and your added token proportion will determine the initial price,',
     tro1: 'You can also customize the distribution ratio of the pool fee income',
-    tro2: 'please click "Confirm" when you have confirmedthe above proportion.',
+    tro2: 'please click "Confirm".',
     assets1: 'Single assets',
     assets2: 'Double assets',
     paps: 'Prices and pool share',
@@ -174,7 +174,7 @@ module.exports = {
     // ff3:'● In the DEX contract, users will be responsible for their own assets. The contract only provides functions such as trading, liquidity creation, liquidity addition and withdrawal, and the contract does not have the right to use or manage users’ assets.',
     // ff4:'● No one has the right to withdraw assets from the fee address, and it only provides the operation interface to repurchase and burn,as well as add liquidity for Bee. Users who meet certain conditions can execute it. ',
 
-    foxp1: 'Liquidity provider rewards',
+    foxp1: 'Create a pair',
     foxp2: 'Liquidity providers can obtain fee income from the liquidity pools they participate in;',
     foxp3: 'The fee income is ’distributed according to the proportion of liquidity providers liquidity funds',
     foxp4: 'The allocated fees are added to the corresponding pool in real time, and the liquidity provider can withdraw as required',
@@ -294,4 +294,5 @@ module.exports = {
   lang39:'Referral',
   lang40:'Partner',
   lang41:'Performance',
+  lang42:'Select'
 }

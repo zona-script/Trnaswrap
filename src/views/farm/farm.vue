@@ -12,7 +12,7 @@
           <div class="info-item important">
             <div class="key">{{$t('lang7')}}</div>
             <div class="value">
-              <div class="num">{{userInfoData.depositTotal}}</div>
+              <div class="num">{{userInfoData.lockAmount}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">Select</el-button>
+        <el-button :loading="false" class="btn confirm" @click="showDepositWithdraw=true">{{$t('lang42')}}</el-button>
       </div>
     </div>
     <div class="farm-content-2">
@@ -51,7 +51,7 @@
         </div>
         <div class="info-item">
           <div class="key">200% {{$t('lang14')}}</div>
-          <div class="value">{{userInfoData.enlargeTotal}}</div>
+          <div class="value">{{userInfoData.lockAmount}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang12')}}</div>
@@ -146,12 +146,21 @@ export default {
       const that = this
       doWithdraw().then(res=>{
         if(res.data.code == 0){
-
+          that.$message.success('提币成功')
         }
       })
     },
     async deposit(num){
       let that = this
+      let oneToken = sessionStorage.getItem('oneToken')
+      if(!oneToken){
+        that.$message.error('邀请人不存在')
+        return
+      }
+      if(num<10){
+        that.$message.error('质押不得少于10个TNS')
+        return
+      }
       let func = 'transfer(address,uint256)'
       let transnum = new BigNumber(num)
       transnum = transnum.times(Math.pow(10,6))
@@ -169,11 +178,13 @@ export default {
               amount:num,
               txhash:res.txid
             }
-            doDeposit(data).then(res=>{
-              if(res.data.code == 0){
-
-              }
-            })
+            setTimeout(function(){
+              doDeposit(data).then(res=>{
+                if(res.data.code == 0){
+                  that.$message.success('质押成功')
+                }
+              })
+            },5000)
           })
       })
     },
@@ -181,6 +192,9 @@ export default {
       let that = this
       userInfo().then(res=>{
         if(res.data.code==0){
+          if(res.data.data.notExtractedIncome>res.data.data.lockAmount){
+            res.data.data.notExtractedIncome = res.data.data.lockAmount
+          }
           that.userInfoData = res.data.data
         }
       })

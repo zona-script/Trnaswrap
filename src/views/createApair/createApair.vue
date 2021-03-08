@@ -13,9 +13,8 @@
       <div class="pannel-info pd">
         <div class="headline mt50">{{$t('pool.cj1')}}</div>
         <p class="desc mt50">
-          {{$t('pool.yat')}}
+          {{$t('pool.yat')}},
           {{$t('pool.tro')}}
-          {{$t('pool.tro1')}}
           {{$t('pool.tro2')}}
         </p>
         <div class="form-view">
