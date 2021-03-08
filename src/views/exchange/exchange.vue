@@ -560,6 +560,7 @@ export default {
         window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
           that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
           that.showAlert1 = true
+          // that.doClaimFactoryFund()
           getConfirmedTransaction(res.txid).then((e) => {
             if (e.result == 'FAILED') {
               that.$message.error(window.tronWeb.toAscii(e.contractResult[0]))
@@ -582,6 +583,15 @@ export default {
         console.log(err)
         that.submitInit()
       })
+    },
+    async doClaimFactoryFund(){
+      var functionSelector = 'claimFactoryFund()'
+      const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(this.pair.address, functionSelector, {}, [])
+      window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
+        window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
+          console.log(res)
+        })
+      })  
     }
   },
   mounted() {
