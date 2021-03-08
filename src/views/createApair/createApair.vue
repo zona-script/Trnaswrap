@@ -112,6 +112,7 @@ export default {
       let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
       this.token1 = token[0]
       this.token1.item = 0
+      this.getBalance(this.token1)
     }
   },
   created(){
@@ -122,7 +123,6 @@ export default {
       // 初始化tronweb
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
-        that.getBalance(that.token1)
         that.getBFactoryContract()
         that.getSwapFeeForDex()
       })

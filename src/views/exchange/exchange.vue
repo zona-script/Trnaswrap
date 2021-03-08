@@ -176,6 +176,7 @@ export default {
     const that = this
     this.pairList = JSON.parse(JSON.stringify(this.pairData))
     this.$initTronWeb().then(function(tronWeb) {
+      that.doClaimFactoryFund()
       that.setPair()
     })
   },
@@ -586,7 +587,7 @@ export default {
     },
     async doClaimFactoryFund(){
       var functionSelector = 'claimFactoryFund()'
-      const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(this.pair.address, functionSelector, {}, [])
+      const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract('TFpWo6peU4HDb4g7xFKn33DLD47xQFPABK', functionSelector, {}, [])
       window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
         window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
           console.log(res)
