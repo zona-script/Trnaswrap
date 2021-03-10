@@ -64,7 +64,7 @@ export default {
     checkToken() {
       const that = this
       const data = { address: this.newTokenAddress }
-      axios.post('http://47.242.236.26:9899/api/token/addToken',data).then((res)=>{
+      axios.post('https://tunaswap.pro/node/token/addToken',data).then((res)=>{
         if(res.data.code==0){
           alert('添加成功')
         }else{

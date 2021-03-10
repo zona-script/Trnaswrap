@@ -80,7 +80,7 @@
           </div> -->
         </div>
         <div class="btn-container">
-          <el-button :loading="false" class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button>
+          <!-- <el-button :loading="false" class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button> -->
           <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>

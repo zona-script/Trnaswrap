@@ -10,27 +10,13 @@
           <!-- <el-button :loading="false" class="btn confirm">See The Menu</el-button> -->
         </div>
         <div class="banner-info-con">
-          <div class="banner-info">
+          <div class="banner-info" v-for="(item,index) in homeInfoData" :key="index">
             <div class="icon-container balance"></div>
             <div class="context">
-              <div class="main-title">{{tnsBalance}}</div>
-              <div class="subtitle">{{$t('lang2')}}</div>
+              <div class="main-title">{{item.totalFunds}}</div>
+              <div class="subtitle">{{item.name}}</div>
             </div>
-          </div>
-          <div class="banner-info">
-            <div class="icon-container supply"></div>
-            <div class="context">
-              <div class="main-title">{{tnsTotal}}</div>
-              <div class="subtitle">{{$t('lang3')}}</div>
-            </div>
-          </div>
-          <!-- <div class="banner-info">
-            <div class="icon-container staked"></div>
-            <div class="context">
-              <div class="main-title">{{tnsTotalStaked}}</div>
-              <div class="subtitle">Total Staked</div>
-            </div>
-          </div> -->
+          </div>    
         </div>
       </div>
     </div>
@@ -116,7 +102,7 @@
 </template>
 
 <script>
-import { getTnsPrice,joinConnection} from '@/api/api'
+import { getTnsPrice,getPools} from '@/api/api'
 import ipConfig from '../../config/contracts'
 import axios from 'axios'
 export default {
@@ -128,7 +114,8 @@ export default {
       tnsBalance:0,
       tnsTotal:0,
       tnsTotalStaked:0,
-      pairsData:[]
+      pairsData:[],
+      homeInfoData:null
     }
   },
   filters: {
@@ -162,7 +149,7 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getTnsContract()
-        that.joinClub()
+        // that.joinClub()
       })
     },
     toExchange(item){
@@ -181,16 +168,12 @@ export default {
         }
       })
     },
-    joinClub() {
+    getPool(){
       let that = this
-      let params = {
-        address: window.tronWeb.defaultAddress.base58,
-        invitedAddress: ''
-      }
-      joinConnection(params).then(result => {
-        if (result.data.code == 0) {
-          sessionStorage.setItem('oneToken',result.data.data.token)
-        } 
+      getPools().then(res=>{
+        if(res.data.code==0){
+          that.homeInfoData = res.data.data
+        }
       })
     },
     async getTnsContract() { // 链接tusdt合约
@@ -219,7 +202,7 @@ export default {
       }
     },
     async getVolPrice24() { 
-      let res = await axios.get('http://47.242.236.26:9899/api/trade/getTradingVolume')
+      let res = await axios.get('https://tunaswap.pro/node/trade/getTradingVolume')
       if(res.data.code==0){
         this.pairsData = res.data.data
       }
@@ -237,6 +220,7 @@ export default {
     this.init()
     this.getVolPrice24()
     this.getPrice()
+    this.getPool()
   }
 }
 </script>

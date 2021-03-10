@@ -2,7 +2,7 @@
  * 合约地址
  */
 let ipConfig = {}
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'development') {
   ipConfig = {
     TnsAddress:'TY4qtw3j3R7NqsysEx4ZhGS5oSVNgiMhYk',
     UsdtAddress:'TBen279FEKKSd6RF2jiLWQdqnCzyTCak9a',
@@ -14,13 +14,13 @@ if (process.env.NODE_ENV === 'development') {
   }
 } else {
   ipConfig = {
-    TnsAddress:'TY4qtw3j3R7NqsysEx4ZhGS5oSVNgiMhYk',
-    UsdtAddress:'',
-    TusdtAddress: 'TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR',
-    BFactory: 'TXU7bsdPKp8KdgPDTtf2VdAvZmGjFs5Wt8',
-    MasterChef: 'TPfeyfwWHeVyFmDPbHSfKw7cbXXABL5vzP',
-    FactoryManager: 'TF8f1TFd72WWysLchSHSR2L1DTc5gAXuXZ',
-    RewardToken: 'TUMZX3VRgN651CY4f4CNsi5SvTkTSqVuu5'
+    TnsAddress:'TZ9T4v6gwcLb4tk1M9hdU6rdhYvnEriEbY',
+    UsdtAddress:'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+    TusdtAddress: 'TNJ1LXrBKfN82fCRnptBjjwo5hXd5GB6eE',
+    BFactory: 'TUiTwoVhn3YvesC1tFbAxxj6NvSmd7MXFR',
+    MasterChef: 'TAAB8zcMWCCSfLpAZSox9rSN6nSzLcQXG5',
+    FactoryManager: 'THBgKxkcTHvzao4b4Q7XyE6FfSwumMHzzG',
+    RewardToken: 'TZAG1SE4B9LGLWmSeWFrZB3HSFz2jFCFny'
   }
 }
 export default ipConfig

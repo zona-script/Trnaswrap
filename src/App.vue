@@ -12,6 +12,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { TokenData, PairData } from './utils/index'
+import { joinConnection} from '@/api/api'
 export default {
   name: 'App',
   created(){
@@ -30,6 +31,19 @@ export default {
     async init() {
       this.$initTronWeb().then((tronWeb) => {
         this.connectWallett()
+        this.joinClub()
+      })
+    },
+    joinClub() {
+      let that = this
+      let params = {
+        address: window.tronWeb.defaultAddress.base58,
+        invitedAddress: ''
+      }
+      joinConnection(params).then(result => {
+        if (result.data.code == 0) {
+          sessionStorage.setItem('oneToken',result.data.data.token)
+        } 
       })
     },
     // 适应PC端函数，设置fontsize:75px;

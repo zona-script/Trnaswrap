@@ -143,7 +143,7 @@ export default {
     trxNum(value) {
       this.trxNum = this.inputType(this.trxNum)
       if (value != '') {
-        if (value <= parseInt(this.trxBalance)) {
+        if (parseFloat(value) <= parseFloat(this.trxBalance)) {
           this.btnDisabled1 = false
           return
         }
@@ -155,7 +155,7 @@ export default {
     wtrxNum(value) {
       this.wtrxNum = this.inputType(this.wtrxNum)
       if (value != '') {
-        if (value <= parseInt(this.wtrxBalance)) {
+        if (parseFloat(value) <= parseFloat(this.wtrxBalance)) {
           this.btnDisabled2 = false
           return
         }
@@ -186,7 +186,7 @@ export default {
       const that = this
       try {
         const res = await that.usdtContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
-        that.trxBalance = res/Math.pow(10,8)
+        that.trxBalance = res/Math.pow(10,6)
         if(that.trxBalance>0){
           that.inputdisabled1 = false
         }
@@ -210,7 +210,7 @@ export default {
       const that = this
       try {
         const res = await that.wtrxContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
-        that.wtrxBalance = res/Math.pow(10,8)
+        that.wtrxBalance = res/Math.pow(10,6)
         this.inputdisabled1 = false
         this.inputdisabled2 = false
       } catch (error) {
@@ -221,7 +221,7 @@ export default {
       const that = this
       this.loading1(1)
         let trxNum = new BigNumber(that.trxNum)
-        trxNum = trxNum.times(Math.pow(10,8))
+        trxNum = trxNum.times(Math.pow(10,6))
         const functionSelector = 'deposit(address,uint256)'
         const options = {}
         const parameter = [
@@ -247,7 +247,13 @@ export default {
       that.loading1(1)
       allowance(ipConfig.UsdtAddress, ipConfig.TusdtAddress).then((res) => {
         if (res) {
-          that.approveUsdtBalance = parseInt(res._hex ? res._hex : res.constant_result[0], 16)
+          if(res._hex){
+            that.approveUsdtBalance = parseInt(res._hex,16)
+          }else if(res.constant_result){
+            that.approveUsdtBalance = parseInt(res.constant_result[0],16)
+          }else if(res.remaining){
+            that.approveUsdtBalance = parseInt(res.remaining._hex,16)
+          }
           if (that.approveUsdtBalance == 0) {
             approved(ipConfig.UsdtAddress, ipConfig.TusdtAddress).then(res => {
               that.changeWtrx()
@@ -302,7 +308,7 @@ export default {
       const options = {}
       that.loading2(1)
       let wtrxNum = new BigNumber(this.wtrxNum) 
-      wtrxNum = wtrxNum.times(Math.pow(10,8))
+      wtrxNum = wtrxNum.times(Math.pow(10,6))
       const parameter = [{ type: 'uint256', value: wtrxNum.toFixed() }]
       try {
         const transaction = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TusdtAddress, functionSelector, options, parameter)

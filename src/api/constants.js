@@ -1,10 +1,10 @@
 import axios from 'axios'
 const qs = require('qs')
 const server = {
-  // development: 'https://tunaswap.pro/',
-  // production: 'https://tunaswap.pro/'
-  development: 'http://47.242.236.26:8010/',
-  production: 'http://47.242.236.26:8010/'
+  development: 'https://tunaswap.pro/',
+  production: 'https://tunaswap.pro/'
+  // development: 'http://47.242.236.26:8010/',
+  // production: 'http://47.242.236.26:8010/'
 }
 
 const jsonUrl = (json) => {

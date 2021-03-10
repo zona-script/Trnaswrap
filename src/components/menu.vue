@@ -67,6 +67,11 @@ export default {
             name: this.$t('lang31'),
             text: this.$t('lang31'),
             url: '/farm'
+          },
+          {
+            name: this.$t('lang15'),
+            text: this.$t('lang15'),
+            url: '/invite'
           }]
     }
   },

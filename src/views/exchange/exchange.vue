@@ -176,7 +176,7 @@ export default {
     const that = this
     this.pairList = JSON.parse(JSON.stringify(this.pairData))
     this.$initTronWeb().then(function(tronWeb) {
-      that.doClaimFactoryFund()
+      // that.doClaimFactoryFund()
       that.setPair()
     })
   },
@@ -559,23 +559,14 @@ export default {
       if (!transaction.result || !transaction.result.result) { return console.error('Unknown error: ' + transaction, null, 2) }
       window.tronWeb.trx.sign(transaction.transaction).then(function(signedTransaction) {
         window.tronWeb.trx.sendRawTransaction(signedTransaction).then(function(res) {
-          that.typeUrl = 'https://shasta.tronscan.org/#/transaction/' + signedTransaction.txID
+          that.typeUrl = 'https://tronscan.org/#/transaction/' + signedTransaction.txID
           that.showAlert1 = true
-          // that.doClaimFactoryFund()
-          getConfirmedTransaction(res.txid).then((e) => {
-            if (e.result == 'FAILED') {
-              that.$message.error(window.tronWeb.toAscii(e.contractResult[0]))
-            }
-            // that.$message.success(that.$t('aut'));
-            that.token1Num = 0
+          that.$message.success('交易成功，等待区块确认')
+          that.token1Num = 0
             that.token2Num = 0
             that.getBalance(that.token1)
             that.getBalance(that.token2)
             that.submitInit()
-          }).catch((err) => {
-            console.log(err)
-            that.submitInit()
-          })
         }).catch((err) => {
           console.log(err)
           that.submitInit()

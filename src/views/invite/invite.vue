@@ -7,7 +7,7 @@
         <div class="banner-desc-container">
           <div class="banner-logo"></div>
           <div class="banner-desc">{{$t('lang1')}}</div>
-          <div class="banner-info">
+          <!-- <div class="banner-info">
             <div class="start">
               <img class="exchange-img fir" :src="require('@/themes/images/common/token_02_2x.png')" alt=""/>
               <div class="txt-container">
@@ -23,7 +23,7 @@
                 <div class="unit">USDT</div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

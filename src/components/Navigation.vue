@@ -27,29 +27,34 @@ export default {
     let self = this
     return {
       navList: [{
-            name: 'home',
+            name: this.$t('nav.home1'),
             text: this.$t('nav.home1'),
             url: '/home'
           },
           {
-            name: 'exchange',
+            name: this.$t('nav.Exchange'),
             text: this.$t('nav.Exchange'),
             url: '/exchange'
           },
           {
-            name: 'pool',
+            name: this.$t('nav.Pool'),
             text: this.$t('nav.Pool'),
             url: '/pool'
           },
           {
-            name: 'convert',
+            name: this.$t('lang30'),
             text: this.$t('lang30'),
             url: '/convert'
           },
           {
-            name: 'farm',
+            name: this.$t('lang31'),
             text: this.$t('lang31'),
             url: '/farm'
+          },
+          {
+            name: this.$t('lang15'),
+            text: this.$t('lang15'),
+            url: '/invite'
           }],
       actIndex: 'home',
       width: 91,

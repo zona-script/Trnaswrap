@@ -53,4 +53,10 @@ export function doWithdraw(params){
 export function userInfo(params){
   return fet('api/info', params, 'post')
 }
+
+
+//映射
+export function importDeposit(params){
+  return fet('api/importDeposit', params, 'post')
+}
 export { api }

@@ -116,7 +116,12 @@ export default {
     }
   },
   created(){
-
+    let tokenList = JSON.parse(JSON.stringify(this.tokenData))
+    if(tokenList){
+      let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
+      this.token1 = token[0]
+      this.token1.item = 0
+    }
   },
   methods: {
     init() {
@@ -125,7 +130,11 @@ export default {
       this.$initTronWeb().then(function(tronWeb) {
         that.getBFactoryContract()
         that.getSwapFeeForDex()
+        that.getBalance(that.token1)
       })
+    },
+    getTusd(){
+
     },
     async getBFactoryContract() {
       // 链接BFactory合约

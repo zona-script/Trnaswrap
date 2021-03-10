@@ -116,31 +116,32 @@ export default {
       const that = this
       try {
         const res = await that.tnsContract['balanceOf'](window.tronWeb.defaultAddress.base58).call()
-        that.tnsBalance = res/Math.pow(10,6)
+        that.tnsBalance = res/Math.pow(10,8)
       } catch (error) {
         console.log(error)
       }
     },
     toDeposit(num){
       const that = this
-      allowance(ipConfig.TnsAddress, ipConfig.TnsAddress).then((res) => {
-        if (res) {
-          if(res._hex){
-            that.approveTnsBalance = parseInt(res._hex,16)
-          }else if(res.constant_result){
-            that.approveTnsBalance = parseInt(res.constant_result[0],16)
-          }else if(res.remaining){
-            that.approveTnsBalance = parseInt(res.remaining._hex,16)
-          }
-          if (that.approveTnsBalance == 0) {
-            approved(ipConfig.TnsAddress, ipConfig.TnsAddress).then(res => {
-              that.deposit(num)
-            })
-          } else {
-            that.deposit(num)
-          }
-        }
-      })
+      that.deposit(num)
+      // allowance(ipConfig.TnsAddress, ipConfig.TnsAddress).then((res) => {
+      //   if (res) {
+      //     if(res._hex){
+      //       that.approveTnsBalance = parseInt(res._hex,16)
+      //     }else if(res.constant_result){
+      //       that.approveTnsBalance = parseInt(res.constant_result[0],16)
+      //     }else if(res.remaining){
+      //       that.approveTnsBalance = parseInt(res.remaining._hex,16)
+      //     }
+      //     if (that.approveTnsBalance == 0) {
+      //       approved(ipConfig.TnsAddress, ipConfig.TnsAddress).then(res => {
+      //         that.deposit(num)
+      //       })
+      //     } else {
+      //       that.deposit(num)
+      //     }
+      //   }
+      // })
     },
     toWithdraw(){
       const that = this
@@ -165,7 +166,7 @@ export default {
       let transnum = new BigNumber(num)
       transnum = transnum.times(Math.pow(10,6))
       let params = [
-        {'type':'address','value':'TA6mdQTHYA6orGU2Wj97BXDThHjntCwXE4'},
+        {'type':'address','value':'TFqLnkNhMM95wCHmZJ2aaCT2XLBX4ctRsc'},
         {'type':'uint256','value':transnum.toFixed()}
       ]
       let transfer = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TnsAddress,func, {},params)
@@ -182,6 +183,8 @@ export default {
               doDeposit(data).then(res=>{
                 if(res.data.code == 0){
                   that.$message.success('质押成功')
+                }else{
+                  that.$message.success('质押失败')
                 }
               })
             },5000)

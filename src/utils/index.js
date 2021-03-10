@@ -6,7 +6,7 @@ import axios from 'axios'
 /* eslint-disable */
 export const TokenData = function(){
   return new Promise(function (resolve, reject) {
-    axios.get('http://47.242.236.26:9899/api/token/getToken').then((res)=>{
+    axios.get('https://tunaswap.pro/node/token/getToken').then((res)=>{
         if(res.data.code==0){
           resolve(res.data.data)
         }else{
@@ -24,7 +24,7 @@ export const TokenData = function(){
 }
 export const PairData = function(){
   return new Promise(function (resolve, reject) {
-    axios.get('http://47.242.236.26:9899/api/token/getPair').then((res)=>{
+    axios.get('https://tunaswap.pro/node/token/getPair').then((res)=>{
         if(res.data.code==0){
           resolve(res.data.data)
         }else{
