@@ -148,6 +148,8 @@ export default {
       doWithdraw().then(res=>{
         if(res.data.code == 0){
           that.$message.success('提币成功')
+        }else{
+          that.$message.error(res.data.msg)
         }
       })
     },
@@ -164,7 +166,7 @@ export default {
       }
       let func = 'transfer(address,uint256)'
       let transnum = new BigNumber(num)
-      transnum = transnum.times(Math.pow(10,6))
+      transnum = transnum.times(Math.pow(10,8))
       let params = [
         {'type':'address','value':'TFqLnkNhMM95wCHmZJ2aaCT2XLBX4ctRsc'},
         {'type':'uint256','value':transnum.toFixed()}

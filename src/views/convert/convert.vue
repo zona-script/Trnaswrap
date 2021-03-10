@@ -52,7 +52,7 @@
               </div>
               <div class="num">{{trxNum?trxNum:'0'}}</div>
             </div>
-            <el-button  :loading="btnLoading1" :disabled="btnDisabled1" @click="getUsdtAllowance" class="btn create mt50">Confirm</el-button>
+            <el-button  :loading="btnLoading1" :disabled="btnDisabled1" @click="getUsdtAllowance" class="btn create mt50">{{$t('confirm')}}</el-button>
           </div>
           <div class="split"></div>
           <div class="convert-box convert-2" :class="assetMode ? '' : 'toggle'">
@@ -96,7 +96,7 @@
               </div>
               <div class="num">{{wtrxNum?wtrxNum:0}}</div>
             </div>
-            <el-button class="btn create mt50" :loading="btnLoading2" :disabled="btnDisabled2" @click="changeTrx">Confirm</el-button>
+            <el-button class="btn create mt50" :loading="btnLoading2" :disabled="btnDisabled2" @click="changeTrx">{{$t('confirm')}}</el-button>
           </div>
         </div>
       </div>

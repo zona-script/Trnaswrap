@@ -43,6 +43,8 @@ export default {
       joinConnection(params).then(result => {
         if (result.data.code == 0) {
           sessionStorage.setItem('oneToken',result.data.data.token)
+        }else{
+          sessionStorage.setItem('oneToken',null)
         } 
       })
     },

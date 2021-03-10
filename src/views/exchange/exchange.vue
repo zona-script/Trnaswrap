@@ -71,8 +71,8 @@
               </div>
             </div>
           </div>
-          <el-button v-show="isApproved" :loading="btnLoading2" :disabled="btnLoading2" @click="doApprove" class="btn confirm mt50">Approve</el-button>
-          <el-button  :loading="btnLoading1" :disabled="tobtnDisabled()" @click="doswap" class="btn confirm mt50">Supply</el-button>
+          <el-button v-show="isApproved" :loading="btnLoading2" :disabled="btnLoading2" @click="doApprove" class="btn confirm mt50">{{$t('Stake.Approve')}}</el-button>
+          <el-button  :loading="btnLoading1" :disabled="tobtnDisabled()" @click="doswap" class="btn confirm mt50">{{$t('Supply')}}</el-button>
         </div>
         <div class="pos-con" v-if="JSON.stringify(token1) != '{}' || JSON.stringify(token2) != '{}'" style="box-shadow: 0 0.133333rem 0.266667rem 0 rgb(0 0 0 / 10%);border-radius: 9px;background: #fff;margin-top:20px;">
           <div class="tab-container">
