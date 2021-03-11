@@ -137,6 +137,10 @@ export default {
       this.$emit('back');
     },
     deposit() {
+if(this.depostNum>this.tnsBalance){
+        this.$message.error('TNS余额不足')
+        return
+      }
       this.close();
       this.$emit('deposit',this.depostNum);
     },

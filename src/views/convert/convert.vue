@@ -23,7 +23,6 @@
               <div class="form-view-item clearfix mt">
                 <div class="form-view-item-top">
                   <div class="max-num">
-                    <span class="max-wrap" @click="trxNum = trxBalance">MAX</span>
                     <div class="input-wrap">
                       <input class="num"
                          type="number" 
@@ -67,7 +66,6 @@
               <div class="form-view-item clearfix mt">
                 <div class="form-view-item-top">
                   <div class="max-num">
-                    <span class="max-wrap" @click="wtrxNum = wtrxBalance">MAX</span>
                     <div class="input-wrap">
                       <input class="num"
                          type="number" 

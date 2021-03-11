@@ -38,7 +38,6 @@
                   </div>
                 </div>
                 <div class="max-num">
-                  <span class="max-wrap" @click="token1Num = token1.balance">MAX</span>
                   <div class="input-wrap">
                     <input class="num" v-model="token1Num" @input="calcShare" />
                   </div>
@@ -65,7 +64,6 @@
                   </div>
                 </div>
                 <div class="max-num">
-                  <span class="max-wrap" @click="token2Num = token2.balance">MAX</span>
                   <div class="input-wrap">
                     <input class="num" v-model="token2Num" @input="calcToken1Num" />
                   </div>

@@ -69,7 +69,7 @@
 import BigNumber from 'bignumber.js'
 import ipConfig from '../../config/contracts'
 import { approved, allowance, getConfirmedTransaction } from '../../utils/tronwebFn'
-import { getPools,doDeposit,userInfo,doWithdraw } from '@/api/api'
+import { getPools,doDeposit,userInfo,doWithdraw,getInvitedAddress } from '@/api/api'
 export default {
   name: 'Farm',
   data() {
@@ -123,7 +123,16 @@ export default {
     },
     toDeposit(num){
       const that = this
-      that.deposit(num)
+      getInvitedAddress().then(result => {
+          if (result.data.code == 0) {
+            if (result.data.data) {
+              that.deposit(num)
+            } else {
+              that.$message.error('邀请人不存在')
+            }
+          }
+        })
+      
       // allowance(ipConfig.TnsAddress, ipConfig.TnsAddress).then((res) => {
       //   if (res) {
       //     if(res._hex){

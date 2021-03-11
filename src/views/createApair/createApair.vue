@@ -31,7 +31,6 @@
                 </div>
               </div>
               <div class="max-num">
-                <span class="max-wrap" @click="getMaxBalance(0)">MAX</span>
                 <div class="input-wrap"><input type="number" class="num" v-model="firstTokenNum" /></div>
               </div>
             </div>
@@ -59,7 +58,6 @@
                 </div>
               </div>
               <div class="max-num">
-                <span class="max-wrap" @click="getMaxBalance(1)">MAX</span>
                 <div class="input-wrap"><input class="num" v-model="secondTokenNum" /></div>
               </div>
             </div>

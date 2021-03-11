@@ -66,9 +66,11 @@ export default {
       const data = { address: this.newTokenAddress }
       axios.post('https://tunaswap.pro/node/token/addToken',data).then((res)=>{
         if(res.data.code==0){
-          alert('添加成功')
+          that.$message.success('添加成功')
+        }else if(res.data.code==10001){
+          that.$message.error('该币种已存在')
         }else{
-          alert('添加失败')
+          that.$message.error('添加失败')
         }
       })
     },

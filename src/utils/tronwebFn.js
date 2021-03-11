@@ -58,7 +58,7 @@ const approved = (coinAddress, contractAddress) => { // 授权
   return new Promise(function(resolve, reject) {
     try {
       window.tronWeb.contract().at(coinAddress).then((Contract) => {
-        Contract['approve'](contractAddress, '100000000000000000000000000').send({ shouldPollResponse: true }).then((res) => {
+        Contract['approve'](contractAddress, '100000000000000000000000000').send({ shouldPollResponse: false }).then((res) => {
           if (res) {
             resolve(res)
           }
