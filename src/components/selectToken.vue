@@ -3,8 +3,8 @@
     <div class="mantle"></div>
     <div class="dialog-pannel">
       <h3 class="title"><span class="close" @click="close"></span>{{$t('Exc.sat')}}</h3>
-      <div class="add-btn" @click="checkToken">+</div>
-      <div class="input-warp">
+      <div class="add-btn" v-show="false" @click="checkToken">+</div>
+      <div class="input-warp" v-show="false">
         <input type="text" :placeholder="$t('lang33')" v-model="newTokenAddress" @change="change($event)" />
       </div>
       <div class="info-list-wrap mlr">

@@ -27,7 +27,7 @@ module.exports = {
     Vpcs: '视图对分析',
     Liyee: '手续费',
     Pre: '价格波动',
-    Mrd: '最低了',
+    Mrd: '最低获得',
     Mandate: '授权',
     per: '每',
     From: '从',
