@@ -439,7 +439,12 @@ export default {
         // console.log('token1spotPrice======='+this.token1spotPrice.toString())
         // this.maxPrice = Decimal(this.spotPrice).mul(1-this.tolerance).mul(this.token1Num).mul(Math.pow(10,this.token2.decimals)).toFixed(0)
         this.percentage = percentage.toFixed(2)
-        this.thisswapFee = (this.token1Num * this.swapFee).toFixed(6)
+        if(this.token1.name.toUpperCase()=='TUSD'){
+          this.thisswapFee = (this.token1Num * this.swapFee).toFixed(6)
+        }else{
+          this.thisswapFee = (this.token2Num * this.swapFee).toFixed(6)
+        }
+        
       }
     },
     getMinAmountOut() {
