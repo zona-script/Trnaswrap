@@ -54,14 +54,11 @@ const bPoolAllowance = (coinAddress, contractAddress) => { // BPool查询授权
     }
   })
 }
-// const Web3Utils = require('web3');
-// const MAX = Web3Utils.utils.toTwosComplement(-1);
 const approved = (coinAddress, contractAddress) => { // 授权
   return new Promise(function(resolve, reject) {
     try {
-      // console.log('MAX================'+MAX)
       window.tronWeb.contract().at(coinAddress).then((Contract) => {
-        Contract['approve'](contractAddress, '100000000000000000000000000').send({ shouldPollResponse: true }).then((res) => {
+        Contract['approve'](contractAddress, '100000000000000000000000000').send({ shouldPollResponse: false }).then((res) => {
           if (res) {
             resolve(res)
           }
@@ -154,6 +151,14 @@ const getTokenDenormalizedWeight = (coinAddress, contractAddress) => { // 获取
     })
   })
 }
+const plusXing = (str,frontLen,endLen) => { 
+  var len = str.length-frontLen-endLen;
+  var xing = '';
+  for (var i=0;i<len;i++) {
+    xing ='*******';
+  }
+  return str.substring(0,frontLen)+xing+str.substring(str.length-endLen);
+}
 export {
   approved,
   decimals,
@@ -163,6 +168,7 @@ export {
   getMyBalanceInPool,
   getLpBalanceInPool,
   bPoolAllowance,
-  getTokenDenormalizedWeight
+  getTokenDenormalizedWeight,
+  plusXing
 }
 export default initTronWeb

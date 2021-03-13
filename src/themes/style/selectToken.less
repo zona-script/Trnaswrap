@@ -1,0 +1,94 @@
+.dialog-wrap.select-token {
+  .dialog-pannel {
+    .info-list-wrap {
+      margin: 50px 30px 0 30px;
+      .info-item {
+        &.select {
+          background: #FFF0E6;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 750px) {
+  .dialog-wrap.select-token {
+    .dialog-pannel {
+      max-width: 400px;
+      min-height: 431px;
+      background: #ffffff;
+      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+      border-radius: 15px;
+      border: 1px solid #e8e8e8;
+      .title {
+        height: 60px;
+        padding: 0 30px 0 30px;
+        line-height: 60px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #323232;
+        .text {
+          font-size: 18px;
+          font-weight: bold;
+          color: #323232;
+        }
+        .img {
+          width: 14px;
+          height: 14px;
+        }
+      }
+      .add-btn {
+        width: 50px;
+        height: 50px;
+        margin: 30px 30px 0 0;
+        line-height: 50px;
+        background: linear-gradient(90deg, #ff9132 0%, #ff7834 100%);
+        border-radius: 10px;
+      }
+      .input-warp {
+        width: 270px;
+        height: 50px;
+        margin: 30px 0 0 30px;
+        background: #ffffff;
+        line-height: 50px;
+        border-radius: 10px;
+        border: 1px solid #e8e8e8;
+        input {
+          height: 48px;
+          vertical-align: top;
+        }
+      }
+      .info-list-wrap {
+        max-height: 270px;
+        margin: 20px 30px 0 30px;
+        .info-item {
+          height: 50px;
+          padding: 0 20px 0 20px;
+          line-height: 50px;
+          border-radius: 10px;
+          font-size: 16px;
+          font-weight: 500;
+          color: #323232;
+          .img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px 0 0;
+          }
+          &.select {
+            background: #FFF0E6;
+            &::after {
+              content: '';
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              color: #FF652B;
+              background: url(../images/dialog/select-icon.png) no-repeat center / contain;
+              width: 30px;
+              height: 30px;
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

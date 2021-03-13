@@ -1,28 +1,44 @@
 import Vue from 'vue'
 import { getTokenList, getPairList } from '../api/api'
+import axios from 'axios'
 // import tokenDataDev from './token'
 // import tokenProdData from './token.prod.js'
 /* eslint-disable */
 export const TokenData = function(){
   return new Promise(function (resolve, reject) {
-    getTokenList().then((res)=>{
-      if(res.data.code==0){
-        resolve(res.data.data)
-      }else{
-        resolve([])
-      }
+    axios.get('https://tunaswap.pro/node/token/getToken').then((res)=>{
+        if(res.data.code==0){
+          resolve(res.data.data)
+        }else{
+          resolve([])
+        }
     })
+    // getTokenList().then((res)=>{
+    //   if(res.data.code==0){
+    //     resolve(res.data.data)
+    //   }else{
+    //     resolve([])
+    //   }
+    // })
   })
 }
 export const PairData = function(){
   return new Promise(function (resolve, reject) {
-    getPairList().then((res)=>{
-      if(res.data.code==0){
-        resolve(res.data.data)
-      }else{
-        resolve([])
-      }
+    axios.get('https://tunaswap.pro/node/token/getPair').then((res)=>{
+        if(res.data.code==0){
+          resolve(res.data.data)
+        }else{
+          resolve([])
+        }
     })
+    // getPairList().then((res)=>{
+    //   console.log(res.data.data)
+    //   if(res.data.code==0){
+    //     resolve(res.data.data)
+    //   }else{
+    //     resolve([])
+    //   }
+    // })
   })
 }
 

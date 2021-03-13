@@ -1,144 +1,289 @@
-.form-view{
-    text-align: left;
-   .mt{
-       margin-top: 50px;
-   }
-   &.bd{  
-        box-shadow: none;
-        border-radius: 15px;
-        border: 2px dashed #E8E8E8;
-        text-align: center;
-        .droplist{
-            width: 40%;
-            .drop-head-text{
-                text-indent: 10%;
-            }
-            .dorp-content{
-                .dorp-content-item{
-                    text-indent: 10%;
-                }
-            }
+.form-view {
+  text-align: left;
+  .mt {
+    margin-top: 50px;
+  }
+  &.bd {
+    box-shadow: none;
+    border-radius: 15px;
+    border: 2px dashed #e8e8e8;
+    text-align: center;
+    .droplist {
+      width: 40%;
+      .drop-head-text {
+        text-indent: 10%;
+      }
+      .dorp-content {
+        .dorp-content-item {
+          text-indent: 10%;
         }
-   }
-   .droplist{
-       display: inline-block;
-       width: 32%;
-       height: 68px;
-       background: #FFFFFF;
-       position: relative;
-       vertical-align: middle;
-       .drop-head{
-           height: 100%; 
-           box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-           border-radius: 15px;
-           border: 1px solid #E8E8E8;
-           vertical-align: middle;
-           &.noborde{
-                border: none;
-                box-shadow: none;
-            }
+      }
+    }
+  }
+
+  .form-view-item-top {
+    overflow: hidden;
+  }
+  .btn-icon {
+  }
+  .droplist {
+    float: right;
+    display: inline-block;
+    width: 32%;
+    height: 68px;
+    background: #ffffff;
+    position: relative;
+    vertical-align: middle;
+    .drop-head {
+      height: 100%;
+      // box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      border: 1px solid #e8e8e8;
+      vertical-align: middle;
+      &.noborde {
+        border: none;
+        box-shadow: none;
+      }
+    }
+    .img {
+      display: inline-block;
+      width: 41px;
+      height: 41px;
+      vertical-align: top;
+      margin: 12px 10px auto 20px;
+      margin-right: 10px;
+    }
+    .arrow {
+      width: 0;
+      height: 0;
+      float: right;
+      margin-top: 29.5px;
+      margin-right: 20px;
+      &.down {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 9px solid#323232;
+      }
+    }
+    .drop-head-text {
+      display: inline-block;
+      vertical-align: top;
+      line-height: 68px;
+      color: #323232;
+      font-size: 24px;
+      overflow: hidden;
+    }
+    .dorp-content {
+      position: absolute;
+      position: absolute;
+      left: 0;
+      right: 0;
+      box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      border: 1px solid #e8e8e8;
+      z-index: 1;
+      background-color: #fff;
+      color: #323232;
+      font-size: 24px;
+      line-height: 68px;
+      .dorp-content-item {
+        width: 80%;
+        text-indent: 30%;
+      }
+    }
+  }
+  .price-text {
+    font-weight: 400;
+    color: #313131;
+    line-height: 68px;
+    font-size: 28px;
+    float: right;
+    margin-right: 20px;
+  }
+  .max-num {
+    display: inline-block;
+    width: 66%;
+    background: #ffffff;
+    // box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 1px solid #e8e8e8;
+    height: 68px;
+    vertical-align: middle;
+    .input-wrap {
+      height: 64px;
+      margin-left: 20px;
+      display: block;
+      overflow: hidden;
+      input {
+        border: none;
+        height: 60px;
+        font-size: 34px;
+        font-family: Alibaba Sans Medium;
+        font-weight: 500;
+        width: 98%;
+        margin-top: 1px;
+        background-color: transparent;
+      }
+      input:focus {
+        outline: none;
+      }
+    }
+    .max-wrap {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      float: right;
+      height: 32px;
+      margin: 0 20px 0 0;
+      line-height: 32px;
+      text-align: center;
+      background-color: #fff0e6;
+      min-width: 80px;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 15px;
+      font-weight: 400;
+    }
+  }
+  .balance-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    
+    margin-top: 16px;
+    overflow: hidden;
+    line-height: 60px;
+    .num {
+      float: right;
+      margin-right: 20px;
+      color: #313131;
+      font-size: 26.91px;
+    }
+    .img {
+      background: url(../images/common/wallet.jpg) no-repeat left top;
+      width: 18px;
+      height: 17px;
+      display: inline-block;
+      margin-right: 8px;
+    }
+    .balance {
+      margin-left: 20px;
+      overflow: hidden;
+      line-height: 60px;
+    }
+    .balance-text {
+      font-family: AlibabaSans-Regular, AlibabaSans;
+      font-weight: 400;
+      color: #999999;
+      line-height: 34px;
+      font-size: 22px;
+    }
+  }
+  .btn-icon-wrap {
+    display: none;
+    font-size: 0;
+  }
+}
+@media screen and (min-width: 750px) {
+  .form-view {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .droplist{
+       .img{
+         width: 31px;
+         height: 31px;
+         margin-top: 9px;
        }
        .arrow{
-           width: 0;
-           height: 0;
-           float:right;
-           margin-top: 29.5px;
-           margin-right: 20px;
-           &.down{
-               border-left: 8px solid transparent;
-               border-right: 8px solid transparent;
-               border-top: 9px solid#323232;      
-           } 
+         margin-top: 20px;
+         &.down{
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 7px solid#323232;
+         }
        }
-       .drop-head-text{
-           text-indent: 30%;
-           display: block;
-           line-height: 68px;
-           color: #323232;
-           font-size: 24px;
-           overflow: hidden;
-       }
-       .dorp-content{
-           position: absolute;
-           position: absolute;
-           left: 0;
-           right: 0;
-           box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-           border-radius: 15px;
-           border: 1px solid #E8E8E8;
-           z-index: 1;
-           background-color: #fff;
-           color: #323232;
-           font-size: 24px;
-           line-height: 68px;
-           .dorp-content-item{
-               width: 80%;
-               text-indent: 30%;
-           }
-       }
-   }
-   .max-num{
-       display: inline-block;
-       width: 65%;
-       margin-right: 3%;
-       background: #FFFFFF;
-       box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-       border-radius: 15px;
-       border: 1px solid #E8E8E8;
-       height: 68px;
-       vertical-align: middle;
-       .num{
-           font-size: 34px;
-           font-family: Alibaba Sans Medium;
-           font-weight: 500;
-           line-height: 68px;
-           margin-left: 20px;
-           display: block;
-           overflow: hidden;
-       }
-       .max-wrap{
-           float: right;
-           height: 32px;
-           line-height: 32px;
-           text-align: center;
-           background-color: #FFF0E6;
-           min-width: 80px;
-           display: inline-block;
-           font-size: 18px;
-           border-radius: 15px;
-           margin-right: 20px;
-           margin-top: 18px;
-       }
-   }
-   .balance-wrap{
-       margin-top: 16px;
-       overflow: hidden;
-       line-height: 60px;
-       .num{
-           float: right;
-           margin-right: 20px;
-           color: #313131;
-           font-size: 26.91px;
-       }
-       .img{
-            background:url(../images/common/wallet.jpg) no-repeat left top;
-            width: 18px;
-            height: 17px;
-            display: inline-block;
-            margin-right:8px;
+      .drop-head{
+        border-radius: 10px;
+      }
+      .drop-head-text{
+        font-size: 14px;
+        line-height: 50px;
+      }
+    }  
+    .form-view-item {
+      width: 42%;
+      display: block;
+      .max-num {
+        margin-top: 30px;
+        height: 50px;
+        .input-wrap {
+          height: 50px;
+          input {
+            height: 48px;
+            margin: 0;
+            font-size: 18px;
+            line-height: 48px;
+          }
         }
-        .balance{
-            margin-left: 20px;
-            overflow: hidden;
-            line-height: 60px;
+        .max-wrap{
+          line-height: 22px;
+          height: 22px;
+          font-size: 12px;
+          min-width: 50px;
         }
-       .balance-text{  
-           font-family: AlibabaSans-Regular, AlibabaSans;
-           font-weight: 400;
-           color: #999999;
-           line-height: 34px;
-           font-size: 22px;
-           
-       }
-   }
+      }
+    }
+    .btn-icon-wrap {
+      display: block;
+      font-size: 56px;
+      color: #fff;
+      width: 16%;
+      position: relative;
+      margin-top: -20px;
+      .btn-icon {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background: linear-gradient(90deg, #ff9132 0%, #ff7834 100%);
+        border-radius: 49px;
+        margin: 0 auto;
+        text-align: center;
+        span{
+          display:block;
+          width:40px;
+          height:40px;
+          line-height:40px;
+          font-size:40px;
+        }
+      }
+    }
+    .form-view-item-top {
+      .droplist,
+      .max-num {
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+      }
+    }
+    .balance-wrap{
+      line-height: 18px;
+      .balance{
+        line-height: 18px;
+      }
+      .num{
+        font-size: 14px;
+        color: #323232;
+      }
+      .img{
+        width: 9px;
+        height: 8px;
+      }
+      .balance-text{
+        font-size: 12px;
+      }
+    }
+  }
 }
