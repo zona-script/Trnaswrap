@@ -6,6 +6,13 @@ import axios from 'axios'
 /* eslint-disable */
 export const TokenData = function(){
   return new Promise(function (resolve, reject) {
+    // axios.get('https://tunaswap.pro/node/token/getToken').then((res)=>{
+    //     if(res.data.code==0){
+    //       resolve(res.data.data)
+    //     }else{
+    //       resolve([])
+    //     }
+    // })
     axios.get('https://tunaswap.pro/node/token/getToken').then((res)=>{
         if(res.data.code==0){
           resolve(res.data.data)
@@ -13,17 +20,17 @@ export const TokenData = function(){
           resolve([])
         }
     })
-    // getTokenList().then((res)=>{
-    //   if(res.data.code==0){
-    //     resolve(res.data.data)
-    //   }else{
-    //     resolve([])
-    //   }
-    // })
   })
 }
 export const PairData = function(){
   return new Promise(function (resolve, reject) {
+    // axios.get('https://tunaswap.pro/node/token/getPair').then((res)=>{
+    //     if(res.data.code==0){
+    //       resolve(res.data.data)
+    //     }else{
+    //       resolve([])
+    //     }
+    // })
     axios.get('https://tunaswap.pro/node/token/getPair').then((res)=>{
         if(res.data.code==0){
           resolve(res.data.data)
@@ -31,14 +38,6 @@ export const PairData = function(){
           resolve([])
         }
     })
-    // getPairList().then((res)=>{
-    //   console.log(res.data.data)
-    //   if(res.data.code==0){
-    //     resolve(res.data.data)
-    //   }else{
-    //     resolve([])
-    //   }
-    // })
   })
 }
 

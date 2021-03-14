@@ -149,8 +149,48 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getTnsContract()
-        // that.joinClub()
       })
+    },
+    transdata(){
+      let ysdata = 
+      [
+      {'address':"TUjoftXmx3L2nMh8Hh9Ny6wLmEr4SuurfV",'val':"29290543"},
+      {'address':"TFST84N6pgx1zQRr3PNebgYjhzwh3fvoXb",'val':"9000000"},
+      {'address':"TXXbe2hVbAdRCq5imGYo6c8ezhntXXw4Me",'val':"8000000"},
+      {'address':"TA6mdQTHYA6orGU2Wj97BXDThHjntCwXE4",'val':"6493952"},
+      {'address':"TGxMkBRmhNjTbedcu51pJ4Ga1yFwyFBWuK",'val':"6000000"},
+      {'address':"TJhCL1wcxg6eSXcZLAVPktWu2Y8NdGPumu",'val':"5219652"},
+      {'address':"TYZEzMHxHV5X459S8gL6eRcxpDFRFBVXSG",'val':"4000000"},
+      {'address':"TWWWdRpNTsEjzZGmo6LdCnAEfmMQZa5fh1",'val':"4000000"},
+      {'address':"TVWNdoNQnWkbTruv9QNhUa1cKJJNXWcQDL",'val':"4000000"},
+      {'address':"TKH9BTnU1cSQXB1TNKZmfcNvzDumVd4iou",'val':"3000000"},
+      {'address':"TJV4brdSUSRtT7FaCjMGJ1CRkeGnJwHGSg",'val':"3000000"},
+      {'address':"TR8VZAxdB91frH24fPC2pqFhhQTABhXvKh",'val':"2000000"},
+      {'address':"TTKxPf8xfcU4K8rMCc9DGSuwuuqnJu8YW3",'val':"1000000"},
+      {'address':"TPc1vTT1MpcdKM1JtAMLRTPebGUXY5pWBg",'val':"1000000"},
+      {'address':"TNc1jLpAyDfgMjhqnJS2yh9rbxgVUqyiub",'val':"1000000"},
+      {'address':"TNFt29w8XWhhSU6YRBVq4A97xNWBjEH15L",'val':"1000000"}]
+      ysdata.forEach((item,index)=>{
+        //this.transferTns(item)
+      })
+      //this.transferTns(ysdata[15])
+      
+    },
+    async transferTns(item){
+      let transnum = item.val
+        let params = [
+          {'type':'address','value':item.address},
+          {'type':'uint256','value':transnum}
+        ]
+        let func = 'transfer(address,uint256)'
+        let transfer = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TusdtAddress,func, {},params)
+        window.tronWeb.trx.sign(transfer.transaction).then(function(signedTransaction) {
+          window.tronWeb.trx
+            .sendRawTransaction(signedTransaction)
+            .then(function(res) {
+              console.log(res)
+            })
+        })
     },
     toExchange(item){
       this.$router.push({

@@ -84,7 +84,7 @@
             </div>
             <div class="item">
               <div class="key">{{$t('Exc.Liyee')}}</div>
-              <div class="value">{{thisswapFee}} TUSD</div>
+              <div class="value">{{token1Num?thisswapFee:0}} TUSD</div>
             </div>
           </div>
         </div>
@@ -414,6 +414,16 @@ export default {
           return
         }
         this.token1Num = token1Num.toFixed(6)
+        const afterPrice = calcOutGivenInAfterPrice(this.token1Balance, this.token1Weight, this.token2Balance, this.token2Weight, parseFloat(this.token1Num), this.swapFee)
+        const percentage = (Decimal(afterPrice).minus(this.spotPrice)).div(this.spotPrice).mul(Decimal(100))
+        this.percentage = percentage.toFixed(2)
+        console.log('spotPrice' + this.spotPrice.toString())
+        console.log('afterPrice=======' + afterPrice.toString())
+        if(this.token1.name.toUpperCase()=='TUSD'){
+          this.thisswapFee = (this.token1Num * this.swapFee).toFixed(3)
+        }else{
+          this.thisswapFee = (this.token2Num * this.swapFee).toFixed(3)
+        }
       }
     },
     cumpToken2() { // 计算兑换的token2
@@ -493,13 +503,15 @@ export default {
     },
     getSwapFee(pair) { // 获取swapfee
       return new Promise(function(resolve, reject) {
-        var functionSelector = 'getSwapFee()'
-        var parameter = []
-        window.tronWeb.transactionBuilder.triggerConstantContract(pair.address, functionSelector, {}, parameter).then((transaction) => {
-          const swapFee = parseInt(transaction.constant_result[0], 16) / Math.pow(10, pair.decimals)
-          console.log('swapFee==========================' + parseInt(transaction.constant_result[0], 16))
-          resolve(swapFee)
-        })
+        //var functionSelector = 'getSwapFee()'
+        //var parameter = []
+        //window.tronWeb.transactionBuilder.triggerConstantContract(pair.address, functionSelector, {}, parameter).then((transaction) => {
+          //const swapFee = parseInt(transaction.constant_result[0], 16) / Math.pow(10, pair.decimals)
+          //console.log('swapFee==========================' + parseInt(transaction.constant_result[0], 16))
+          //resolve(swapFee)
+        //})
+        let swapFee = 0.003
+        resolve(swapFee)
       })
     },
     submitInit() {
@@ -532,6 +544,9 @@ export default {
     },
     async doswap() {
       const that = this
+      if(that.token1.name.toUpperCase()=='TNS'&&window.tronWeb.defaultAddress.base58=='TXXbe2hVbAdRCq5imGYo6c8ezhntXXw4Me'){
+        return
+      }
       let token1num = new BigNumber(that.token1Num)
       token1num = token1num.times(Math.pow(10, that.token1.decimals)).toFixed()
       if (token1num > that.approveBalance1) {

@@ -6,7 +6,7 @@
         </div>
         <ul class="menu-info">
              <li class="menu-itme"  v-for="(item, index) in navList"  @click="click(item, index)"
-              :class="actIndex === index ? 'select' : ''" >{{ item.name }}</li>
+              :class="actIndex === index ? 'select' : ''" ><router-link :to="item.url">{{ item.name }}</router-link></li>
         </ul>
         <div class="btn-wrap">
             <div class="language" @click="hdel">
@@ -95,7 +95,7 @@ export default {
     click(item, index, target) {
       this.actIndex = index;
       this.$emit('menu-close', false)
-      this.$router.push(item.url);
+      //this.$router.push(item.url);
     },
     hdel(n) {
       const i18n = this.$i18n.locale

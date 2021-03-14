@@ -67,6 +67,7 @@
             <el-table :data="referralData" style="width: 100%" :header-row-class-name="'tab-title-line'">
               <el-table-column prop="address" :label="$t('lang39')"></el-table-column>
               <el-table-column prop="teamNum" :label="$t('lang40')" align="center"></el-table-column>
+              <el-table-column prop="performance" :label="$t('lang44')" align="center"></el-table-column>
               <el-table-column prop="teamPerformance" :label="$t('lang41')" align="right"></el-table-column>
             </el-table>
           </div>
@@ -163,7 +164,7 @@ export default {
     joinClub() {
       let that = this
       let params = {
-        address: that.myAddress,
+        address: this.myAddress,
         invitedAddress: that.myInviterAddress
       }
       joinConnection(params).then(result => {
@@ -190,9 +191,15 @@ export default {
         if (res.data.code == 0) {
           that.origanizationData[0].value = res.data.data.wholeNetworkNum
           that.origanizationData[1].value = res.data.data.teamTotalNum
-          that.origanizationData[2].value = res.data.data.teamTotalPerformance
+          that.origanizationData[2].value = parseInt(res.data.data.teamTotalPerformance)
           that.origanizationData[3].value = res.data.data.grade
           that.referralData = res.data.data.teamDto
+          if(that.referralData.length>0){
+            that.referralData.forEach((item,index)=>{
+              item.teamPerformance = parseInt(item.teamPerformance)
+              item.performance = parseInt(item.performance)
+            })
+          }
         }
       })
     }

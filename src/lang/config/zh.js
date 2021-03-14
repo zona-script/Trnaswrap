@@ -288,5 +288,7 @@ module.exports = {
   lang39:'直推',
   lang40:'伙伴',
   lang41:'业绩',
-  lang42:'选择'
+  lang42:'选择',
+  lang43:'请输入兑换额度',
+  lang44:'个人业绩'
 }

@@ -8,7 +8,7 @@
           @click="click(item, index)"
           :class="actIndex === item.name ? 'active' : ''"
         >
-          {{ item.text }}
+          <router-link :to="item.url">{{ item.text }}</router-link>
         </div>
       </div>
       <!-- 留着做动画用 -->
@@ -68,7 +68,7 @@ export default {
   methods: {
     click(item, index, target) {
       this.actIndex = item.name;
-      this.$router.push(item.url);
+      //this.$router.push(item.url);
     }
   },
   mounted() {}

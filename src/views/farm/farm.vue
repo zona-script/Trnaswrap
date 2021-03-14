@@ -55,7 +55,7 @@
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang12')}}</div>
-          <div class="value">{{userInfoData.teamAmount+userInfoData.staticIncome}}</div>
+          <div class="value">{{(userInfoData.teamAmount+userInfoData.staticIncome).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang13')}}</div>
@@ -79,7 +79,8 @@ export default {
       tnsContract:null,
       tnsBalance:0,
       approveTnsBalance:0,
-      userInfoData:{}
+      userInfoData:{},
+      claimHasNum:0
     }
   },
   created(){
@@ -92,6 +93,7 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getTnsContract()
+        that.getClaimNum()
       })
     },
     collapseFunc() {
@@ -152,14 +154,31 @@ export default {
       //   }
       // })
     },
-    toWithdraw(){
+    async toWithdraw(){
       const that = this
-      doWithdraw().then(res=>{
-        if(res.data.code == 0){
-          that.$message.success('提币成功')
-        }else{
-          that.$message.error(res.data.msg)
-        }
+      let func = 'claim(uint256)'
+      let transnum = new BigNumber(this.claimHasNum)
+      let params = [
+        {'type':'uint256','value':transnum.toFixed()}
+      ]
+      let transfer = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TnsAddress,func, {},params)
+      window.tronWeb.trx.sign(transfer.transaction).then(function(signedTransaction) {
+        window.tronWeb.trx
+          .sendRawTransaction(signedTransaction)
+          .then(function(res) {
+            let data = {
+              txhash:res.txid
+            }
+            setTimeout(function(){
+              doWithdraw(data).then(res=>{
+                if(res.data.code == 0){
+                  that.$message.success('提取收益成功')
+                }else{
+                  that.$message.success('提取收益失败')
+                }
+              })
+            },5000)
+          })
       })
     },
     async deposit(num){
@@ -173,11 +192,10 @@ export default {
         that.$message.error('质押不得少于10个TNS')
         return
       }
-      let func = 'transfer(address,uint256)'
+      let func = 'pledge(uint256)'
       let transnum = new BigNumber(num)
       transnum = transnum.times(Math.pow(10,8))
       let params = [
-        {'type':'address','value':'TFqLnkNhMM95wCHmZJ2aaCT2XLBX4ctRsc'},
         {'type':'uint256','value':transnum.toFixed()}
       ]
       let transfer = await window.tronWeb.transactionBuilder.triggerSmartContract(ipConfig.TnsAddress,func, {},params)
@@ -211,6 +229,16 @@ export default {
           }
           that.userInfoData = res.data.data
         }
+      })
+    },
+    async getClaimNum(){
+      let that = this
+      window.tronWeb.contract().at(ipConfig.TnsAddress).then((Contract) => {
+        Contract['claimOf'](window.tronWeb.defaultAddress.base58).call().then((res) => {
+          if (res) {
+            that.claimHasNum = parseInt(res._hex,16)
+          }
+        })
       })
     }
   }  

@@ -18,7 +18,7 @@
         <!-- <a class="btn-link" href="#">Connect to a wallet</a> -->
       </div>
       <div class="pannel-info">
-        <div  v-for="(item,index) in pairList" :key="index" v-show="parseFloat(item.myBalanceInPool)>0">
+        <div  v-for="(item,index) in pairList" :key="index" v-show="parseFloat(item.myBalanceInPool)>0&&!isMainAddress">
           <div class="tb-head" @click="collapseFunc(item)">
             <span class="arrow down"></span>
             <div class="info-wrap">
@@ -72,7 +72,8 @@ export default {
       token2Balance: 0,
       myBalanceInPool: 0,
       lpTotal: 0,
-      share: 0
+      share: 0,
+      isMainAddress:false
     }
   },
   computed: {
@@ -97,6 +98,12 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getpairList()
+        let mainAddress='TG5vCSZB2UdVJqqZZXKnM7TtKPb8ZTsR7e'
+        if(mainAddress==tronWeb.defaultAddress.base58){
+          that.isMainAddress = true
+        }else{
+          that.isMainAddress = false
+        }
       })
     },
     collapseFunc(item) {

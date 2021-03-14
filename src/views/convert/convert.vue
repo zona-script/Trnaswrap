@@ -14,9 +14,9 @@
           <div class="convert-box convert-1" :class="assetMode ? 'toggle' : ''">
             <div class="form-view bd">
               <div class="img-text-wrap">
-                <img class="img" :src="require('@/themes/images/common/token_04_2x.png')" />
+                <img class="img" :src="require('@/assets/img/currency/USDT.png')" />
                 <span class="img-text">USDT - TUSD</span>
-                <img class="img res" :src="require('@/themes/images/common/token_04_2x.png')" />
+                <img class="img res" :src="require('@/assets/img/currency/TUSD.png')" />
               </div>
             </div>
             <div class="form-view">
@@ -29,7 +29,7 @@
                          v-model="trxNum" 
                          :disabled="inputdisabled1" 
                          onKeypress="return (/[\d,.]/.test(String.fromCharCode(event.keyCode)))"
-                         placeholder="Please enter the amout of TUSD"
+                         :placeholder="$t('lang43')"
                          />
                     </div>
                   </div>
@@ -46,7 +46,7 @@
             <div class="convert-box-title">{{$t('wtrx.yog')}}</div>
             <div class="result">
               <div class="key">
-                <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
+                <img :src="require('@/assets/img/currency/TUSD.png')" alt="" />
                 <div class="txt">TUSD</div>
               </div>
               <div class="num">{{trxNum?trxNum:'0'}}</div>
@@ -57,9 +57,9 @@
           <div class="convert-box convert-2" :class="assetMode ? '' : 'toggle'">
             <div class="form-view bd">
               <div class="img-text-wrap">
-                <img class="img" :src="require('@/themes/images/common/token_04_2x.png')" />
+                <img class="img" :src="require('@/assets/img/currency/TUSD.png')" />
                 <span class="img-text">TUSD - USDT</span>
-                <img class="img res" :src="require('@/themes/images/common/token_04_2x.png')" />
+                <img class="img res" :src="require('@/assets/img/currency/USDT.png')" />
               </div>
             </div>
             <div class="form-view">
@@ -72,7 +72,7 @@
                          v-model="wtrxNum" 
                          :disabled="inputdisabled1" 
                          onKeypress="return (/[\d,.]/.test(String.fromCharCode(event.keyCode)))"
-                         placeholder="Please enter the amout of USDT"
+                         :placeholder="$t('lang43')"
                          />
                     </div>
                   </div>
@@ -86,10 +86,10 @@
                 </div>
               </div>
             </div>
-            <div class="convert-box-title">You will get</div>
+            <div class="convert-box-title">{{$t('wtrx.yog')}}</div>
             <div class="result">
               <div class="key">
-                <img :src="require('@/themes/images/common/token_02_2x.png')" alt="" />
+                <img :src="require('@/assets/img/currency/USDT.png')" alt="" />
                 <div class="txt">USDT</div>
               </div>
               <div class="num">{{wtrxNum?wtrxNum:0}}</div>

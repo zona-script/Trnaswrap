@@ -294,5 +294,7 @@ module.exports = {
   lang39:'Referral',
   lang40:'Partner',
   lang41:'Performance',
-  lang42:'Select'
+  lang42:'Select',
+  lang43:'Please enter the exchange limit',
+  lang44:'Personal performance'
 }
