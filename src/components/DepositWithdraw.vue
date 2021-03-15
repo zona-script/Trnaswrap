@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="btn-container">
-          <el-button :loading="false" class="btn confirm" @click="deposit">{{$t('lang23')}}</el-button>
+          <el-button :loading="isDeposit" :disabled='isDeposit' class="btn confirm" @click="deposit">{{$t('lang23')}}</el-button>
           <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
@@ -80,7 +80,7 @@
           </div> -->
         </div>
         <div class="btn-container">
-          <!--<el-button :loading="false" class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button>-->
+          <el-button :loading="isWithdraw" :disabled='isWithdraw' class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button>
           <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
@@ -105,6 +105,12 @@ export default {
     userInfo:{
       type:Object,
       default:{}
+    },
+    isWithdraw:{
+      default:false
+    },
+    isDeposit:{
+      default:false
     }
   },
   data() {
@@ -141,11 +147,9 @@ export default {
         this.$message.error('TNS余额不足')
         return
       }
-      this.close();
       this.$emit('deposit',this.depostNum);
     },
     withdraw() {
-      this.close();
       this.$emit('withdraw');
     }
   },

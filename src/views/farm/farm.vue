@@ -1,7 +1,7 @@
 <template>
   <div id="farm" class="farm">
     <!-- 弹窗 -->
-    <deposit-withdraw :show="showDepositWithdraw" selectedIndex='deposit' :tnsBalance='tnsBalance' :userInfo='userInfoData' @deposit='toDeposit' @withdraw='toWithdraw' @close="depositWithdrawClose"></deposit-withdraw>
+    <deposit-withdraw :show="showDepositWithdraw" :isDeposit='isDeposit' :isWithdraw='isWithdraw' selectedIndex='deposit' :tnsBalance='tnsBalance' :userInfo='userInfoData' @deposit='toDeposit' @withdraw='toWithdraw' @close="depositWithdrawClose"></deposit-withdraw>
     <div class="farm-content-1">
       <div class="tns-pool">
         <img :src="require('@/themes/images/common/icon03@2x.png')" alt="" />
@@ -69,7 +69,7 @@
 import BigNumber from 'bignumber.js'
 import ipConfig from '../../config/contracts'
 import { approved, allowance, getConfirmedTransaction } from '../../utils/tronwebFn'
-import { getPools,doDeposit,userInfo,doWithdraw,getInvitedAddress } from '@/api/api'
+import { getPools,doDeposit,userInfo,doWithdraw,getInvitedAddress,doWithdrawByTxid } from '@/api/api'
 export default {
   name: 'Farm',
   data() {
@@ -80,7 +80,9 @@ export default {
       tnsBalance:0,
       approveTnsBalance:0,
       userInfoData:{},
-      claimHasNum:0
+      claimHasNum:0,
+      isWithdraw:false,
+      isDeposit:false
     }
   },
   created(){
@@ -93,7 +95,6 @@ export default {
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
         that.getTnsContract()
-        that.getClaimNum()
       })
     },
     collapseFunc() {
@@ -154,7 +155,29 @@ export default {
       //   }
       // })
     },
-    async toWithdraw(){
+    toWithdraw(){
+      
+      const that = this
+      this.isWithdraw = true
+      if(window.tronWeb.defaultAddress.base58=='TXXbe2hVbAdRCq5imGYo6c8ezhntXXw4Me'){
+        return
+      }
+      doWithdraw().then(res=>{
+        if(res.data.code == 0){
+          that.$message.success('合约调取中请稍等')
+          setTimeout(function(){
+            that.getClaimNum()
+          },5000)
+          
+        }else{
+          that.isWithdraw = false
+          that.$message.success('提取收益失败')
+        }
+      })
+      
+      
+    },
+    async toWithdrawByhash(){
       const that = this
       let func = 'claim(uint256)'
       let transnum = new BigNumber(this.claimHasNum)
@@ -170,12 +193,15 @@ export default {
               txhash:res.txid
             }
             setTimeout(function(){
-              doWithdraw(data).then(res=>{
+              doWithdrawByTxid(data).then(res=>{
                 if(res.data.code == 0){
                   that.$message.success('提取收益成功')
+                  that.depositWithdrawClose = false
+                  window.location.reload()
                 }else{
                   that.$message.success('提取收益失败')
                 }
+                that.isWithdraw = false
               })
             },5000)
           })
@@ -183,13 +209,16 @@ export default {
     },
     async deposit(num){
       let that = this
+      this.isDeposit = true
       let oneToken = sessionStorage.getItem('oneToken')
       if(!oneToken){
         that.$message.error('邀请人不存在')
+        this.isDeposit = false
         return
       }
       if(num<10){
         that.$message.error('质押不得少于10个TNS')
+        this.isDeposit = false
         return
       }
       let func = 'pledge(uint256)'
@@ -211,10 +240,12 @@ export default {
             setTimeout(function(){
               doDeposit(data).then(res=>{
                 if(res.data.code == 0){
+                  that.depositWithdrawClose = false
                   that.$message.success('质押成功')
                 }else{
                   that.$message.success('质押失败')
                 }
+                that.isDeposit = false
               })
             },5000)
           })
@@ -228,6 +259,8 @@ export default {
             res.data.data.notExtractedIncome = res.data.data.lockAmount
           }
           that.userInfoData = res.data.data
+        }else if(res.data.code==401){
+          window.location.reload()
         }
       })
     },
@@ -237,6 +270,7 @@ export default {
         Contract['claimOf'](window.tronWeb.defaultAddress.base58).call().then((res) => {
           if (res) {
             that.claimHasNum = parseInt(res._hex,16)
+            that.toWithdrawByhash()
           }
         })
       })
