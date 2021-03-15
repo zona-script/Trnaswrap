@@ -199,7 +199,6 @@ export default {
               doWithdrawByTxid(data).then(res=>{
                 if(res.data.code == 0){
                   that.$message.success('提取收益成功')
-                  that.depositWithdrawClose = false
                   window.location.reload()
                 }else{
                   that.$message.success('提取收益失败')
@@ -243,11 +242,11 @@ export default {
             setTimeout(function(){
               doDeposit(data).then(res=>{
                 if(res.data.code == 0){
-                  that.depositWithdrawClose = false
                   that.$message.success('质押成功')
                 }else{
                   that.$message.success('质押失败')
                 }
+                window.location.reload()
                 that.isDeposit = false
               })
             },5000)
