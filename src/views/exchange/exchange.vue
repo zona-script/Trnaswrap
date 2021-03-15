@@ -24,7 +24,7 @@
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(0)">
                     <div class="icon-txt">
-                      <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                      <img class="img" :src="requierImg(token1.name)" />
                       <span class="drop-head-text">{{ token1.name }}</span>
                     </div>
                     <span class="arrow down"></span>
@@ -50,7 +50,7 @@
                 <div class="droplist">
                   <div class="drop-head" v-on:click="dropHeadClick(1)">
                     <div class="icon-txt">
-                      <img class="img" :src="require('@/themes/images/common/b_2x.png')" />
+                      <img class="img" :src="requierImg(token2.name)" />
                       <span class="drop-head-text">{{ token2.name }}</span>
                     </div>
                     <span class="arrow down"></span>
@@ -334,6 +334,8 @@ export default {
       })
       if (pair && pair.length > 0) {
         this.pair = pair[0]
+        this.isPair = true
+        this.changePair()
       } else {
         this.isPair = false
       }

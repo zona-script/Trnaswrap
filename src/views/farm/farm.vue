@@ -86,6 +86,9 @@ export default {
     }
   },
   created(){
+    
+  },
+  mounted(){
     this.getPool()
     this.init()
     this.getUserInfo()
@@ -260,6 +263,7 @@ export default {
           }
           that.userInfoData = res.data.data
         }else if(res.data.code==401){
+          debugger
           window.location.reload()
         }
       })

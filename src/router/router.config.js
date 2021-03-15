@@ -5,7 +5,7 @@
 export const constantRouterMap = [
   {
     path: '/',
-    redirect: 'invite',
+    redirect: 'home',
     meta: {
       title: 'Home',
       keepAlive: false
