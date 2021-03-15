@@ -55,7 +55,7 @@
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang12')}}</div>
-          <div class="value">{{(userInfoData.teamAmount+userInfoData.staticIncome).toFixed(2)}}</div>
+          <div class="value">{{(userInfoData.notExtractedIncome==0?0:(userInfoData.teamAmount+userInfoData.staticIncome)).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang13')}}</div>

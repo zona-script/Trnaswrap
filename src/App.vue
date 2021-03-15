@@ -37,7 +37,7 @@ export default {
     joinClub() {
       let that = this
       let params = {
-        address: 'TLQkPTM57B61MRJg8k6ZfAv5rLTvRSnS36',
+        address: window.tronWeb.defaultAddress.base58,
         invitedAddress: ''
       }
       joinConnection(params).then(result => {
