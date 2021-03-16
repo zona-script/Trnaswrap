@@ -11,7 +11,7 @@
       <div class="deposit content" v-show="tabSelected === 'deposit'">
         <div class="top-container">
           <div class="input-container">
-            <input type="text" v-model="depostNum" placeholder="Deposit amount" />
+            <input type="text" v-model="depostNum" />
             <div class="unit">TNS</div>
           </div>
           <div class="info-container">
@@ -124,7 +124,7 @@ export default {
     return {
       isShow: false,
       tabSelected: this.selectedIndex,
-      depostNum:0
+      depostNum:''
     }
   },
   watch: {
