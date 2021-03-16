@@ -54,12 +54,20 @@
           <div class="value">{{userInfoData.lockAmount}}</div>
         </div>
         <div class="info-item">
-          <div class="key">{{$t('lang12')}}</div>
-          <div class="value">{{(userInfoData.notExtractedIncome==0?0:(userInfoData.teamAmount+userInfoData.staticIncome)).toFixed(2)}}</div>
+          <div class="key">{{$t('lang45')}}</div>
+          <div class="value">{{parseFloat(userInfoData.staticIncome).toFixed(2)}}</div>
+        </div>
+        <div class="info-item">
+          <div class="key">{{$t('lang46')}}</div>
+          <div class="value">{{parseFloat(userInfoData.teamAmount).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang13')}}</div>
           <div class="value">{{userInfoData.notExtractedIncome}}</div>
+        </div>
+        <div class="info-item">
+          <div class="key">{{$t('lang47')}}</div>
+          <div class="value">{{userInfoData.canExtractedIncome}}</div>
         </div>
       </div>
     </div>
@@ -174,7 +182,7 @@ export default {
           
         }else{
           that.isWithdraw = false
-          that.$message.success('提取收益失败')
+          that.$message.success(res.data.msg)
         }
       })
       
@@ -192,8 +200,11 @@ export default {
         window.tronWeb.trx
           .sendRawTransaction(signedTransaction)
           .then(function(res) {
+            let claimHasNum = new BigNumber(that.claimHasNum)
+            claimHasNum = claimHasNum.div(Math.pow(10,8))
             let data = {
-              txhash:res.txid
+              txhash:res.txid,
+              amount:claimHasNum.toFixed()
             }
             setTimeout(function(){
               doWithdrawByTxid(data).then(res=>{
@@ -201,7 +212,7 @@ export default {
                   that.$message.success('提取收益成功')
                   window.location.reload()
                 }else{
-                  that.$message.success('提取收益失败')
+                  that.$message.success(res.data.msg)
                 }
                 that.isWithdraw = false
               })
@@ -257,12 +268,13 @@ export default {
       let that = this
       userInfo().then(res=>{
         if(res.data.code==0){
-          if(res.data.data.notExtractedIncome>res.data.data.lockAmount){
-            res.data.data.notExtractedIncome = res.data.data.lockAmount
+          if(res.data.data.notExtractedIncome>(res.data.data.depositTotal*2)){
+            res.data.data.canExtractedIncome = res.data.data.depositTotal*2-res.data.data.withdrawTotal
+          }else{
+            res.data.data.canExtractedIncome = res.data.data.notExtractedIncome
           }
           that.userInfoData = res.data.data
         }else if(res.data.code==401){
-          debugger
           window.location.reload()
         }
       })
@@ -285,3 +297,4 @@ export default {
 @import '@/themes/style/button.less';
 @import '@/themes/style/farm.less';
 </style>
+     

@@ -56,6 +56,13 @@
                   <div class="unit">TNS</div>
                 </div>
               </div>
+              <div class="info-item">
+                <div class="key">{{$t('lang47')}}</div><!--可提取-->
+                <div class="value">
+                  <div class="num">{{userInfo.canExtractedIncome}}</div>
+                  <div class="unit">TNS</div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- <div class="revenue sec" v-show="false">

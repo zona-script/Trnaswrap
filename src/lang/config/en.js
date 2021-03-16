@@ -296,5 +296,8 @@ module.exports = {
   lang41:'Performance',
   lang42:'Select',
   lang43:'Please enter the exchange limit',
-  lang44:'Personal performance'
+  lang44:'Personal performance',
+  lang45:'Personal income',
+  lang46:'Team benefits',
+  lang47:'Recoverable income',
 }

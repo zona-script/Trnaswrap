@@ -274,8 +274,8 @@ module.exports = {
   lang25:'返回',
   lang26:'存款收入',
   lang27:'随时提取',
-  lang28:'赚得',
-  lang29:'提取',
+  lang28:'已赚得',
+  lang29:'待提取',
   lang30:'兑换',
   lang31:'农场',
   lang32:'费率',
@@ -290,5 +290,8 @@ module.exports = {
   lang41:'业绩',
   lang42:'选择',
   lang43:'请输入兑换额度',
-  lang44:'个人业绩'
+  lang44:'个人业绩',
+  lang45:'个人收益',
+  lang46:'团队收益',
+  lang47:'可提收益',
 }

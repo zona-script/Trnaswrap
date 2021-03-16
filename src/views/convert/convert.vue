@@ -117,8 +117,8 @@ export default {
     return {
       assetMode: true,
       wtrxContract: null,
-      trxBalance: 0,
-      wtrxBalance: 0,
+      trxBalance: '',
+      wtrxBalance: '',
       approveBalance: 0,
       trxNum: null,
       wtrxNum: null,

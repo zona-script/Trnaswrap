@@ -43,7 +43,7 @@
               </div>
             </div>
             <div class="btn-icon-wrap">
-              <div class="btn-icon"><span>+</span></div>
+              <div class="btn-icon" @click="purples"><img src="../../themes/images/common/change.png" width="34px"></div>
             </div>
             <div class="form-view-item clearfix mt">
               <div class="form-view-item-top">
@@ -154,7 +154,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['pairData'])
+    ...mapState(['pairData','tokenData'])
   },
   watch: {
     token1Num() {
@@ -168,13 +168,34 @@ export default {
     },
     pair(news) {
       this.changePair()
+    },
+    tokenData(list) {
+      let that = this
+      let tokenList = JSON.parse(JSON.stringify(list))
+      let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
+      this.token1 = token[0]
+      this.token1.item = 0
+      this.$initTronWeb().then(function(tronWeb) {
+        that.getBalance(that.token1)
+      })
+      
     }
   },
   created() {
     const that = this
     this.pairList = JSON.parse(JSON.stringify(this.pairData))
+    let tokenList = JSON.parse(JSON.stringify(this.tokenData))
+    if(tokenList && tokenList.length>0){
+      let token = tokenList.filter(el => el.name.toUpperCase() == 'TUSD')
+      this.token1 = token[0]
+      this.token1.item = 0
+    }
+    
     this.$initTronWeb().then(function(tronWeb) {
       // that.doClaimFactoryFund()
+      if(that.token1){
+        that.getBalance(that.token1)
+      }
       that.setPair()
     })
   },
@@ -321,6 +342,7 @@ export default {
           this.isApproved = false
           this.btnLoading2 = false
           this.btnDisabled2 = false
+          this.approveBalance1 = res
         })
       } else {
         this.$message.error(this.$t('Exc.plsec'))
@@ -567,7 +589,10 @@ export default {
       var functionSelector = 'swapExactAmountIn(address,uint256,address,uint256,uint256)'
 
       this.getMinAmountOut()
-      console.log('that.maxPrice======' + that.maxPrice)
+      console.log('token1.address======' + that.token1.address)
+      console.log('token2.address======' + that.token2.address)
+      console.log('token1num======' + token1num)
+      console.log('maxPrice======' + that.maxPrice)
       var parameter = [
         { type: 'address', value: that.token1.address },
         { type: 'uint256', value: token1num },
