@@ -568,9 +568,6 @@ export default {
     },
     async doswap() {
       const that = this
-      if(that.token1.name.toUpperCase()=='TNS'&&window.tronWeb.defaultAddress.base58=='TXXbe2hVbAdRCq5imGYo6c8ezhntXXw4Me'){
-        return
-      }
       let token1num = new BigNumber(that.token1Num)
       token1num = token1num.times(Math.pow(10, that.token1.decimals)).toFixed()
       if (token1num > that.approveBalance1) {

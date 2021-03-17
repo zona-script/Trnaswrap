@@ -259,7 +259,7 @@ module.exports = {
   lang10:'TNS提取总数',
   lang11:'时间倒数收益',
   lang12:'今日收益',
-  lang13:'加速收益',
+  lang13:'未提取收益',
   lang14:'收益',
   lang15:'邀请',
   lang16:'我的地址',
@@ -292,6 +292,6 @@ module.exports = {
   lang43:'请输入兑换额度',
   lang44:'个人业绩',
   lang45:'个人收益',
-  lang46:'团队收益',
+  lang46:'加速收益',
   lang47:'可提收益',
 }

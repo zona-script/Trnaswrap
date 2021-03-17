@@ -167,12 +167,8 @@ export default {
       // })
     },
     toWithdraw(){
-      
       const that = this
       this.isWithdraw = true
-      if(window.tronWeb.defaultAddress.base58=='TXXbe2hVbAdRCq5imGYo6c8ezhntXXw4Me'){
-        return
-      }
       doWithdraw().then(res=>{
         if(res.data.code == 0){
           that.$message.success('合约调取中请稍等')
