@@ -196,23 +196,25 @@ export default {
         window.tronWeb.trx
           .sendRawTransaction(signedTransaction)
           .then(function(res) {
-            let claimHasNum = new BigNumber(that.claimHasNum)
-            claimHasNum = claimHasNum.div(Math.pow(10,8))
-            let data = {
-              txhash:res.txid,
-              amount:claimHasNum.toFixed()
-            }
-            setTimeout(function(){
-              doWithdrawByTxid(data).then(res=>{
-                if(res.data.code == 0){
-                  that.$message.success('提取收益成功')
-                  window.location.reload()
-                }else{
-                  that.$message.success(res.data.msg)
-                }
-                that.isWithdraw = false
-              })
-            },5000)
+            that.$message.success('提取收益成功,等待区块确认')
+            window.location.reload()
+            //let claimHasNum = new BigNumber(that.claimHasNum)
+            //claimHasNum = claimHasNum.div(Math.pow(10,8))
+            //let data = {
+              //txhash:res.txid,
+              //amount:claimHasNum.toFixed()
+            //}
+            //setTimeout(function(){
+              //doWithdrawByTxid(data).then(res=>{
+                //if(res.data.code == 0){
+                  //that.$message.success('提取收益成功')
+                  //window.location.reload()
+                //}else{
+                  //that.$message.success(res.data.msg)
+                //}
+                //that.isWithdraw = false
+              //})
+            //},5000)
           })
       })
     },
