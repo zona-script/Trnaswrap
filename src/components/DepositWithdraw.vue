@@ -18,7 +18,7 @@
             <div class="info-item">
               <div class="key">{{$t('Exc.Balance')}}</div>
               <div class="value">
-                <div class="num">{{tnsBalance}}</div>
+                <div class="num">{{parseFloat(tnsBalance).toFixed(2)}}</div>
                 <div class="unit">TNS</div>
               </div>
             </div>
@@ -45,7 +45,7 @@
               <div class="info-item">
                 <div class="key">{{$t('lang28')}}</div><!--已赚取-->
                 <div class="value">
-                  <div class="num">{{userInfo.withdrawTotal+userInfo.notExtractedIncome}}</div>
+                  <div class="num">{{(parseFloat(userInfo.withdrawTotal)+parseFloat(userInfo.notExtractedIncome)).toFixed(2)}}</div>
                   <div class="unit">TNS</div>
                 </div>
               </div>

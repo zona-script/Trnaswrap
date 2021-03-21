@@ -12,14 +12,14 @@
           <div class="info-item important">
             <div class="key">{{$t('lang7')}}</div>
             <div class="value">
-              <div class="num">{{userInfoData.lockAmount}}</div>
+              <div class="num">{{parseFloat(userInfoData.lockAmount).toFixed(2)}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
           <div class="info-item">
             <div class="key">{{$t('Exc.Balance')}}</div>
             <div class="value">
-              <div class="num">{{tnsBalance}}</div>
+              <div class="num">{{parseFloat(tnsBalance).toFixed(2)}}</div>
               <div class="unit">TNS</div>
             </div>
           </div>
@@ -39,11 +39,11 @@
       <div class="pool-info">
         <div class="info-item">
           <div class="key">{{$t('lang9')}}</div>
-          <div class="value">{{userInfoData.depositTotal}}</div>
+          <div class="value">{{parseFloat(userInfoData.depositTotal).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang10')}}</div>
-          <div class="value">{{userInfoData.withdrawTotal}}</div>
+          <div class="value">{{parseFloat(userInfoData.withdrawTotal).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang11')}}</div>
@@ -51,7 +51,7 @@
         </div>
         <div class="info-item">
           <div class="key">200% {{$t('lang14')}}</div>
-          <div class="value">{{userInfoData.lockAmount}}</div>
+          <div class="value">{{parseFloat(userInfoData.lockAmount).toFixed(2)}}</div>
         </div>
         <div class="info-item">
           <div class="key">{{$t('lang45')}}</div>
@@ -90,7 +90,8 @@ export default {
       userInfoData:{},
       claimHasNum:0,
       isWithdraw:false,
-      isDeposit:false
+      isDeposit:false,
+      trxBalance:0
     }
   },
   created(){
@@ -105,7 +106,14 @@ export default {
     init() { // 初始化tronweb
       const that = this
       this.$initTronWeb().then(function(tronWeb) {
+        that.getTrxBalance()
         that.getTnsContract()
+      })
+    },
+    getTrxBalance(){
+      let that = this
+      window.tronWeb.trx.getBalance().then(res=>{
+        that.trxBalance = res/Math.pow(10,6)
       })
     },
     collapseFunc() {
@@ -168,6 +176,10 @@ export default {
     },
     toWithdraw(){
       const that = this
+      if(this.trxBalance<20){
+        this.$message.error('请保证钱包至少有二十个TRX才能进行合约操作')
+        return
+      }
       this.isWithdraw = true
       doWithdraw().then(res=>{
         if(res.data.code == 0){
@@ -271,11 +283,23 @@ export default {
           }else{
             res.data.data.canExtractedIncome = res.data.data.notExtractedIncome
           }
+          res.data.data.notExtractedIncome = that.getFullNum(res.data.data.notExtractedIncome)
+          res.data.data.canExtractedIncome = that.getFullNum(res.data.data.canExtractedIncome)
+          res.data.data.canExtractedIncome = parseFloat(res.data.data.canExtractedIncome).toFixed(2)
+          res.data.data.notExtractedIncome = parseFloat(res.data.data.notExtractedIncome).toFixed(2)
           that.userInfoData = res.data.data
         }else if(res.data.code==401){
           window.location.reload()
         }
       })
+    },
+    getFullNum(num){
+    //处理非数字
+    if(isNaN(num)){return num};
+    //处理不需要转换的数字
+    var str = ''+num;
+    if(!/e/i.test(str)){return num;};
+    return (num).toFixed(18).replace(/.?0+$/, '');
     },
     async getClaimNum(){
       let that = this
