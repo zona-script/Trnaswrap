@@ -1,6 +1,6 @@
 <template>
   <div class="deposit-withdraw" v-show="isShow">
-    <div class="mantle" @click="close"></div>
+    <div class="mantle"></div>
     <div class="container">
       <div class="tabs">
         <div class="tab deposit" @click="tabDeposit" :class="tabSelected === 'deposit' ? 'active' : ''">{{$t('lang23')}}</div>
@@ -33,7 +33,7 @@
         </div>
         <div class="btn-container">
           <el-button :loading="isDeposit" :disabled='isDeposit' class="btn confirm" @click="deposit">{{$t('lang23')}}</el-button>
-          <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
+          <el-button :loading="false" :disabled='isDeposit' class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
       <div class="withdraw content" v-show="tabSelected === 'withdraw'">
@@ -88,7 +88,7 @@
         </div>
         <div class="btn-container">
           <el-button :loading="isWithdraw" :disabled='isWithdraw' class="btn confirm" @click="withdraw">{{$t('lang24')}}</el-button>
-          <el-button :loading="false" class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
+          <el-button :loading="false" :disabled='isWithdraw' class="btn confirm unselect" @click="back">{{$t('lang25')}}</el-button>
         </div>
       </div>
     </div>

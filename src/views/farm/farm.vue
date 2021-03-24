@@ -176,17 +176,17 @@ export default {
     },
     toWithdraw(){
       const that = this
-      if(this.trxBalance<20){
-        this.$message.error('请保证钱包至少有二十个TRX才能进行合约操作')
-        return
-      }
+      // if(this.trxBalance<20){
+      //   this.$message.error('请保证钱包至少有二十个TRX才能进行合约操作')
+      //   return
+      // }
       this.isWithdraw = true
       doWithdraw().then(res=>{
         if(res.data.code == 0){
-          that.$message.success('合约调取中请稍等')
+          that.$message.success('提币发起成功，请等待区块确认')
           setTimeout(function(){
-            that.getClaimNum()
-          },5000)
+            window.location.reload()
+          },3000)
           
         }else{
           that.isWithdraw = false
@@ -255,6 +255,7 @@ export default {
         window.tronWeb.trx
           .sendRawTransaction(signedTransaction)
           .then(function(res) {
+            that.$message.error('正在进行区块确认请勿退出！')
             let data = {
               address:window.tronWeb.defaultAddress.base58,
               amount:num,
@@ -263,14 +264,14 @@ export default {
             setTimeout(function(){
               doDeposit(data).then(res=>{
                 if(res.data.code == 0){
-                  that.$message.success('质押成功')
+                  that.$message.success('区块已确认，质押成功')
                 }else{
                   that.$message.success('质押失败')
                 }
                 window.location.reload()
                 that.isDeposit = false
               })
-            },5000)
+            },3000)
           })
       })
     },
